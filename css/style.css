@@ -7,6 +7,48 @@
     object-fit: contain; /* Ensures full visibility */
 }
 
+.container {
+    margin: 20px auto;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+
+    .btn-primary {
+        font-size: 0.75rem;
+    }
+}
+
 
 /* General Button Styling */
 .btn {
