@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CS Vision - Online Test Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="img/Logo.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+<style>
+.quiz-box{background:#fff;padding:25px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+.option{padding:10px;border:1px solid #ddd;margin:5px;border-radius:5px;cursor:pointer}
+.option:hover{background:#f1f1f1}
+.selected{background:#0d6efd;color:#fff}
+.subject-card{border:1px solid #ddd;border-radius:10px;padding:12px;text-align:center;cursor:pointer}
+.subject-card.active{background:#0d6efd;color:#fff}
+.timer{color:red;font-weight:bold}
+.result-card{background:#fff;padding:30px;border-radius:10px;border:2px solid #0d6efd;text-align:center}
+.report-header{display:flex;justify-content:space-between}
+
+/* PRINT */
+@media print{
+body *{visibility:hidden}
+#reportCard,#reportCard *{visibility:visible}
+#reportCard{position:absolute;left:0;top:0;width:100%}
+.no-print{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= TOP CONTACT BAR ================= -->
+
+<div class="bg-primary text-light py-3 px-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+<div class="text-center text-md-start mb-3 mb-md-0">
+
+<a href="mailto:official@csvision.online" class="text-light text-decoration-none">
+<i class="fa fa-map-marker-alt me-2"></i>Bihar, Bettiah, India -
+<i class="fa fa-phone-alt me-2"></i>6374720499 -
+<i class="fa fa-envelope me-2"></i>official@csvision.online
+</a>
+
+</div>
+
+<div class="d-flex justify-content-center">
+<a class="text-light mx-2" href="https://www.instagram.com/csv_ision" target="_blank"><i class="fab fa-instagram"></i></a>
+<a class="text-light mx-2" href="https://www.facebook.com/ChandanJaiswal123/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+<a class="text-light mx-2" href="https://www.youtube.com/@csvisionedu" target="_blank"><i class="fab fa-youtube"></i></a>
+<a class="text-light mx-2" href="https://www.linkedin.com/company/68723161/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+</div>
+
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+
+<a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+
+<h2 class="m-0 text-primary">
+<img src="img/Logo.jpg" style="height:40px;margin-right:10px">
+CS Vision
+</h2>
+
+</a>
+
+<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarCollapse">
+
+<div class="navbar-nav ms-auto p-4 p-lg-0">
+
+<a href="index.html" class="nav-item nav-link">Home</a>
+<a href="team.html" class="nav-item nav-link">Our Team</a>
+<a href="courses.html" class="nav-item nav-link">Courses</a>
+<a href="internship.html" class="nav-item nav-link active">Internship</a>
+<a href="result.html" class="nav-item nav-link">Results & Achievements</a>
+
+<div class="nav-item dropdown">
+<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">More..</a>
+
+<div class="dropdown-menu fade-down m-0">
+<a href="about.html" class="dropdown-item">About</a>
+<a href="youtube.html" class="dropdown-item">YouTube Lecture</a>
+<a href="testimonial.html" class="dropdown-item">Testimonial</a>
+</div>
+
+</div>
+
+</div>
+</div>
+</nav>
+
+
+<!-- ===== TEST ===== -->
+<div class="container py-5">
+
+<h2 class="text-center mb-4">📝CS Vision - Online Test Portal</h2>
+
+<div id="userForm" class="quiz-box">
+<input type="text" id="name" class="form-control mb-2" placeholder="Full Name">
+<input type="email" id="email" class="form-control mb-3" placeholder="Email">
+
+<h5>Select Subject</h5>
+<div class="row g-2" id="subjectList"></div>
+
+<button class="btn btn-primary mt-3 w-100" onclick="startTest()">Start Test</button>
+</div>
+
+<div id="quizBox" class="quiz-box mt-4" style="display:none">
+<div class="d-flex justify-content-between">
+<div id="progress"></div>
+<div id="timer" class="timer"></div>
+</div>
+<hr>
+<div id="quiz"></div>
+<button class="btn btn-primary mt-3" onclick="nextQuestion()">Next</button>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+// ================= SUBJECT LIST =================
+const subjects=[
+"Java","C","C++","Python","HTML","CSS","JavaScript","PHP",
+"SQL","DBMS","Operating System","Computer Network",
+"Data Structure","Software Engineering","Cyber Security",
+"AI","Machine Learning","Cloud Computing","Linux","Deep Learning"
+];
+
+// ================= QUESTION BANK =================
+const questionBank={
+
+// ===== JAVA (30 QUESTIONS) =====
+"Java":[
+  {q:"Which of the following is not a Java feature?",options:["Object-oriented","Use of pointers","Portable","Dynamic"],answer:1},
+  {q:"What is the default value of int?",options:["0","null","undefined","1"],answer:0},
+  {q:"Output of x=10; x++ + ++x ?",options:["20","21","22","23"],answer:2},
+  {q:"Which loop runs at least once?",options:["for","while","do-while","None"],answer:2},
+  {q:"Hiding data concept?",options:["Inheritance","Polymorphism","Encapsulation","Abstraction"],answer:2},
+  {q:"Java supports?",options:["Multiple","Single","Hybrid","None"],answer:1},
+  {q:"Method overloading?",options:["Runtime","Compile-time","Dynamic","Abstraction"],answer:1},
+  {q:"Exception keyword?",options:["try","catch","throw","All"],answer:3},
+  {q:"Start thread?",options:["run()","start()","execute()","init()"],answer:1},
+  {q:"Garbage collection?",options:["Loader","Stack","GC","Engine"],answer:2},
+
+  {q:"What is the default value of an instance variable of type int?",options:["0","null","undefined","1"],answer:0},
+  {q:"Output of System.out.println(10 + 20 + 'Java');",options:["1020Java","30Java","Java1020","Error"],answer:1},
+  {q:"Which keyword is used to inherit a class?",options:["implements","extends","inherit","super"],answer:1},
+  {q:"What is the size of double in Java?",options:["4 bytes","8 bytes","2 bytes","16 bytes"],answer:1},
+  {q:"Output of int x=5; System.out.println(x++ + ++x);",options:["10","11","12","13"],answer:2},
+  {q:"Which of the following is not an OOP concept?",options:["Encapsulation","Polymorphism","Compilation","Inheritance"],answer:2},
+  {q:"Which loop executes at least once?",options:["for","while","do-while","None"],answer:2},
+  {q:"Output of String s='Java'; System.out.println(s.charAt(1));",options:["J","a","v","error"],answer:1},
+  {q:"Which access modifier is most restrictive?",options:["public","protected","default","private"],answer:3},
+  {q:"Output of System.out.println('Java' + 10 + 20);",options:["Java30","Java1020","30Java","Error"],answer:1},
+
+  {q:"What happens if you divide by zero in Java (int)?",options:["Infinity","0","ArithmeticException","Compile error"],answer:2},
+  {q:"Output of String s1='Java'; String s2='Java'; System.out.println(s1==s2);",options:["true","false","error","depends"],answer:0},
+  {q:"Which collection allows duplicates?",options:["Set","List","Map","None"],answer:1},
+  {q:"Which method is used to start a thread?",options:["run()","start()","init()","execute()"],answer:1},
+  {q:"Which keyword is used to handle exceptions?",options:["try","catch","finally","All of the above"],answer:3},
+  {q:"Output of String s=null; System.out.println(s);",options:["null","error","NullPointerException","blank"],answer:0},
+  {q:"Which class is immutable?",options:["String","StringBuilder","ArrayList","HashMap"],answer:0},
+  {q:"What is the default capacity of ArrayList?",options:["0","5","10","16"],answer:2},
+  {q:"List<Integer> list=Arrays.asList(1,2,3); list.add(4);",options:["Works fine","Compile error","Runtime exception","Ignored"],answer:2},
+  {q:"Which keyword prevents method overriding?",options:["static","final","abstract","private"],answer:1},
+
+  {q:"Output of Integer a=128; Integer b=128; System.out.println(a==b);",options:["true","false","error","null"],answer:1},
+  {q:"Which keyword ensures visibility across threads?",options:["static","volatile","final","transient"],answer:1},
+  {q:"Which exception occurs when accessing null reference?",options:["IOException","ArithmeticException","NullPointerException","SQLException"],answer:2},
+  {q:"What is deadlock?",options:["Infinite loop","Threads waiting for each other","Memory overflow","Compilation error"],answer:1},
+  {q:"Which method is used in ExecutorService?",options:["start()","run()","submit()","executeThread()"],answer:2},
+  {q:"Which interface supports lambda expressions?",options:["Marker","Functional","Serializable","Cloneable"],answer:1},
+  {q:"Which stream method is terminal?",options:["map()","filter()","collect()","sorted()"],answer:2},
+  {q:"What is the use of transient keyword?",options:["Thread control","Skip serialization","Memory allocation","Exception handling"],answer:1},
+  {q:"Which component converts bytecode to machine code?",options:["JVM","JRE","JIT Compiler","Class Loader"],answer:2},
+  {q:"What happens if hashCode() is not overridden with equals()?",options:["Compile error","Runtime error","Unexpected behavior in collections","No issue"],answer:2}
+],
+
+// ===== C P (30 QUESTIONS) =====
+
+"C":[
+  {q:"Who is the father of C language?",options:["Dennis Ritchie","James Gosling","Bjarne Stroustrup","Guido van Rossum"],answer:0},
+  {q:"Which of the following is not a valid C data type?",options:["int","float","real","char"],answer:2},
+  {q:"What is the size of int on most modern compilers?",options:["2 bytes","4 bytes","8 bytes","Depends"],answer:1},
+  {q:"Which keyword is used to define a constant?",options:["const","constant","final","static"],answer:0},
+  {q:"Which operator is used to access value at an address?",options:["&","*","->","."],answer:1},
+  {q:"What is the default return type of main() if not specified?",options:["int","void","float","char"],answer:0},
+  {q:"Which loop is entry-controlled?",options:["for","while","do-while","None"],answer:0},
+  {q:"What is the output of printf(\"%d\", 5/2);",options:["2","2.5","2.0","Error"],answer:0},
+  {q:"Which header file is required for printf()?",options:["stdio.h","stdlib.h","conio.h","string.h"],answer:0},
+  {q:"Which function is used to allocate memory dynamically?",options:["malloc()","calloc()","realloc()","All of the above"],answer:3},
+
+  {q:"Which keyword is used to exit from a loop?",options:["break","continue","exit","stop"],answer:0},
+  {q:"Which keyword skips current iteration?",options:["break","continue","skip","pass"],answer:1},
+  {q:"What is the output of sizeof(char)?",options:["1","2","4","Depends"],answer:0},
+  {q:"Which symbol is used for comments in C?",options:["//","/* */","#","--"],answer:1},
+  {q:"Which function is used to read a string?",options:["scanf()","gets()","fgets()","All"],answer:3},
+  {q:"Which function is used to compare two strings?",options:["strcmp()","strcpy()","strlen()","strcat()"],answer:0},
+  {q:"Which operator has highest precedence?",options:["++","*","()","&&"],answer:2},
+  {q:"Which keyword is used to define macros?",options:["macro","define","#define","typedef"],answer:2},
+  {q:"Which keyword is used to define new data type?",options:["typedef","struct","enum","define"],answer:0},
+  {q:"Which storage class has global lifetime?",options:["auto","register","static","extern"],answer:3},
+
+  {q:"Which error occurs when array index goes out of bound?",options:["Compile error","Runtime error","Logical error","None"],answer:1},
+  {q:"Which function is used to open a file?",options:["fopen()","open()","fileopen()","start()"],answer:0},
+  {q:"Which mode is used to append data in file?",options:["w","r","a","rw"],answer:2},
+  {q:"Which function is used to close a file?",options:["fclose()","close()","end()","stop()"],answer:0},
+  {q:"Which keyword is used to define structure?",options:["struct","structure","class","record"],answer:0},
+  {q:"Which keyword is used to define enumeration?",options:["enum","enumeration","list","set"],answer:0},
+  {q:"Which function is used to free memory?",options:["delete()","free()","remove()","clear()"],answer:1},
+  {q:"Which operator is used for pointer to structure?",options:[".","->","*","&"],answer:1},
+  {q:"Which function is used to generate random numbers?",options:["rand()","random()","srand()","genRand()"],answer:0},
+  {q:"Which keyword is used to define inline functions?",options:["inline","static","register","fast"],answer:0}
+],
+
+// ===== C++ (30 QUESTIONS) =====
+
+"C++":[
+  {q:"Who is the creator of C++?",options:["Dennis Ritchie","Bjarne Stroustrup","James Gosling","Guido van Rossum"],answer:1},
+  {q:"Which of the following is not a feature of C++?",options:["Object-oriented","Platform independent","Encapsulation","Polymorphism"],answer:1},
+  {q:"Which operator is overloaded for output in C++?",options:["<<",">>","=","++"],answer:0},
+  {q:"Which keyword is used for inheritance in C++?",options:["extends","inherits","implements","public/private/protected"],answer:3},
+  {q:"Which concept allows same function name with different parameters?",options:["Encapsulation","Polymorphism","Overloading","Inheritance"],answer:2},
+  {q:"Which constructor has no parameters?",options:["Default","Parameterized","Copy","Virtual"],answer:0},
+  {q:"Which function is called when object is destroyed?",options:["Constructor","Destructor","Virtual","Inline"],answer:1},
+  {q:"Which keyword is used to define abstract class?",options:["virtual","abstract","interface","None"],answer:0},
+  {q:"Which keyword is used to prevent inheritance?",options:["final","sealed","stop","None"],answer:0},
+  {q:"Which keyword is used to allocate memory dynamically?",options:["malloc","new","alloc","create"],answer:1},
+
+  {q:"Which keyword is used to free memory?",options:["delete","free","remove","clear"],answer:0},
+  {q:"Which operator is used to access members of a pointer to object?",options:[".","->","*","&"],answer:1},
+  {q:"Which keyword is used for multiple inheritance?",options:["extends","inherits","implements","class"],answer:3},
+  {q:"Which keyword is used to define namespace?",options:["namespace","package","module","space"],answer:0},
+  {q:"Which keyword is used to handle exceptions?",options:["try","catch","throw","All of the above"],answer:3},
+  {q:"Which keyword is used to rethrow exception?",options:["throw","throws","rethrow","raise"],answer:0},
+  {q:"Which keyword is used to define inline function?",options:["inline","fast","quick","static"],answer:0},
+  {q:"Which keyword is used to define template?",options:["template","generic","param","None"],answer:0},
+  {q:"Which STL container stores unique elements?",options:["vector","list","set","map"],answer:2},
+  {q:"Which STL container stores key-value pairs?",options:["vector","set","map","list"],answer:2},
+
+  {q:"Which STL container allows duplicate keys?",options:["map","multimap","set","multiset"],answer:1},
+  {q:"Which STL container allows duplicate elements?",options:["set","multiset","map","vector"],answer:1},
+  {q:"Which keyword is used to define friend function?",options:["friend","public","private","None"],answer:0},
+  {q:"Which keyword is used to define pure virtual function?",options:["virtual=0","abstract","None","pure"],answer:0},
+  {q:"Which keyword is used to overload operator?",options:["operator","overload","op","None"],answer:0},
+  {q:"Which keyword is used to define constant object?",options:["const","final","static","immutable"],answer:0},
+  {q:"Which keyword is used to define static member?",options:["static","const","final","None"],answer:0},
+  {q:"Which keyword is used to define mutable member?",options:["mutable","change","var","None"],answer:0},
+  {q:"Which keyword is used to define virtual base class?",options:["virtual","base","inherit","None"],answer:0},
+  {q:"Which keyword is used to define smart pointer?",options:["shared_ptr","unique_ptr","weak_ptr","All of the above"],answer:3}
+],
+
+// ===== Python (30 QUESTIONS) =====
+"Python":[
+  {q:"Who developed Python?",options:["Guido van Rossum","James Gosling","Dennis Ritchie","Bjarne Stroustrup"],answer:0},
+  {q:"What is the extension of Python files?",options:[".py",".java",".c",".txt"],answer:0},
+  {q:"Which data type is immutable?",options:["list","dict","tuple","set"],answer:2},
+  {q:"Which keyword is used to define a function?",options:["func","def","function","lambda"],answer:1},
+  {q:"What is the output of print(2**3)?",options:["6","8","9","Error"],answer:1},
+  {q:"Which operator is used for floor division?",options:["/","//","%","**"],answer:1},
+  {q:"Which module is used for regular expressions?",options:["regex","re","regexp","match"],answer:1},
+  {q:"Which function returns length of a list?",options:["size()","len()","count()","length()"],answer:1},
+  {q:"Which keyword is used for exception handling?",options:["try","catch","except","finally"],answer:2},
+  {q:"Which function is used to get user input?",options:["scan()","input()","read()","get()"],answer:1},
+
+  {q:"Which keyword is used to create class?",options:["class","object","def","struct"],answer:0},
+  {q:"Which method is called when object is created?",options:["__init__","__start__","__create__","constructor"],answer:0},
+  {q:"Which keyword is used for inheritance?",options:["extends","inherits","super","class"],answer:2},
+  {q:"Which keyword is used to import modules?",options:["include","import","require","module"],answer:1},
+  {q:"Which keyword is used to define anonymous function?",options:["def","lambda","func","None"],answer:1},
+  {q:"Which function converts string to integer?",options:["int()","str()","float()","eval()"],answer:0},
+  {q:"Which function returns type of variable?",options:["typeof()","type()","vartype()","class()"],answer:1},
+  {q:"Which keyword is used to define generator?",options:["yield","return","generate","None"],answer:0},
+  {q:"Which keyword is used to define decorator?",options:["@","decorator","def","lambda"],answer:0},
+  {q:"Which keyword is used to define static method?",options:["@staticmethod","static","method","None"],answer:0},
+
+  {q:"Which keyword is used to define class method?",options:["@classmethod","class","method","None"],answer:0},
+  {q:"Which keyword is used to define abstract class?",options:["ABC","abstract","class","None"],answer:0},
+  {q:"Which keyword is used to define property?",options:["@property","prop","getter","None"],answer:0},
+  {q:"Which keyword is used to define package?",options:["package","__init__.py","module","None"],answer:1},
+  {q:"Which keyword is used to define virtual environment?",options:["venv","virtual","env","None"],answer:0},
+  {q:"Which keyword is used to define list comprehension?",options:["listcomp","[] with for","comp","None"],answer:1},
+  {q:"Which keyword is used to define dictionary comprehension?",options:["dictcomp","{} with for","comp","None"],answer:1},
+  {q:"Which keyword is used to define set comprehension?",options:["setcomp","{} with for","comp","None"],answer:1},
+  {q:"Which keyword is used to define exception hierarchy?",options:["BaseException","Exception","Error","None"],answer:0},
+  {q:"Which keyword is used to define async function?",options:["async","await","def async","None"],answer:0}
+],
+
+// ===== HTML (30 QUESTIONS) =====
+"HTML":[
+  {q:"What does HTML stand for?",options:["Hyper Text Markup Language","High Text Machine Language","Hyperlinks and Text Markup Language","None"],answer:0},
+  {q:"Which tag is used for largest heading?",options:["<h1>","<h6>","<head>","<heading>"],answer:0},
+  {q:"Which tag is used to insert a line break?",options:["<br>","<break>","<lb>","<newline>"],answer:0},
+  {q:"Which tag is used to insert an image?",options:["<img>","<image>","<src>","<pic>"],answer:0},
+  {q:"Which attribute specifies image source?",options:["src","href","link","source"],answer:0},
+  {q:"Which tag is used to create hyperlink?",options:["<a>","<link>","<href>","<hyper>"],answer:0},
+  {q:"Which attribute opens link in new tab?",options:["target='_blank'","new","open","tab"],answer:0},
+  {q:"Which tag is used to create ordered list?",options:["<ol>","<ul>","<li>","<list>"],answer:0},
+  {q:"Which tag is used to create unordered list?",options:["<ul>","<ol>","<li>","<list>"],answer:0},
+  {q:"Which tag is used to create table?",options:["<table>","<tab>","<tr>","<td>"],answer:0},
+
+  {q:"Which tag defines table row?",options:["<tr>","<td>","<th>","<row>"],answer:0},
+  {q:"Which tag defines table cell?",options:["<td>","<tr>","<th>","<cell>"],answer:0},
+  {q:"Which tag defines table header?",options:["<th>","<td>","<tr>","<head>"],answer:0},
+  {q:"Which tag is used for forms?",options:["<form>","<input>","<table>","<div>"],answer:0},
+  {q:"Which attribute specifies form submission URL?",options:["action","method","href","src"],answer:0},
+  {q:"Which attribute specifies form submission method?",options:["method","action","type","src"],answer:0},
+  {q:"Which tag is used for input field?",options:["<input>","<form>","<field>","<textbox>"],answer:0},
+  {q:"Which attribute specifies input type?",options:["type","name","value","id"],answer:0},
+  {q:"Which tag is used for dropdown list?",options:["<select>","<option>","<list>","<dropdown>"],answer:0},
+  {q:"Which tag is used for option in dropdown?",options:["<option>","<select>","<list>","<dropdown>"],answer:0},
+
+  {q:"Which tag is used for checkbox?",options:["<input type='checkbox'>","<check>","<box>","<cb>"],answer:0},
+  {q:"Which tag is used for radio button?",options:["<input type='radio'>","<radio>","<rb>","<button>"],answer:0},
+  {q:"Which tag is used for text area?",options:["<textarea>","<input>","<text>","<box>"],answer:0},
+  {q:"Which tag is used for meta information?",options:["<meta>","<info>","<head>","<data>"],answer:0},
+  {q:"Which tag is used for document title?",options:["<title>","<head>","<meta>","<h1>"],answer:0},
+  {q:"Which tag is used for document body?",options:["<body>","<main>","<div>","<section>"],answer:0},
+  {q:"Which tag is used for document head?",options:["<head>","<header>","<title>","<meta>"],answer:0},
+  {q:"Which tag is used for inline frame?",options:["<iframe>","<frame>","<inline>","<window>"],answer:0},
+  {q:"Which tag is used for semantic section?",options:["<section>","<div>","<article>","<main>"],answer:0},
+  {q:"Which tag is used for navigation links?",options:["<nav>","<menu>","<links>","<navigation>"],answer:0}
+],
+
+// ===== CSS (30 QUESTIONS) =====
+"CSS":[
+  {q:"What does CSS stand for?",options:["Cascading Style Sheets","Creative Style System","Computer Style Sheets","Colorful Style Sheets"],answer:0},
+  {q:"Which property is used to change text color?",options:["color","font-color","text-color","background-color"],answer:0},
+  {q:"Which property is used to change background color?",options:["bgcolor","background","background-color","color"],answer:2},
+  {q:"Which property is used to change font size?",options:["font-size","text-size","size","fontsize"],answer:0},
+  {q:"Which property is used to make text bold?",options:["font-weight","bold","text-style","weight"],answer:0},
+  {q:"Which property is used to align text?",options:["text-align","align","text-style","position"],answer:0},
+  {q:"Which property is used to add shadow to text?",options:["text-shadow","shadow","font-shadow","box-shadow"],answer:0},
+  {q:"Which property is used to add shadow to box?",options:["box-shadow","shadow","border-shadow","outline-shadow"],answer:0},
+  {q:"Which property is used to set margin?",options:["margin","padding","space","border"],answer:0},
+  {q:"Which property is used to set padding?",options:["padding","margin","space","border"],answer:0},
+
+  {q:"Which property is used to set border?",options:["border","outline","frame","line"],answer:0},
+  {q:"Which property is used to set border radius?",options:["border-radius","radius","round","corner"],answer:0},
+  {q:"Which property is used to set opacity?",options:["opacity","transparent","alpha","visibility"],answer:0},
+  {q:"Which property is used to hide element?",options:["display:none","visibility:hidden","opacity:0","All of the above"],answer:3},
+  {q:"Which property is used to change cursor?",options:["cursor","pointer","mouse","style"],answer:0},
+  {q:"Which property is used to change font family?",options:["font-family","font","family","text-font"],answer:0},
+  {q:"Which property is used to change line height?",options:["line-height","height","spacing","line"],answer:0},
+  {q:"Which property is used to change letter spacing?",options:["letter-spacing","spacing","word-spacing","line-spacing"],answer:0},
+  {q:"Which property is used to change word spacing?",options:["word-spacing","letter-spacing","spacing","line-spacing"],answer:0},
+  {q:"Which property is used to change text decoration?",options:["text-decoration","decoration","underline","style"],answer:0},
+
+  {q:"Which property is used to change position?",options:["position","align","float","display"],answer:0},
+  {q:"Which property is used to float element?",options:["float","position","align","display"],answer:0},
+  {q:"Which property is used to clear float?",options:["clear","float","position","align"],answer:0},
+  {q:"Which property is used to set z-index?",options:["z-index","index","layer","order"],answer:0},
+  {q:"Which property is used to set overflow?",options:["overflow","scroll","hidden","clip"],answer:0},
+  {q:"Which property is used to set display?",options:["display","visibility","show","view"],answer:0},
+  {q:"Which property is used to set visibility?",options:["visibility","display","show","view"],answer:0},
+  {q:"Which property is used to set transition?",options:["transition","animate","effect","move"],answer:0},
+  {q:"Which property is used to set transform?",options:["transform","rotate","scale","translate"],answer:0},
+  {q:"Which property is used to set animation?",options:["animation","transition","effect","animate"],answer:0}
+],
+
+// ===== JavaScript (30 QUESTIONS) =====
+"JavaScript":[
+  {q:"Which company developed JavaScript?",options:["Microsoft","Netscape","Sun Microsystems","Oracle"],answer:1},
+  {q:"Which of the following is not JavaScript data type?",options:["Number","String","Boolean","Character"],answer:3},
+  {q:"Which symbol is used for comments in JavaScript?",options:["//","/* */","#","--"],answer:0},
+  {q:"Which keyword is used to declare variable?",options:["var","let","const","All of the above"],answer:3},
+  {q:"Which method is used to print output?",options:["print()","console.log()","echo()","write()"],answer:1},
+  {q:"Which operator is used for strict equality?",options:["==","===","!=","!=="],answer:1},
+  {q:"Which function is used to parse integer?",options:["parseInt()","parseFloat()","Number()","int()"],answer:0},
+  {q:"Which function is used to parse float?",options:["parseFloat()","parseInt()","Number()","float()"],answer:0},
+  {q:"Which keyword is used for function?",options:["func","function","def","lambda"],answer:1},
+  {q:"Which keyword is used for class?",options:["class","object","struct","None"],answer:0},
+
+  {q:"Which keyword is used for inheritance?",options:["extends","inherits","super","None"],answer:0},
+  {q:"Which keyword is used to handle exceptions?",options:["try","catch","throw","All of the above"],answer:3},
+  {q:"Which keyword is used to define async function?",options:["async","await","def","None"],answer:0},
+  {q:"Which keyword is used to wait for promise?",options:["await","async","wait","promise"],answer:0},
+  {q:"Which method is used to join array?",options:["join()","concat()","merge()","combine()"],answer:0},
+  {q:"Which method is used to add element at end?",options:["push()","pop()","shift()","unshift()"],answer:0},
+  {q:"Which method is used to remove element from end?",options:["pop()","push()","shift()","unshift()"],answer:0},
+  {q:"Which method is used to add element at start?",options:["unshift()","shift()","push()","pop()"],answer:0},
+  {q:"Which method is used to remove element from start?",options:["shift()","unshift()","push()","pop()"],answer:0},
+  {q:"Which method is used to sort array?",options:["sort()","order()","arrange()","None"],answer:0},
+
+  {q:"Which method is used to reverse array?",options:["reverse()","invert()","flip()","None"],answer:0},
+  {q:"Which method is used to filter array?",options:["filter()","map()","reduce()","find()"],answer:0},
+  {q:"Which method is used to transform array?",options:["map()","filter()","reduce()","transform()"],answer:0},
+  {q:"Which method is used to reduce array?",options:["reduce()","map()","filter()","sum()"],answer:0},
+  {q:"Which method is used to find element?",options:["find()","filter()","map()","search()"],answer:0},
+  {q:"Which method is used to check condition?",options:["some()","every()","includes()","All of the above"],answer:3},
+  {q:"Which method is used to convert JSON to object?",options:["JSON.parse()","JSON.stringify()","parseJSON()","None"],answer:0},
+  {q:"Which method is used to convert object to JSON?",options:["JSON.stringify()","JSON.parse()","toJSON()","None"],answer:0},
+  {q:"Which keyword is used to declare constant?",options:["const","let","var","final"],answer:0},
+  {q:"Which keyword is used to export module?",options:["export","module","require","include"],answer:0}
+],
+
+// ===== PHP (30 QUESTIONS) =====
+"PHP":[
+  {q:"What does PHP stand for?",options:["Personal Home Page","PHP: Hypertext Preprocessor","Private Home Page","Programming Hypertext Page"],answer:1},
+  {q:"PHP is a ______ language?",options:["Client-side scripting","Server-side scripting","Markup","Database"],answer:1},
+  {q:"Which symbol is used to declare variables in PHP?",options:["$","@","#","%"],answer:0},
+  {q:"Which function is used to output text?",options:["echo","print","write","Both echo and print"],answer:3},
+  {q:"Which function is used to get length of string?",options:["strlen()","length()","count()","size()"],answer:0},
+  {q:"Which function is used to compare strings?",options:["strcmp()","strcomp()","compare()","stringcmp()"],answer:0},
+  {q:"Which function is used to concatenate strings?",options:["strcat()","concat()",".","join()"],answer:2},
+  {q:"Which function is used to convert string to lowercase?",options:["strtolower()","lower()","lc()","stringlower()"],answer:0},
+  {q:"Which function is used to convert string to uppercase?",options:["strtoupper()","upper()","uc()","stringupper()"],answer:0},
+  {q:"Which function is used to reverse string?",options:["strrev()","reverse()","rev()","stringrev()"],answer:0},
+
+  {q:"Which function is used to replace string?",options:["str_replace()","replace()","stringreplace()","substitute()"],answer:0},
+  {q:"Which function is used to split string?",options:["explode()","split()","divide()","stringSplit()"],answer:0},
+  {q:"Which function is used to join array?",options:["implode()","join()","arrayjoin()","combine()"],answer:0},
+  {q:"Which function is used to count array elements?",options:["count()","sizeof()","length()","Both count() and sizeof()"],answer:3},
+  {q:"Which function is used to sort array?",options:["sort()","asort()","rsort()","All of the above"],answer:3},
+  {q:"Which function is used to include file?",options:["include","require","Both include and require","import"],answer:2},
+  {q:"Which function is used to include file once?",options:["include_once","require_once","Both","None"],answer:2},
+  {q:"Which function is used to start session?",options:["session_start()","start_session()","begin_session()","init_session()"],answer:0},
+  {q:"Which function is used to destroy session?",options:["session_destroy()","destroy_session()","end_session()","stop_session()"],answer:0},
+  {q:"Which function is used to set cookie?",options:["setcookie()","cookie_set()","create_cookie()","makecookie()"],answer:0},
+
+  {q:"Which function is used to read cookie?",options:["$_COOKIE","getcookie()","cookie_read()","readcookie()"],answer:0},
+  {q:"Which function is used to connect MySQL?",options:["mysqli_connect()","mysql_connect()","connect()","db_connect()"],answer:0},
+  {q:"Which function is used to select database?",options:["mysqli_select_db()","select_db()","db_select()","database_select()"],answer:0},
+  {q:"Which function is used to execute query?",options:["mysqli_query()","query()","execute()","runquery()"],answer:0},
+  {q:"Which function is used to fetch row?",options:["mysqli_fetch_row()","fetchrow()","row()","getrow()"],answer:0},
+  {q:"Which function is used to fetch array?",options:["mysqli_fetch_array()","fetcharray()","array()","getarray()"],answer:0},
+  {q:"Which function is used to fetch associative array?",options:["mysqli_fetch_assoc()","fetchassoc()","assoc()","getassoc()"],answer:0},
+  {q:"Which function is used to close connection?",options:["mysqli_close()","close()","end()","disconnect()"],answer:0},
+  {q:"Which function is used to get current date?",options:["date()","getdate()","now()","time()"],answer:0},
+  {q:"Which function is used to get current time?",options:["time()","gettime()","now()","date()"],answer:0}
+],
+
+// ===== SQL (30 QUESTIONS) =====
+"SQL":[
+  {q:"What does SQL stand for?",options:["Structured Query Language","Simple Query Language","Sequential Query Language","Standard Query Language"],answer:0},
+  {q:"Which SQL statement is used to retrieve data?",options:["SELECT","GET","SHOW","FETCH"],answer:0},
+  {q:"Which SQL statement is used to insert data?",options:["INSERT","ADD","PUT","CREATE"],answer:0},
+  {q:"Which SQL statement is used to update data?",options:["UPDATE","MODIFY","CHANGE","ALTER"],answer:0},
+  {q:"Which SQL statement is used to delete data?",options:["DELETE","REMOVE","DROP","CLEAR"],answer:0},
+  {q:"Which SQL statement is used to create table?",options:["CREATE TABLE","MAKE TABLE","NEW TABLE","TABLE"],answer:0},
+  {q:"Which SQL statement is used to delete table?",options:["DROP TABLE","DELETE TABLE","REMOVE TABLE","CLEAR TABLE"],answer:0},
+  {q:"Which SQL clause is used to filter records?",options:["WHERE","HAVING","FILTER","CONDITION"],answer:0},
+  {q:"Which SQL clause is used to group records?",options:["GROUP BY","ORDER BY","HAVING","JOIN"],answer:0},
+  {q:"Which SQL clause is used to sort records?",options:["ORDER BY","SORT BY","GROUP BY","ARRANGE"],answer:0},
+
+  {q:"Which SQL keyword is used to avoid duplicates?",options:["DISTINCT","UNIQUE","NO DUPLICATE","DIFFERENT"],answer:0},
+  {q:"Which SQL function returns number of rows?",options:["COUNT()","SUM()","AVG()","TOTAL()"],answer:0},
+  {q:"Which SQL function returns average?",options:["AVG()","MEAN()","AVERAGE()","COUNT()"],answer:0},
+  {q:"Which SQL function returns sum?",options:["SUM()","TOTAL()","ADD()","COUNT()"],answer:0},
+  {q:"Which SQL function returns maximum?",options:["MAX()","HIGHEST()","TOP()","COUNT()"],answer:0},
+  {q:"Which SQL function returns minimum?",options:["MIN()","LOWEST()","BOTTOM()","COUNT()"],answer:0},
+  {q:"Which SQL keyword is used to join tables?",options:["JOIN","MERGE","CONNECT","LINK"],answer:0},
+  {q:"Which SQL join returns common rows?",options:["INNER JOIN","LEFT JOIN","RIGHT JOIN","FULL JOIN"],answer:0},
+  {q:"Which SQL join returns all rows from left table?",options:["LEFT JOIN","INNER JOIN","RIGHT JOIN","FULL JOIN"],answer:0},
+  {q:"Which SQL join returns all rows from right table?",options:["RIGHT JOIN","INNER JOIN","LEFT JOIN","FULL JOIN"],answer:0},
+
+  {q:"Which SQL join returns all rows from both tables?",options:["FULL JOIN","INNER JOIN","LEFT JOIN","RIGHT JOIN"],answer:0},
+  {q:"Which SQL keyword is used to rename column?",options:["AS","RENAME","ALIAS","CHANGE"],answer:0},
+  {q:"Which SQL keyword is used to check condition?",options:["CASE","IF","WHEN","TEST"],answer:0},
+  {q:"Which SQL keyword is used to check pattern?",options:["LIKE","MATCH","PATTERN","SEARCH"],answer:0},
+  {q:"Which SQL keyword is used with LIKE?",options:["%","*","#","@"],answer:0},
+  {q:"Which SQL keyword is used to check range?",options:["BETWEEN","RANGE","WITHIN","LIMIT"],answer:0},
+  {q:"Which SQL keyword is used to check multiple values?",options:["IN","ANY","ALL","LIST"],answer:0},
+  {q:"Which SQL keyword is used to enforce condition on groups?",options:["HAVING","WHERE","GROUP BY","ORDER BY"],answer:0},
+  {q:"Which SQL keyword is used to create index?",options:["CREATE INDEX","MAKE INDEX","NEW INDEX","INDEX"],answer:0},
+  {q:"Which SQL keyword is used to remove index?",options:["DROP INDEX","DELETE INDEX","REMOVE INDEX","CLEAR INDEX"],answer:0}
+],
+
+// ===== DBMS (30 QUESTIONS) =====
+"DBMS":[
+  {q:"Which property of transactions ensures that either all operations are completed or none?",options:["Atomicity","Consistency","Isolation","Durability"],answer:0},
+  {q:"Which normal form removes partial dependency?",options:["1NF","2NF","3NF","BCNF"],answer:1},
+  {q:"Which normal form removes transitive dependency?",options:["1NF","2NF","3NF","BCNF"],answer:2},
+  {q:"Which normal form deals with multi-valued dependency?",options:["2NF","3NF","4NF","5NF"],answer:2},
+  {q:"Which SQL constraint ensures uniqueness of values?",options:["PRIMARY KEY","UNIQUE","FOREIGN KEY","CHECK"],answer:1},
+  {q:"Which SQL constraint enforces referential integrity?",options:["PRIMARY KEY","UNIQUE","FOREIGN KEY","CHECK"],answer:2},
+  {q:"Which indexing technique stores data in a tree structure?",options:["B-Tree","Hash","Bitmap","Cluster"],answer:0},
+  {q:"Which indexing technique is best for equality search?",options:["B-Tree","Hash","Bitmap","Cluster"],answer:1},
+  {q:"Which schedule is conflict-serializable?",options:["Equivalent to serial","Non-equivalent","Deadlock","None"],answer:0},
+  {q:"Which protocol prevents dirty reads?",options:["2PL","Strict 2PL","Timestamp ordering","None"],answer:1},
+
+  {q:"Which isolation level allows phantom reads?",options:["Read Uncommitted","Read Committed","Repeatable Read","Serializable"],answer:2},
+  {q:"Which isolation level prevents all anomalies?",options:["Read Uncommitted","Read Committed","Repeatable Read","Serializable"],answer:3},
+  {q:"Which recovery technique uses checkpoints?",options:["Deferred update","Immediate update","Checkpointing","Shadow paging"],answer:2},
+  {q:"Which recovery technique uses shadow copies?",options:["Deferred update","Immediate update","Checkpointing","Shadow paging"],answer:3},
+  {q:"Which join returns rows with no matching values?",options:["Outer Join","Inner Join","Equi Join","Natural Join"],answer:0},
+  {q:"Which join matches rows based on equality?",options:["Equi Join","Natural Join","Outer Join","Self Join"],answer:0},
+  {q:"Which join matches rows with same column names?",options:["Equi Join","Natural Join","Outer Join","Self Join"],answer:1},
+  {q:"Which join relates table to itself?",options:["Equi Join","Natural Join","Outer Join","Self Join"],answer:3},
+  {q:"Which file organization is best for sequential access?",options:["Heap","Sequential","Hash","Cluster"],answer:1},
+  {q:"Which file organization is best for random access?",options:["Heap","Sequential","Hash","Cluster"],answer:2},
+
+  {q:"Which concurrency problem occurs when two transactions read and update same data?",options:["Lost Update","Dirty Read","Phantom Read","Unrepeatable Read"],answer:0},
+  {q:"Which concurrency problem occurs when transaction reads uncommitted data?",options:["Lost Update","Dirty Read","Phantom Read","Unrepeatable Read"],answer:1},
+  {q:"Which concurrency problem occurs when new rows appear in repeated query?",options:["Lost Update","Dirty Read","Phantom Read","Unrepeatable Read"],answer:2},
+  {q:"Which concurrency problem occurs when same query returns different results?",options:["Lost Update","Dirty Read","Phantom Read","Unrepeatable Read"],answer:3},
+  {q:"Which key uniquely identifies each record?",options:["Primary Key","Foreign Key","Candidate Key","Super Key"],answer:0},
+  {q:"Which key can be chosen as primary key?",options:["Candidate Key","Super Key","Foreign Key","Alternate Key"],answer:0},
+  {q:"Which key is derived from primary key of another table?",options:["Primary Key","Foreign Key","Candidate Key","Super Key"],answer:1},
+  {q:"Which key is minimal super key?",options:["Candidate Key","Primary Key","Alternate Key","Foreign Key"],answer:0},
+  {q:"Which key is not chosen as primary key?",options:["Candidate Key","Alternate Key","Super Key","Foreign Key"],answer:1},
+  {q:"Which DBMS component manages physical storage?",options:["Query Processor","Transaction Manager","Storage Manager","Buffer Manager"],answer:2}
+],
+
+// ===== Operating System (30 QUESTIONS) =====
+"Operating System":[
+  {q:"Which of the following is not an operating system?",options:["Windows","Linux","Oracle","MacOS"],answer:2},
+  {q:"Which scheduling algorithm is non-preemptive?",options:["FCFS","Round Robin","Shortest Remaining Time First","Priority"],answer:0},
+  {q:"Which scheduling algorithm is best for time-sharing?",options:["FCFS","Round Robin","SJF","Priority"],answer:1},
+  {q:"Which scheduling algorithm may cause starvation?",options:["FCFS","Round Robin","Priority","None"],answer:2},
+  {q:"Which memory management technique divides memory into fixed-size blocks?",options:["Paging","Segmentation","Swapping","Fragmentation"],answer:0},
+  {q:"Which memory management technique divides memory into variable-size blocks?",options:["Paging","Segmentation","Swapping","Fragmentation"],answer:1},
+  {q:"Which memory allocation suffers from external fragmentation?",options:["Paging","Segmentation","Contiguous allocation","None"],answer:2},
+  {q:"Which memory allocation suffers from internal fragmentation?",options:["Paging","Segmentation","Contiguous allocation","None"],answer:0},
+  {q:"Which replacement algorithm replaces the oldest page?",options:["FIFO","LRU","Optimal","Clock"],answer:0},
+  {q:"Which replacement algorithm replaces least recently used page?",options:["FIFO","LRU","Optimal","Clock"],answer:1},
+
+  {q:"Which replacement algorithm gives best performance theoretically?",options:["FIFO","LRU","Optimal","Clock"],answer:2},
+  {q:"Which replacement algorithm uses reference bit?",options:["FIFO","LRU","Optimal","Clock"],answer:3},
+  {q:"Which condition is not necessary for deadlock?",options:["Mutual Exclusion","Hold and Wait","Preemption","Circular Wait"],answer:2},
+  {q:"Which technique is used to avoid deadlock?",options:["Banker's Algorithm","Wait-Die","Wound-Wait","All of the above"],answer:3},
+  {q:"Which technique is used to detect deadlock?",options:["Resource Allocation Graph","Banker's Algorithm","Wait-Die","None"],answer:0},
+  {q:"Which technique is used to recover from deadlock?",options:["Process termination","Resource preemption","Both","None"],answer:2},
+  {q:"Which synchronization tool is used to solve critical section problem?",options:["Semaphore","Mutex","Monitor","All of the above"],answer:3},
+  {q:"Which semaphore value indicates availability?",options:["Positive","Negative","Zero","None"],answer:0},
+  {q:"Which scheduling algorithm is used in Unix?",options:["Multilevel Queue","Multilevel Feedback Queue","Round Robin","FCFS"],answer:1},
+  {q:"Which scheduling algorithm is used in real-time systems?",options:["EDF","FCFS","Round Robin","Priority"],answer:0},
+
+  {q:"Which file allocation method uses linked list?",options:["Linked","Indexed","Contiguous","None"],answer:0},
+  {q:"Which file allocation method uses index block?",options:["Linked","Indexed","Contiguous","None"],answer:1},
+  {q:"Which file allocation method suffers from fragmentation?",options:["Linked","Indexed","Contiguous","None"],answer:2},
+  {q:"Which directory structure allows sharing?",options:["Single-level","Two-level","Tree","Acyclic Graph"],answer:3},
+  {q:"Which disk scheduling algorithm minimizes seek time?",options:["FCFS","SSTF","SCAN","C-SCAN"],answer:1},
+  {q:"Which disk scheduling algorithm is fair?",options:["FCFS","SSTF","SCAN","C-SCAN"],answer:0},
+  {q:"Which disk scheduling algorithm is elevator algorithm?",options:["FCFS","SSTF","SCAN","C-SCAN"],answer:2},
+  {q:"Which disk scheduling algorithm is circular SCAN?",options:["FCFS","SSTF","SCAN","C-SCAN"],answer:3},
+  {q:"Which OS is open-source?",options:["Windows","Linux","MacOS","DOS"],answer:1},
+  {q:"Which OS supports distributed computing?",options:["Windows","Linux","Unix","All of the above"],answer:3}
+],
+
+// ===== Computer Network (30 QUESTIONS) =====
+"Computer Network":[
+  {q:"Which layer of OSI model provides reliable process-to-process delivery?",options:["Transport","Network","Data Link","Session"],answer:0},
+  {q:"Which protocol is used for secure web communication?",options:["HTTP","HTTPS","FTP","SMTP"],answer:1},
+  {q:"Which protocol is used to transfer files?",options:["FTP","SMTP","HTTP","SNMP"],answer:0},
+  {q:"Which protocol is used for email transmission?",options:["SMTP","POP3","IMAP","FTP"],answer:0},
+  {q:"Which protocol is used to retrieve emails?",options:["SMTP","POP3","IMAP","HTTP"],answer:1},
+  {q:"Which protocol is used for dynamic IP assignment?",options:["DNS","DHCP","ARP","ICMP"],answer:1},
+  {q:"Which protocol resolves domain names to IP addresses?",options:["DNS","DHCP","ARP","ICMP"],answer:0},
+  {q:"Which protocol maps IP address to MAC address?",options:["ARP","RARP","DNS","DHCP"],answer:0},
+  {q:"Which protocol is used for error reporting?",options:["ICMP","IP","TCP","UDP"],answer:0},
+  {q:"Which protocol is connection-oriented?",options:["TCP","UDP","IP","ICMP"],answer:0},
+
+  {q:"Which protocol is connectionless?",options:["TCP","UDP","IP","ICMP"],answer:1},
+  {q:"Which routing algorithm uses shortest path?",options:["Dijkstra","Bellman-Ford","Flooding","Distance Vector"],answer:0},
+  {q:"Which routing protocol is used in Internet backbone?",options:["BGP","OSPF","RIP","EIGRP"],answer:0},
+  {q:"Which routing protocol is link-state?",options:["OSPF","RIP","BGP","EIGRP"],answer:0},
+  {q:"Which routing protocol is distance-vector?",options:["RIP","OSPF","BGP","IS-IS"],answer:0},
+  {q:"Which switching technique uses dedicated path?",options:["Circuit Switching","Packet Switching","Message Switching","None"],answer:0},
+  {q:"Which switching technique divides data into packets?",options:["Circuit Switching","Packet Switching","Message Switching","None"],answer:1},
+  {q:"Which switching technique sends entire message?",options:["Circuit Switching","Packet Switching","Message Switching","None"],answer:2},
+  {q:"Which topology connects each node to every other?",options:["Mesh","Star","Bus","Ring"],answer:0},
+  {q:"Which topology connects nodes to central hub?",options:["Star","Bus","Ring","Mesh"],answer:0},
+
+  {q:"Which topology connects nodes in a line?",options:["Bus","Star","Ring","Mesh"],answer:0},
+  {q:"Which topology connects nodes in a circle?",options:["Ring","Bus","Star","Mesh"],answer:0},
+  {q:"Which device connects different networks?",options:["Router","Switch","Hub","Repeater"],answer:0},
+  {q:"Which device connects multiple devices in LAN?",options:["Switch","Router","Hub","Bridge"],answer:0},
+  {q:"Which device amplifies signal?",options:["Repeater","Router","Switch","Hub"],answer:0},
+  {q:"Which device filters traffic based on MAC address?",options:["Bridge","Router","Switch","Hub"],answer:0},
+  {q:"Which firewall technique inspects packet headers?",options:["Packet Filtering","Stateful Inspection","Proxy","NAT"],answer:0},
+  {q:"Which firewall technique tracks connection state?",options:["Packet Filtering","Stateful Inspection","Proxy","NAT"],answer:1},
+  {q:"Which firewall technique acts as intermediary?",options:["Proxy","Packet Filtering","Stateful Inspection","NAT"],answer:0},
+  {q:"Which firewall technique hides internal IPs?",options:["NAT","Proxy","Packet Filtering","Stateful Inspection"],answer:0}
+],
+
+// ===== Data Structure (30 QUESTIONS) =====
+"Data Structure":[
+  // --- Basic Level ---
+  {q:"Which data structure stores elements in contiguous memory locations?",options:["Array","Linked List","Stack","Queue"],answer:0},
+  {q:"Which data structure follows FIFO principle?",options:["Stack","Queue","Array","Tree"],answer:1},
+  {q:"Which data structure follows LIFO principle?",options:["Stack","Queue","Array","Graph"],answer:0},
+  {q:"Which traversal of binary tree visits root, left, right?",options:["Preorder","Inorder","Postorder","Level order"],answer:0},
+  {q:"Which traversal of binary tree visits left, root, right?",options:["Preorder","Inorder","Postorder","Level order"],answer:1},
+  {q:"Which traversal of binary tree visits left, right, root?",options:["Preorder","Inorder","Postorder","Level order"],answer:2},
+  {q:"Which data structure is used to implement recursion?",options:["Queue","Stack","Array","Heap"],answer:1},
+  {q:"Which data structure is used in breadth-first search?",options:["Stack","Queue","Priority Queue","Graph"],answer:1},
+
+  // --- Intermediate Level ---
+  {q:"Which data structure is used in depth-first search?",options:["Stack","Queue","Priority Queue","Graph"],answer:0},
+  {q:"Which data structure is used to evaluate arithmetic expressions?",options:["Queue","Stack","Tree","Graph"],answer:1},
+  {q:"Which data structure is used to implement undo operation?",options:["Queue","Stack","Heap","Linked List"],answer:1},
+  {q:"Which data structure is used in LRU cache?",options:["Queue","Stack","Hash + Linked List","Heap"],answer:2},
+  {q:"Which data structure is used in balanced search trees?",options:["AVL Tree","Heap","Hash Table","Linked List"],answer:0},
+  {q:"Which data structure is used in B-Trees for databases?",options:["Binary Tree","Multiway Tree","Heap","Graph"],answer:1},
+  {q:"Which data structure is used in Trie for string search?",options:["Array","Linked List","Tree","Graph"],answer:2},
+  {q:"Which data structure is used in Huffman coding?",options:["Heap","Stack","Queue","Graph"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which data structure is used in Dijkstra’s algorithm?",options:["Stack","Queue","Priority Queue","Hash Table"],answer:2},
+  {q:"Which data structure is used in Kruskal’s algorithm?",options:["Union-Find","Stack","Queue","Heap"],answer:0},
+  {q:"Which data structure is used in Prim’s algorithm?",options:["Stack","Queue","Priority Queue","Hash Table"],answer:2},
+  {q:"Which data structure is used to detect cycle in graph?",options:["Union-Find","Stack","Queue","Heap"],answer:0},
+  {q:"Which data structure is used in topological sort?",options:["Stack","Queue","Heap","Graph"],answer:0},
+  {q:"Which data structure is used in adjacency list representation?",options:["Array of Linked Lists","Matrix","Heap","Tree"],answer:0},
+  {q:"Which data structure is used in adjacency matrix representation?",options:["2D Array","Linked List","Heap","Tree"],answer:0},
+  {q:"Which data structure is used in sparse matrix representation?",options:["Array","Linked List","Hash Table","Graph"],answer:1},
+
+  // --- Hardest Level ---
+  {q:"Which data structure is used in dynamic programming?",options:["Table (Array)","Stack","Queue","Graph"],answer:0},
+  {q:"Which data structure is used in memoization?",options:["Hash Table","Stack","Queue","Heap"],answer:0},
+  {q:"Which data structure is used in KMP string matching?",options:["Prefix Table","Suffix Tree","Hash Table","Heap"],answer:0},
+  {q:"Which data structure is used in Rabin-Karp algorithm?",options:["Hashing","Prefix Table","Suffix Tree","Heap"],answer:0},
+  {q:"Which data structure is used in Boyer-Moore algorithm?",options:["Bad Character Table","Prefix Table","Suffix Tree","Heap"],answer:0},
+  {q:"Which data structure is used in skip list?",options:["Linked List with Levels","Heap","Stack","Queue"],answer:0},
+  {q:"Which data structure is used in bloom filter?",options:["Bit Array + Hash Functions","Heap","Stack","Queue"],answer:0},
+  {q:"Which data structure is used in suffix array construction?",options:["Array + Sorting","Heap","Stack","Queue"],answer:0}
+],
+
+// ===== Software Engineering (30 QUESTIONS) =====
+"Software Engineering":[
+  // --- Basic Level ---
+  {q:"Which model of SDLC is the simplest and linear?",options:["Waterfall","Agile","Spiral","V-Model"],answer:0},
+  {q:"Which SDLC model emphasizes working software over documentation?",options:["Agile","Waterfall","Spiral","V-Model"],answer:0},
+  {q:"Which phase of SDLC involves gathering requirements?",options:["Requirement Analysis","Design","Implementation","Testing"],answer:0},
+  {q:"Which phase of SDLC involves coding?",options:["Requirement Analysis","Design","Implementation","Testing"],answer:2},
+  {q:"Which phase of SDLC involves verifying software correctness?",options:["Requirement Analysis","Design","Implementation","Testing"],answer:3},
+  {q:"Which document defines functional and non-functional requirements?",options:["SRS","Design Document","Test Plan","User Manual"],answer:0},
+  {q:"Which diagram is used to represent system interactions?",options:["Use Case Diagram","Class Diagram","Sequence Diagram","ER Diagram"],answer:0},
+  {q:"Which diagram shows object relationships?",options:["Class Diagram","Use Case Diagram","Sequence Diagram","Activity Diagram"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which design principle emphasizes high cohesion and low coupling?",options:["Modularity","Abstraction","Encapsulation","Inheritance"],answer:0},
+  {q:"Which testing verifies individual modules?",options:["Unit Testing","Integration Testing","System Testing","Acceptance Testing"],answer:0},
+  {q:"Which testing verifies combined modules?",options:["Unit Testing","Integration Testing","System Testing","Acceptance Testing"],answer:1},
+  {q:"Which testing verifies complete system?",options:["Unit Testing","Integration Testing","System Testing","Acceptance Testing"],answer:2},
+  {q:"Which testing verifies system with user requirements?",options:["Unit Testing","Integration Testing","System Testing","Acceptance Testing"],answer:3},
+  {q:"Which testing technique uses white-box approach?",options:["Structural Testing","Functional Testing","Regression Testing","Acceptance Testing"],answer:0},
+  {q:"Which testing technique uses black-box approach?",options:["Functional Testing","Structural Testing","Unit Testing","Integration Testing"],answer:0},
+  {q:"Which testing ensures new changes don’t break existing code?",options:["Regression Testing","Unit Testing","Integration Testing","Acceptance Testing"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which metric measures software complexity based on control flow?",options:["Cyclomatic Complexity","Lines of Code","Function Points","Halstead Metrics"],answer:0},
+  {q:"Which metric measures software size based on functionality?",options:["Function Points","Cyclomatic Complexity","Lines of Code","Halstead Metrics"],answer:0},
+  {q:"Which metric measures effort based on operators and operands?",options:["Halstead Metrics","Function Points","Cyclomatic Complexity","Lines of Code"],answer:0},
+  {q:"Which model combines iterative development with risk analysis?",options:["Spiral Model","Waterfall","Agile","V-Model"],answer:0},
+  {q:"Which Agile framework uses sprints and backlogs?",options:["Scrum","Kanban","XP","DSDM"],answer:0},
+  {q:"Which Agile framework uses continuous flow?",options:["Kanban","Scrum","XP","DSDM"],answer:0},
+  {q:"Which Agile practice emphasizes pair programming?",options:["XP","Scrum","Kanban","DSDM"],answer:0},
+  {q:"Which Agile role is responsible for removing impediments?",options:["Scrum Master","Product Owner","Developer","Tester"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which CMMI level focuses on process optimization?",options:["Level 5","Level 4","Level 3","Level 2"],answer:0},
+  {q:"Which ISO standard is for software quality management?",options:["ISO 9001","ISO 27001","ISO 12207","ISO 14001"],answer:2},
+  {q:"Which risk management strategy transfers risk to third party?",options:["Risk Transfer","Risk Avoidance","Risk Mitigation","Risk Acceptance"],answer:0},
+  {q:"Which estimation technique uses expert judgment?",options:["Delphi Technique","COCOMO","Function Point","Halstead"],answer:0},
+  {q:"Which estimation model is algorithmic based on size?",options:["COCOMO","Delphi","Function Point","Halstead"],answer:0},
+  {q:"Which project management tool uses Gantt charts?",options:["MS Project","JIRA","Trello","Slack"],answer:0},
+  {q:"Which project management tool uses Kanban boards?",options:["Trello","MS Project","Slack","Excel"],answer:0},
+  {q:"Which DevOps practice ensures continuous integration?",options:["CI/CD Pipeline","Version Control","Agile","Scrum"],answer:0}
+],
+
+// ===== Cyber Security (30 QUESTIONS) =====
+"Cyber Security":[
+  // --- Basic Level ---
+  {q:"Which of the following is considered a cyber threat?",options:["Malware","Phishing","Denial of Service","All of the above"],answer:3},
+  {q:"Which type of malware replicates itself?",options:["Virus","Worm","Trojan","Spyware"],answer:1},
+  {q:"Which type of malware disguises as legitimate software?",options:["Trojan","Worm","Virus","Adware"],answer:0},
+  {q:"Which attack tricks users into revealing credentials?",options:["Phishing","Spoofing","Sniffing","SQL Injection"],answer:0},
+  {q:"Which attack floods server with traffic?",options:["DoS","Phishing","Spoofing","Sniffing"],answer:0},
+  {q:"Which protocol is used for secure web communication?",options:["HTTP","HTTPS","FTP","SMTP"],answer:1},
+  {q:"Which protocol encrypts email communication?",options:["PGP","SMTP","IMAP","POP3"],answer:0},
+  {q:"Which protocol is used for secure remote login?",options:["SSH","Telnet","FTP","RDP"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which cryptographic technique uses same key for encryption and decryption?",options:["Symmetric","Asymmetric","Hashing","Digital Signature"],answer:0},
+  {q:"Which cryptographic technique uses public and private keys?",options:["Symmetric","Asymmetric","Hashing","Steganography"],answer:1},
+  {q:"Which algorithm is widely used for symmetric encryption?",options:["AES","RSA","SHA-256","ECC"],answer:0},
+  {q:"Which algorithm is widely used for asymmetric encryption?",options:["RSA","AES","SHA-256","DES"],answer:0},
+  {q:"Which algorithm is used for hashing?",options:["SHA-256","AES","RSA","ECC"],answer:0},
+  {q:"Which mechanism ensures data integrity?",options:["Hashing","Encryption","Decryption","Steganography"],answer:0},
+  {q:"Which mechanism ensures non-repudiation?",options:["Digital Signature","Hashing","Encryption","Decryption"],answer:0},
+  {q:"Which authentication factor is biometric?",options:["Fingerprint","Password","PIN","Token"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which attack exploits SQL queries?",options:["SQL Injection","Phishing","Spoofing","Sniffing"],answer:0},
+  {q:"Which attack exploits web browser vulnerabilities?",options:["Cross-Site Scripting","SQL Injection","Phishing","Spoofing"],answer:0},
+  {q:"Which attack exploits session tokens?",options:["Session Hijacking","Phishing","Spoofing","Sniffing"],answer:0},
+  {q:"Which attack exploits ARP protocol?",options:["ARP Spoofing","SQL Injection","Cross-Site Scripting","Phishing"],answer:0},
+  {q:"Which attack exploits DNS protocol?",options:["DNS Spoofing","SQL Injection","Cross-Site Scripting","Phishing"],answer:0},
+  {q:"Which attack exploits buffer overflow?",options:["Code Injection","SQL Injection","Cross-Site Scripting","Phishing"],answer:0},
+  {q:"Which framework is used for penetration testing?",options:["Metasploit","Wireshark","Nmap","Burp Suite"],answer:0},
+  {q:"Which tool is used for network packet analysis?",options:["Wireshark","Metasploit","Nmap","Burp Suite"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which security model enforces least privilege?",options:["Bell-LaPadula","Biba","RBAC","Clark-Wilson"],answer:2},
+  {q:"Which security model enforces confidentiality?",options:["Bell-LaPadula","Biba","RBAC","Clark-Wilson"],answer:0},
+  {q:"Which security model enforces integrity?",options:["Biba","Bell-LaPadula","RBAC","Clark-Wilson"],answer:0},
+  {q:"Which security model enforces well-formed transactions?",options:["Clark-Wilson","Bell-LaPadula","Biba","RBAC"],answer:0},
+  {q:"Which standard defines information security management?",options:["ISO 27001","ISO 9001","ISO 12207","ISO 14001"],answer:0},
+  {q:"Which framework is used for cybersecurity in US?",options:["NIST","ISO","COBIT","ITIL"],answer:0},
+  {q:"Which practice ensures continuous monitoring of threats?",options:["SOC","SIEM","IDS","IPS"],answer:1},
+  {q:"Which practice integrates security into DevOps?",options:["DevSecOps","Agile","Scrum","Kanban"],answer:0}
+],
+
+// ===== Artificial Intelligence (30 QUESTIONS) =====
+"AI":[
+  // --- Basic Level ---
+  {q:"Which of the following best defines AI?",options:["Simulation of human intelligence by machines","Automation of tasks","Data storage","Computer networking"],answer:0},
+  {q:"Which branch of AI deals with problem-solving and decision-making?",options:["Knowledge Representation","Machine Learning","Expert Systems","Search"],answer:3},
+  {q:"Which search algorithm explores all nodes at a given depth before moving deeper?",options:["Breadth-First Search","Depth-First Search","Best-First Search","A* Search"],answer:0},
+  {q:"Which search algorithm explores as far as possible along each branch?",options:["Breadth-First Search","Depth-First Search","Best-First Search","A* Search"],answer:1},
+  {q:"Which heuristic search algorithm guarantees optimal solution if heuristic is admissible?",options:["A* Search","Greedy Search","DFS","BFS"],answer:0},
+  {q:"Which AI system mimics human experts in decision-making?",options:["Expert System","Neural Network","Genetic Algorithm","Fuzzy Logic"],answer:0},
+  {q:"Which AI technique is used to handle uncertainty?",options:["Fuzzy Logic","Neural Networks","Expert Systems","Search"],answer:0},
+  {q:"Which AI technique is inspired by biological neurons?",options:["Neural Networks","Genetic Algorithms","Expert Systems","Fuzzy Logic"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which learning type uses labeled data?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:0},
+  {q:"Which learning type uses unlabeled data?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:1},
+  {q:"Which learning type uses rewards and penalties?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:2},
+  {q:"Which algorithm is commonly used for classification?",options:["Decision Tree","K-Means","Apriori","PageRank"],answer:0},
+  {q:"Which algorithm is commonly used for clustering?",options:["K-Means","Decision Tree","Naive Bayes","Linear Regression"],answer:0},
+  {q:"Which algorithm is commonly used for association rule mining?",options:["Apriori","K-Means","Decision Tree","Naive Bayes"],answer:0},
+  {q:"Which algorithm is commonly used for regression?",options:["Linear Regression","K-Means","Decision Tree","Naive Bayes"],answer:0},
+  {q:"Which algorithm is commonly used for dimensionality reduction?",options:["PCA","K-Means","Decision Tree","Naive Bayes"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which neural network is used for image recognition?",options:["Convolutional Neural Network","Recurrent Neural Network","Feedforward Network","Hopfield Network"],answer:0},
+  {q:"Which neural network is used for sequence data?",options:["Recurrent Neural Network","Convolutional Neural Network","Feedforward Network","Hopfield Network"],answer:1},
+  {q:"Which neural network is used for generative tasks?",options:["GAN","CNN","RNN","Decision Tree"],answer:0},
+  {q:"Which algorithm is used for reinforcement learning?",options:["Q-Learning","K-Means","Naive Bayes","Decision Tree"],answer:0},
+  {q:"Which algorithm is used for deep reinforcement learning?",options:["Deep Q-Network","K-Means","Naive Bayes","Decision Tree"],answer:0},
+  {q:"Which AI technique is used in natural language processing?",options:["Transformers","Decision Trees","K-Means","Naive Bayes"],answer:0},
+  {q:"Which AI technique is used in machine translation?",options:["Seq2Seq Models","Decision Trees","K-Means","Naive Bayes"],answer:0},
+  {q:"Which AI technique is used in speech recognition?",options:["Hidden Markov Models","Decision Trees","K-Means","Naive Bayes"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which AI concept ensures machines can explain their decisions?",options:["Explainable AI","Deep Learning","Reinforcement Learning","Fuzzy Logic"],answer:0},
+  {q:"Which AI concept ensures fairness and avoids bias?",options:["Ethical AI","Explainable AI","Reinforcement Learning","Fuzzy Logic"],answer:0},
+  {q:"Which AI concept ensures models adapt to new data?",options:["Transfer Learning","Explainable AI","Reinforcement Learning","Fuzzy Logic"],answer:0},
+  {q:"Which AI concept ensures models learn from few examples?",options:["Few-Shot Learning","Transfer Learning","Explainable AI","Reinforcement Learning"],answer:0},
+  {q:"Which AI concept ensures models learn continuously?",options:["Continual Learning","Transfer Learning","Explainable AI","Reinforcement Learning"],answer:0},
+  {q:"Which AI concept ensures models generate realistic data?",options:["Generative Adversarial Networks","Decision Trees","K-Means","Naive Bayes"],answer:0},
+  {q:"Which AI concept ensures models handle large-scale data?",options:["Big Data Analytics","Decision Trees","K-Means","Naive Bayes"],answer:0},
+  {q:"Which AI concept ensures models are deployed in production?",options:["MLOps","DevOps","Agile","Scrum"],answer:0}
+],
+
+// ===== Machine Learning (30 QUESTIONS) =====
+"Machine Learning":[
+  // --- Basic Level ---
+  {q:"Which of the following best defines Machine Learning?",options:["Systems that learn from data","Systems that store data","Systems that automate tasks","Systems that simulate hardware"],answer:0},
+  {q:"Which type of learning uses labeled data?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:0},
+  {q:"Which type of learning uses unlabeled data?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:1},
+  {q:"Which type of learning uses rewards and penalties?",options:["Supervised Learning","Unsupervised Learning","Reinforcement Learning","Semi-supervised Learning"],answer:2},
+  {q:"Which algorithm is commonly used for classification?",options:["Decision Tree","K-Means","Apriori","Linear Regression"],answer:0},
+  {q:"Which algorithm is commonly used for clustering?",options:["K-Means","Decision Tree","Naive Bayes","Linear Regression"],answer:0},
+  {q:"Which algorithm is commonly used for regression?",options:["Linear Regression","K-Means","Decision Tree","Naive Bayes"],answer:0},
+  {q:"Which algorithm is commonly used for association rule mining?",options:["Apriori","K-Means","Decision Tree","Naive Bayes"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which metric is used to evaluate classification accuracy?",options:["Accuracy","MSE","RMSE","MAE"],answer:0},
+  {q:"Which metric is used to evaluate regression error?",options:["MSE","Accuracy","Precision","Recall"],answer:0},
+  {q:"Which metric is used to evaluate precision and recall together?",options:["F1-Score","Accuracy","MSE","RMSE"],answer:0},
+  {q:"Which metric is used to evaluate imbalance in dataset?",options:["Precision","Recall","F1-Score","ROC-AUC"],answer:3},
+  {q:"Which technique is used to prevent overfitting?",options:["Regularization","Normalization","Standardization","Scaling"],answer:0},
+  {q:"Which technique is used to reduce dimensionality?",options:["PCA","K-Means","Decision Tree","Naive Bayes"],answer:0},
+  {q:"Which technique is used to handle missing values?",options:["Imputation","Normalization","Scaling","Regularization"],answer:0},
+  {q:"Which technique is used to balance dataset?",options:["SMOTE","PCA","Normalization","Scaling"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which optimization algorithm is widely used in deep learning?",options:["Gradient Descent","K-Means","Apriori","Decision Tree"],answer:0},
+  {q:"Which variant of gradient descent uses mini-batches?",options:["Stochastic Gradient Descent","Batch Gradient Descent","Mini-Batch Gradient Descent","None"],answer:2},
+  {q:"Which activation function is commonly used in hidden layers?",options:["ReLU","Sigmoid","Tanh","Softmax"],answer:0},
+  {q:"Which activation function is commonly used in output layer for classification?",options:["Softmax","ReLU","Sigmoid","Tanh"],answer:0},
+  {q:"Which neural network is used for image recognition?",options:["CNN","RNN","GAN","Decision Tree"],answer:0},
+  {q:"Which neural network is used for sequence data?",options:["RNN","CNN","GAN","Decision Tree"],answer:0},
+  {q:"Which neural network is used for generative tasks?",options:["GAN","CNN","RNN","Decision Tree"],answer:0},
+  {q:"Which algorithm is used for reinforcement learning?",options:["Q-Learning","K-Means","Naive Bayes","Decision Tree"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which technique allows models to adapt knowledge from one domain to another?",options:["Transfer Learning","Few-Shot Learning","Continual Learning","Meta Learning"],answer:0},
+  {q:"Which technique allows models to learn from few examples?",options:["Few-Shot Learning","Transfer Learning","Continual Learning","Meta Learning"],answer:0},
+  {q:"Which technique allows models to learn continuously?",options:["Continual Learning","Few-Shot Learning","Transfer Learning","Meta Learning"],answer:0},
+  {q:"Which technique allows models to learn how to learn?",options:["Meta Learning","Transfer Learning","Few-Shot Learning","Continual Learning"],answer:0},
+  {q:"Which framework is used for deploying ML models in production?",options:["MLOps","DevOps","Agile","Scrum"],answer:0},
+  {q:"Which technique is used to explain ML model decisions?",options:["Explainable AI","Transfer Learning","Meta Learning","Continual Learning"],answer:0},
+  {q:"Which technique is used to handle adversarial attacks?",options:["Adversarial Training","Transfer Learning","Meta Learning","Continual Learning"],answer:0},
+  {q:"Which technique is used to scale ML models for big data?",options:["Distributed Learning","Transfer Learning","Meta Learning","Continual Learning"],answer:0}
+],
+
+// ===== Deep Learning (30 QUESTIONS) =====
+"Deep Learning":[
+  // --- Basic Level ---
+  {q:"Which of the following best defines Deep Learning?",options:["Subset of Machine Learning using neural networks","Data storage technique","Automation of tasks","Simulation of hardware"],answer:0},
+  {q:"Which neural network is commonly used for image recognition?",options:["CNN","RNN","GAN","Decision Tree"],answer:0},
+  {q:"Which neural network is commonly used for sequence data?",options:["RNN","CNN","GAN","Decision Tree"],answer:0},
+  {q:"Which activation function is widely used in hidden layers?",options:["ReLU","Sigmoid","Tanh","Softmax"],answer:0},
+  {q:"Which activation function is used in binary classification output?",options:["Sigmoid","ReLU","Tanh","Softmax"],answer:0},
+  {q:"Which activation function is used in multi-class classification output?",options:["Softmax","ReLU","Sigmoid","Tanh"],answer:0},
+  {q:"Which optimization algorithm is widely used in training deep networks?",options:["Gradient Descent","K-Means","Apriori","Decision Tree"],answer:0},
+  {q:"Which variant of gradient descent updates weights after each sample?",options:["Stochastic Gradient Descent","Batch Gradient Descent","Mini-Batch Gradient Descent","None"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which variant of gradient descent updates weights after each batch?",options:["Mini-Batch Gradient Descent","Stochastic Gradient Descent","Batch Gradient Descent","None"],answer:2},
+  {q:"Which variant of gradient descent updates weights after small batches?",options:["Mini-Batch Gradient Descent","Stochastic Gradient Descent","Batch Gradient Descent","None"],answer:0},
+  {q:"Which technique is used to prevent overfitting in deep networks?",options:["Dropout","Batch Normalization","Regularization","All of the above"],answer:3},
+  {q:"Which technique normalizes inputs across mini-batches?",options:["Batch Normalization","Dropout","Regularization","Scaling"],answer:0},
+  {q:"Which technique is used to accelerate training by reusing pre-trained models?",options:["Transfer Learning","Meta Learning","Few-Shot Learning","Continual Learning"],answer:0},
+  {q:"Which technique is used to generate synthetic data?",options:["GAN","CNN","RNN","Decision Tree"],answer:0},
+  {q:"Which technique is used to compress deep models?",options:["Pruning","Dropout","Batch Normalization","Regularization"],answer:0},
+  {q:"Which technique is used to quantize weights for efficiency?",options:["Model Quantization","Pruning","Dropout","Batch Normalization"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which architecture is used in natural language processing?",options:["Transformers","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture uses attention mechanism?",options:["Transformers","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture is used in machine translation?",options:["Seq2Seq","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture is used in image segmentation?",options:["U-Net","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture is used in object detection?",options:["YOLO","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture is used in image generation?",options:["GAN","CNN","RNN","Decision Tree"],answer:0},
+  {q:"Which architecture is used in reinforcement learning with vision?",options:["Deep Q-Network","CNN","RNN","GAN"],answer:0},
+  {q:"Which architecture is used in speech recognition?",options:["RNN + HMM","CNN","GAN","Decision Tree"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which concept ensures deep models are interpretable?",options:["Explainable AI","Transfer Learning","Meta Learning","Continual Learning"],answer:0},
+  {q:"Which concept ensures fairness in deep learning?",options:["Ethical AI","Explainable AI","Transfer Learning","Meta Learning"],answer:0},
+  {q:"Which concept ensures models adapt across domains?",options:["Domain Adaptation","Transfer Learning","Meta Learning","Continual Learning"],answer:0},
+  {q:"Which concept ensures models learn from few examples?",options:["Few-Shot Learning","Transfer Learning","Meta Learning","Continual Learning"],answer:0},
+  {q:"Which concept ensures models learn continuously?",options:["Continual Learning","Few-Shot Learning","Transfer Learning","Meta Learning"],answer:0},
+  {q:"Which concept ensures models learn how to learn?",options:["Meta Learning","Transfer Learning","Few-Shot Learning","Continual Learning"],answer:0},
+  {q:"Which practice integrates deep learning into production pipelines?",options:["MLOps","DevOps","Agile","Scrum"],answer:0},
+  {q:"Which practice ensures robustness against adversarial attacks?",options:["Adversarial Training","Transfer Learning","Meta Learning","Continual Learning"],answer:0}
+],
+
+// ===== Linux (30 QUESTIONS) =====
+"Linux":[
+  // --- Basic Level ---
+  {q:"Which command is used to list files in a directory?",options:["ls","cd","pwd","cat"],answer:0},
+  {q:"Which command is used to change directory?",options:["cd","ls","pwd","mv"],answer:0},
+  {q:"Which command is used to display current working directory?",options:["pwd","ls","cd","echo"],answer:0},
+  {q:"Which command is used to display file contents?",options:["cat","ls","pwd","cd"],answer:0},
+  {q:"Which command is used to copy files?",options:["cp","mv","rm","touch"],answer:0},
+  {q:"Which command is used to move or rename files?",options:["mv","cp","rm","touch"],answer:0},
+  {q:"Which command is used to remove files?",options:["rm","mv","cp","touch"],answer:0},
+  {q:"Which command is used to create empty file?",options:["touch","rm","mv","cp"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which command is used to search text in files?",options:["grep","find","locate","awk"],answer:0},
+  {q:"Which command is used to search files in directory?",options:["find","grep","locate","awk"],answer:0},
+  {q:"Which command is used to display running processes?",options:["ps","top","htop","All of the above"],answer:3},
+  {q:"Which command is used to terminate process?",options:["kill","ps","top","htop"],answer:0},
+  {q:"Which command is used to change file permissions?",options:["chmod","chown","chgrp","ls"],answer:0},
+  {q:"Which command is used to change file ownership?",options:["chown","chmod","chgrp","ls"],answer:0},
+  {q:"Which command is used to change group ownership?",options:["chgrp","chown","chmod","ls"],answer:0},
+  {q:"Which command is used to compress files?",options:["tar","gzip","zip","All of the above"],answer:3},
+
+  // --- Advanced Level ---
+  {q:"Which command is used to schedule tasks?",options:["cron","at","systemd timer","All of the above"],answer:3},
+  {q:"Which file stores user account information?",options:["/etc/passwd","/etc/shadow","/etc/group","/etc/hosts"],answer:0},
+  {q:"Which file stores encrypted user passwords?",options:["/etc/shadow","/etc/passwd","/etc/group","/etc/hosts"],answer:0},
+  {q:"Which file stores group information?",options:["/etc/group","/etc/passwd","/etc/shadow","/etc/hosts"],answer:0},
+  {q:"Which command is used to monitor system resource usage?",options:["top","htop","vmstat","All of the above"],answer:3},
+  {q:"Which command is used to check disk usage?",options:["df","du","ls","stat"],answer:0},
+  {q:"Which command is used to check memory usage?",options:["free","vmstat","top","All of the above"],answer:3},
+  {q:"Which command is used to configure network interfaces?",options:["ifconfig","ip","nmcli","All of the above"],answer:3},
+
+  // --- Hardest Level ---
+  {q:"Which Linux runlevel represents multi-user mode without GUI?",options:["3","5","1","0"],answer:0},
+  {q:"Which Linux runlevel represents graphical multi-user mode?",options:["5","3","1","0"],answer:0},
+  {q:"Which Linux runlevel represents single-user mode?",options:["1","3","5","0"],answer:0},
+  {q:"Which Linux runlevel represents system halt?",options:["0","1","3","5"],answer:0},
+  {q:"Which command is used to secure remote login?",options:["ssh","telnet","ftp","scp"],answer:0},
+  {q:"Which command is used to transfer files securely?",options:["scp","ftp","telnet","ssh"],answer:0},
+  {q:"Which command is used to synchronize files between systems?",options:["rsync","scp","ftp","ssh"],answer:0},
+  {q:"Which Linux security module enforces mandatory access control?",options:["SELinux","AppArmor","iptables","firewalld"],answer:0}
+],
+
+// ===== Cloud Computing (30 QUESTIONS) =====
+"Cloud Computing":[
+  // --- Basic Level ---
+  {q:"Which of the following best defines Cloud Computing?",options:["Delivery of computing services over the internet","Storing files locally","Running applications offline","Building hardware systems"],answer:0},
+  {q:"Which service model provides virtualized hardware resources?",options:["IaaS","PaaS","SaaS","FaaS"],answer:0},
+  {q:"Which service model provides application development platforms?",options:["PaaS","IaaS","SaaS","FaaS"],answer:0},
+  {q:"Which service model provides ready-to-use applications?",options:["SaaS","IaaS","PaaS","FaaS"],answer:0},
+  {q:"Which deployment model is shared by multiple organizations?",options:["Public Cloud","Private Cloud","Hybrid Cloud","Community Cloud"],answer:3},
+  {q:"Which deployment model is owned by a single organization?",options:["Private Cloud","Public Cloud","Hybrid Cloud","Community Cloud"],answer:0},
+  {q:"Which deployment model combines public and private?",options:["Hybrid Cloud","Community Cloud","Private Cloud","Public Cloud"],answer:0},
+  {q:"Which deployment model is open to general public?",options:["Public Cloud","Private Cloud","Hybrid Cloud","Community Cloud"],answer:0},
+
+  // --- Intermediate Level ---
+  {q:"Which virtualization technique allows multiple OS on one machine?",options:["Hypervisor","Containerization","Serverless","Edge Computing"],answer:0},
+  {q:"Which virtualization technique isolates applications with lightweight runtime?",options:["Containerization","Hypervisor","Serverless","Edge Computing"],answer:0},
+  {q:"Which container orchestration tool is widely used?",options:["Kubernetes","Docker Swarm","Mesos","All of the above"],answer:3},
+  {q:"Which cloud service provides scalable storage?",options:["Amazon S3","Google BigQuery","Azure Functions","AWS Lambda"],answer:0},
+  {q:"Which cloud service provides serverless computing?",options:["AWS Lambda","Amazon S3","Google BigQuery","Azure Blob"],answer:0},
+  {q:"Which cloud service provides data warehousing?",options:["Amazon Redshift","AWS Lambda","Azure Functions","Google Cloud Storage"],answer:0},
+  {q:"Which cloud service provides big data analytics?",options:["Google BigQuery","Amazon S3","Azure Blob","AWS Lambda"],answer:0},
+  {q:"Which cloud service provides content delivery?",options:["Amazon CloudFront","Google BigQuery","Azure Functions","AWS Lambda"],answer:0},
+
+  // --- Advanced Level ---
+  {q:"Which cloud security model ensures shared responsibility?",options:["Shared Responsibility Model","Zero Trust","Defense in Depth","RBAC"],answer:0},
+  {q:"Which cloud security principle enforces least privilege?",options:["RBAC","Zero Trust","Defense in Depth","Shared Responsibility"],answer:0},
+  {q:"Which cloud security principle assumes no implicit trust?",options:["Zero Trust","RBAC","Defense in Depth","Shared Responsibility"],answer:0},
+  {q:"Which encryption technique secures data at rest?",options:["AES","RSA","SHA-256","ECC"],answer:0},
+  {q:"Which encryption technique secures data in transit?",options:["TLS/SSL","AES","RSA","SHA-256"],answer:0},
+  {q:"Which compliance standard is used for cloud security?",options:["ISO 27001","ISO 9001","ISO 12207","ISO 14001"],answer:0},
+  {q:"Which compliance standard is used for healthcare data?",options:["HIPAA","ISO 27001","PCI DSS","GDPR"],answer:0},
+  {q:"Which compliance standard is used for payment data?",options:["PCI DSS","HIPAA","ISO 27001","GDPR"],answer:0},
+
+  // --- Hardest Level ---
+  {q:"Which cloud architecture distributes workloads closer to users?",options:["Edge Computing","Serverless","Containerization","Virtualization"],answer:0},
+  {q:"Which cloud architecture integrates on-premise with cloud?",options:["Hybrid Cloud","Community Cloud","Public Cloud","Private Cloud"],answer:0},
+  {q:"Which cloud architecture enables microservices deployment?",options:["Containerization","Virtualization","Serverless","Edge Computing"],answer:0},
+  {q:"Which cloud architecture enables event-driven execution?",options:["Serverless","Containerization","Virtualization","Edge Computing"],answer:0},
+  {q:"Which cloud practice ensures continuous integration and deployment?",options:["CI/CD","RBAC","Zero Trust","Defense in Depth"],answer:0},
+  {q:"Which cloud practice ensures monitoring of resources?",options:["Cloud Monitoring","CI/CD","RBAC","Zero Trust"],answer:0},
+  {q:"Which cloud practice ensures automated scaling?",options:["Auto-scaling","CI/CD","RBAC","Zero Trust"],answer:0},
+  {q:"Which cloud practice integrates AI with cloud services?",options:["AI-as-a-Service","IaaS","PaaS","SaaS"],answer:0}
+],
+
+
+
+
+
+// 👉 SAME PATTERN FOR ALL SUBJECTS
+};
+
+
+
+// ================= LOAD SUBJECT =================
+window.onload=function(){
+let list=document.getElementById("subjectList");
+subjects.forEach(sub=>{
+list.innerHTML+=`
+<div class="col-md-3">
+<div class="subject-card" onclick="selectTest(this,'${sub}')">${sub}</div>
+</div>`;
+});
+};
+
+let selectedTest="";
+
+function getFullSubjectName(sub){
+if(sub==="C") return "C Programming";
+if(sub==="C++") return "C++ Programming";
+if(sub==="Java") return "Java Programming";
+return sub;
+}
+
+function selectTest(el,test){
+selectedTest=test;
+document.querySelectorAll('.subject-card').forEach(c=>c.classList.remove('active'));
+el.classList.add('active');
+}
+
+// ================= QUIZ LOGIC =================
+let questions=[],current=0,score=0,selectedAns=null;
+let userName="",userEmail="";
+let timeLeft=600,timer;
+
+function startTest(){
+userName=document.getElementById("name").value;
+userEmail=document.getElementById("email").value;
+
+if(!userName||!userEmail||!selectedTest){
+alert("Fill all details");
+return;
+}
+
+questions=questionBank[selectedTest];
+current=0;score=0;
+
+document.getElementById("userForm").style.display="none";
+document.getElementById("quizBox").style.display="block";
+
+timer=setInterval(()=>{
+timeLeft--;
+document.getElementById("timer").innerText=timeLeft;
+if(timeLeft<=0){showResult();}
+},1000);
+
+loadQuestion();
+}
+
+function loadQuestion(){
+selectedAns=null;
+let q=questions[current];
+
+document.getElementById("progress").innerText=`Q ${current+1}/${questions.length}`;
+
+let html=`<h5>${q.q}</h5>`;
+q.options.forEach((opt,i)=>{
+html+=`<div class='option' onclick='selectAnswer(${i},this)'>${opt}</div>`;
+});
+
+document.getElementById("quiz").innerHTML=html;
+}
+
+function selectAnswer(i,el){
+document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));
+el.classList.add('selected');
+selectedAns=i;
+}
+
+function nextQuestion(){
+if(selectedAns===null){alert("Select answer");return;}
+
+if(selectedAns===questions[current].answer) score++;
+
+current++;
+
+if(current<questions.length){
+loadQuestion();
+}else{
+showResult();
+}
+}
+
+function showResult(){
+clearInterval(timer);
+
+let sub=getFullSubjectName(selectedTest);
+let date=new Date().toLocaleString();
+
+document.getElementById("quizBox").style.display="none";
+
+document.getElementById("result").innerHTML=`
+<div id="reportCard" class="result-card">
+
+<div class="report-header">
+<span><b>Date:</b> ${date}</span>
+<span><b>${sub} Test Report</b></span>
+</div>
+
+<img src="img/Logo.jpg" height="60">
+<h2>CS Vision</h2>
+
+<hr>
+
+<p><b>Name:</b> ${userName}</p>
+<p><b>Email:</b> ${userEmail}</p>
+<p><b>Subject:</b> ${sub}</p>
+<p><b>Score:</b> ${score} out of ${questions.length}</p>
+
+<hr>
+
+<img src="img/Chandan_Sign.jpeg" height="50"><br>
+<b>Founder & CEO</b>
+
+<br><br>
+
+<button class="btn btn-success no-print" onclick="downloadReport()">Download Report</button>
+
+</div>`;
+}
+
+// PRINT DOWNLOAD
+function downloadReport(){
+window.print();
+}
+
+</script>
+
+
+ <!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Quick Link</h4>
+                <a class="btn btn-link" href="about.html">About Us</a>
+                <a class="btn btn-link" href="contact.html">Contact Us</a>
+                <a class="btn btn-link" href="">Privacy Policy</a>
+                <a class="btn btn-link" href="">Terms &amp; Condition</a>
+                <a class="btn btn-link" href="">FAQs &amp; Help</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Contact</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Bihar , India</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 63747 20499</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>csvision.edubth@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/csv_ision?igsh=MzM2Z2ExaWV6a3Bz" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/ChandanJaiswal123/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@csvisionedu" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.linkedin.com/company/68723161/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Gallery</h4>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">Newsletter</h4>
+                <p>CS Vision is one of the best e-learning platforms, offering top-notch classes for aspirants.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">CS Vision</a>, All Right Reserved.
+                    Designed By <a class="border-bottom" href="https://www.linkedin.com/in/chandan-kumar-jaiswal-b70b95126/" target="_blank">Er. Chandan k Jaiswal</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="index.html">Home</a>
+                        <a href="">Cookies</a>
+                        <a href="">Help</a>
+                        <a href="">FQAs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+</body>
+</html>
