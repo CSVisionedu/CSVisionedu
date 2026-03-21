@@ -972,9 +972,7 @@ el.classList.add('active');
 }
 
 // ================= QUIZ LOGIC =================
-let questions=[],current=0,score=0,selectedAns=null;
-let userName="",userEmail="";
-let timeLeft=2400,timer;
+let questions=[],current=0,score=0,selectedAns=null; let userName="",userEmail=""; let timeLeft=2100,timer=setInterval(()=>{if(timeLeft<=0){clearInterval(timer);endQuiz();}else{timeLeft--;document.getElementById("timer").innerText=`${Math.floor(timeLeft/60)}:${(timeLeft%60<10?"0":"")+(timeLeft%60)}`;}},1000);
 
 function startTest(){
 userName=document.getElementById("name").value;
