@@ -1,5 +1,13 @@
 /********** Template CSS **********/
 
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+
 /* Fixed image sizes for uniform appearance */
 .profile-img {
     width: 126px; /* Fixed profile image size */
