@@ -486,10 +486,706 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <div id="chatbot-container">
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-  <div class="elfsight-app-7fb0e846-28be-4f6d-a234-69e5743a1866" data-elfsight-app-lazy></div>
+ <!-- =====================================================
+     CS VISION AI CHATBOT
+===================================================== -->
+
+<style>
+
+/* =====================================================
+   FLOATING CHAT BUTTON
+===================================================== */
+
+#csvision-chat-button {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 64px;
+    height: 64px;
+
+    padding: 6px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
+
+    z-index: 999999;
+
+    transition: all 0.25s ease;
+}
+
+#csvision-chat-button:hover {
+    transform: scale(1.08);
+}
+
+#csvision-chat-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   WELCOME NOTIFICATION
+===================================================== */
+
+#csvision-chat-notification {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 100px;
+
+    width: 300px;
+
+    padding: 14px 40px 14px 14px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.20);
+
+    font-family: Arial, sans-serif;
+
+    z-index: 999998;
+
+    display: none;
+
+    animation: csvisionSlideUp 0.5s ease;
+}
+
+
+/* Notification Logo */
+
+#csvision-notification-logo {
+
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    float: left;
+
+    margin-right: 10px;
+}
+
+
+/* Notification Title */
+
+#csvision-chat-notification-title {
+
+    display: block;
+
+    color: #1e40af;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+/* Notification Text */
+
+#csvision-chat-notification-text {
+
+    font-size: 13px;
+
+    color: #555;
+
+    line-height: 18px;
+}
+
+
+/* Notification Close */
+
+#csvision-notification-close {
+
+    position: absolute;
+
+    top: 7px;
+    right: 8px;
+
+    width: 25px;
+    height: 25px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   CHAT WINDOW
+   BETWEEN HEADER AND FOOTER
+===================================================== */
+
+#csvision-chat-window {
+
+    display: none;
+
+    position: fixed;
+
+    top: 100px;
+    bottom: 80px;
+
+    right: 25px;
+
+    width: 410px;
+
+    /*
+       Instead of a small fixed height,
+       the window uses the available
+       space between header and footer.
+    */
+
+    height: auto;
+
+    min-height: 500px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.35);
+
+    z-index: 999999;
+
+    display: none;
+
+    flex-direction: column;
+
+    animation: csvisionChatOpen 0.25s ease;
+}
+
+
+/* =====================================================
+   CHAT HEADER
+===================================================== */
+
+#csvision-chat-header {
+
+    height: 72px;
+
+    min-height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 55px 0 16px;
+
+    background: #1e40af;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    box-sizing: border-box;
+}
+
+
+/* Header Logo */
+
+#csvision-chat-header img {
+
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    padding: 4px;
+
+    margin-right: 11px;
+
+    flex-shrink: 0;
+}
+
+
+/* Header Text */
+
+#csvision-chat-title {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+#csvision-chat-title strong {
+
+    font-size: 16px;
+
+    line-height: 21px;
+}
+
+
+#csvision-chat-title span {
+
+    font-size: 12px;
+
+    opacity: 0.9;
+
+    margin-top: 3px;
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+#csvision-close-button {
+
+    position: absolute;
+
+    top: 19px;
+    right: 11px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #333333;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+
+    transition: 0.2s;
+}
+
+#csvision-close-button:hover {
+
+    transform: scale(1.05);
+
+    background: #f1f1f1;
+}
+
+
+/* =====================================================
+   JOTFORM CHATBOT IFRAME
+===================================================== */
+
+#csvision-chat-iframe {
+
+    display: block;
+
+    width: 100%;
+
+    /*
+       Use remaining available space
+       below the header.
+    */
+
+    height: calc(100% - 72px);
+
+    min-height: 400px;
+
+    border: none;
+
+    flex: 1 1 auto;
+
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes csvisionSlideUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes csvisionChatOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    #csvision-chat-window {
+
+        top: 75px;
+
+        bottom: 70px;
+
+        right: 10px;
+
+        width: calc(100% - 20px);
+
+        min-height: 450px;
+
+        border-radius: 14px;
+    }
+
+
+    #csvision-chat-header {
+
+        height: 65px;
+
+        min-height: 65px;
+
+        padding-left: 12px;
+    }
+
+
+    #csvision-chat-header img {
+
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    #csvision-chat-title strong {
+
+        font-size: 14px;
+    }
+
+
+    #csvision-chat-title span {
+
+        font-size: 11px;
+    }
+
+
+    #csvision-chat-iframe {
+
+        height: calc(100% - 65px);
+
+        min-height: 350px;
+    }
+
+
+    #csvision-chat-button {
+
+        right: 15px;
+
+        bottom: 15px;
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+
+    #csvision-chat-notification {
+
+        right: 15px;
+
+        bottom: 85px;
+
+        width: calc(100% - 75px);
+
+        max-width: 290px;
+    }
+
+}
+
+</style>
+
+
+<!-- =====================================================
+     WELCOME NOTIFICATION
+===================================================== -->
+
+<div id="csvision-chat-notification">
+
+    <img
+        id="csvision-notification-logo"
+        src="img/logo.png"
+        alt="CS Vision Logo">
+
+
+    <button
+        id="csvision-notification-close"
+        onclick="closeCSVisionNotification()">
+
+        ×
+
+    </button>
+
+
+    <span id="csvision-chat-notification-title">
+
+        Hi! 👋 Welcome to CS Vision
+
+    </span>
+
+
+    <span id="csvision-chat-notification-text">
+
+        Need help? Chat with our CS Vision AI Assistant.
+
+    </span>
+
 </div>
+
+
+<!-- =====================================================
+     FLOATING CHAT BUTTON
+===================================================== -->
+
+<button
+    id="csvision-chat-button"
+    onclick="openCSVisionChat()">
+
+    <img
+        src="img/logo.png"
+        alt="CS Vision AI Assistant">
+
+</button>
+
+
+<!-- =====================================================
+     CHAT WINDOW
+===================================================== -->
+
+<div id="csvision-chat-window">
+
+
+    <!-- CHAT HEADER -->
+
+    <div id="csvision-chat-header">
+
+        <img
+            src="img/logo.png"
+            alt="CS Vision Logo">
+
+
+        <div id="csvision-chat-title">
+
+            <strong>
+                CS Vision AI Assistant
+            </strong>
+
+            <span>
+                We're here to help you!
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- CLOSE BUTTON -->
+
+    <button
+        id="csvision-close-button"
+        onclick="closeCSVisionChat()">
+
+        ✕
+
+    </button>
+
+
+    <!-- JOTFORM AI AGENT -->
+
+    <iframe
+        id="csvision-chat-iframe"
+
+        src="https://agent.jotform.com/019fda8db5a070008db2f3e24ef0e5c56be8"
+
+        title="CS Vision AI Assistant"
+
+        allow="microphone; camera; fullscreen">
+
+    </iframe>
+
+</div>
+
+
+<!-- =====================================================
+     CHATBOT NOTIFICATION SOUND
+===================================================== -->
+
+<audio
+    id="csvision-notification-sound"
+    preload="auto">
+
+    <source
+        src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   OPEN CHATBOT
+===================================================== */
+
+function openCSVisionChat() {
+
+    const chatWindow =
+        document.getElementById("csvision-chat-window");
+
+    const chatButton =
+        document.getElementById("csvision-chat-button");
+
+
+    chatWindow.style.display = "flex";
+
+    chatButton.style.display = "none";
+
+
+    closeCSVisionNotification();
+
+}
+
+
+/* =====================================================
+   CLOSE CHATBOT
+===================================================== */
+
+function closeCSVisionChat() {
+
+    const chatWindow =
+        document.getElementById("csvision-chat-window");
+
+    const chatButton =
+        document.getElementById("csvision-chat-button");
+
+
+    chatWindow.style.display = "none";
+
+    chatButton.style.display = "block";
+
+}
+
+
+/* =====================================================
+   CLOSE NOTIFICATION
+===================================================== */
+
+function closeCSVisionNotification() {
+
+    document.getElementById(
+        "csvision-chat-notification"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================================
+   PLAY CHATBOT SOUND
+===================================================== */
+
+function playCSVisionSound() {
+
+    const sound =
+        document.getElementById(
+            "csvision-notification-sound"
+        );
+
+    sound.volume = 0.5;
+
+    sound.play().catch(function() {
+
+        /*
+           Browser blocked autoplay.
+           Sound will be available after
+           the visitor interacts with the page.
+        */
+
+    });
+
+}
+
+
+/* =====================================================
+   SHOW NOTIFICATION AFTER WEBSITE LOAD
+===================================================== */
+
+window.addEventListener("load", function() {
+
+    setTimeout(function() {
+
+        const notification =
+            document.getElementById(
+                "csvision-chat-notification"
+            );
+
+
+        notification.style.display = "block";
+
+
+        /* Play notification sound */
+
+        playCSVisionSound();
+
+
+    }, 1500);
+
+});
+
+</script>
 </body>
 
 
