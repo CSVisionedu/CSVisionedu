@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +11,10 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <meta name="description"
-content="Get exam notifications, admit card updates, syllabus, exam pattern, preparation resources and important information for UGC NET, CUET PG, PGT, BPSC TRE-4, BET and other teaching examinations at CS Vision.">
+content="Get examination notifications, admit card updates, syllabus, exam pattern and preparation resources for UGC NET, CUET UG, CUET PG, Bihar STET, AWES, BPSC TRE-4, BET and other teaching examinations at CS Vision.">
 
 <meta name="keywords"
-content="UGC NET, UGC NET Computer Science, CUET PG, Bihar STET, AWES, BPSC TRE-4, BET Bihar, Assistant Professor Exam, PGT Exam, CS Vision">
+content="UGC NET, UGC NET Computer Science, CUET UG, CUET PG, Bihar STET, AWES, BPSC TRE-4, BET Bihar, Assistant Professor Exam, PGT Exam, CS Vision">
 
 <link rel="icon" type="image/png" href="img/Logo.jpg">
 
@@ -24,10 +25,11 @@ content="UGC NET, UGC NET Computer Science, CUET PG, Bihar STET, AWES, BPSC TRE-
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
+
 <style>
 
 /* =====================================================
-   PAGE DESIGN
+   GENERAL
 ===================================================== */
 
 body{
@@ -39,6 +41,11 @@ h1,h2,h3,h4,h5,h6{
     font-family:'Nunito',sans-serif;
 }
 
+
+/* =====================================================
+   HERO
+===================================================== */
+
 .exam-hero{
     background:linear-gradient(135deg,#1e40af,#2563eb);
     color:#fff;
@@ -49,6 +56,16 @@ h1,h2,h3,h4,h5,h6{
     font-size:42px;
     font-weight:800;
 }
+
+.exam-hero p{
+    max-width:900px;
+    margin:auto;
+}
+
+
+/* =====================================================
+   SELECTOR
+===================================================== */
 
 .exam-selector{
     margin-top:-35px;
@@ -73,6 +90,11 @@ h1,h2,h3,h4,h5,h6{
     min-height:50px;
     border-radius:8px;
 }
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
 
 .exam-layout{
     display:grid;
@@ -106,9 +128,10 @@ h1,h2,h3,h4,h5,h6{
     color:#1e40af;
 }
 
-.exam-content{
-    min-width:0;
-}
+
+/* =====================================================
+   CONTENT
+===================================================== */
 
 .content-card{
     background:#fff;
@@ -124,15 +147,30 @@ h1,h2,h3,h4,h5,h6{
     margin-bottom:18px;
 }
 
-.content-card h3{
-    color:#1e40af;
-    font-weight:700;
-}
-
 .section-title{
     border-left:5px solid #06b6d4;
     padding-left:12px;
 }
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.exam-badge{
+    display:inline-block;
+    background:#e8f1ff;
+    color:#1e40af;
+    padding:7px 14px;
+    border-radius:30px;
+    font-weight:700;
+    margin:4px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .info-table{
     width:100%;
@@ -150,15 +188,43 @@ h1,h2,h3,h4,h5,h6{
     color:#1e3a8a;
 }
 
-.exam-badge{
-    display:inline-block;
-    background:#e8f1ff;
-    color:#1e40af;
-    padding:7px 14px;
-    border-radius:30px;
-    font-weight:700;
-    margin:4px;
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice-box{
+    background:#fff8e1;
+    border-left:5px solid #f59e0b;
+    padding:18px;
+    border-radius:8px;
 }
+
+
+/* =====================================================
+   ADMIT CARD
+===================================================== */
+
+.download-box{
+    background:#eef6ff;
+    border:1px solid #b9d6ff;
+    padding:25px;
+    border-radius:10px;
+}
+
+.download-box h4{
+    color:#1e40af;
+    font-weight:800;
+}
+
+.official-button{
+    min-width:230px;
+}
+
+
+/* =====================================================
+   RESOURCE CARDS
+===================================================== */
 
 .resource-card{
     height:100%;
@@ -186,30 +252,21 @@ h1,h2,h3,h4,h5,h6{
 
 .resource-card p{
     color:#555;
-    font-size:20px;
+    font-size:19px;
     line-height:1.7;
 }
 
 .resource-link{
     color:#06b6d4;
     font-weight:800;
-    font-size:20px;
+    font-size:19px;
     text-decoration:none;
 }
 
-.notice-box{
-    background:#fff8e1;
-    border-left:5px solid #f59e0b;
-    padding:18px;
-    border-radius:8px;
-}
 
-.download-box{
-    background:#eef6ff;
-    border:1px solid #b9d6ff;
-    padding:25px;
-    border-radius:10px;
-}
+/* =====================================================
+   FAQ
+===================================================== */
 
 .faq-item{
     border-bottom:1px solid #ddd;
@@ -226,7 +283,13 @@ h1,h2,h3,h4,h5,h6{
     display:none;
     padding-top:10px;
     color:#555;
+    line-height:1.7;
 }
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:991px){
 
@@ -242,6 +305,7 @@ h1,h2,h3,h4,h5,h6{
     .exam-hero h1{
         font-size:32px;
     }
+
 }
 
 @media(max-width:576px){
@@ -280,7 +344,7 @@ h1,h2,h3,h4,h5,h6{
 
 <div class="text-center text-md-start mb-3 mb-md-0">
 
-<a href="mailto:official@csvision.online"
+<a href="mailto:official@csvisionedu.com"
 class="text-light text-decoration-none">
 
 <i class="fa fa-map-marker-alt me-2"></i>
@@ -301,32 +365,43 @@ official@csvisionedu.com
 
 <a class="text-light mx-2"
 href="https://www.instagram.com/csv_ision"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fab fa-instagram"></i>
+
 </a>
 
 <a class="text-light mx-2"
 href="https://www.facebook.com/ChandanJaiswal123/"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fab fa-facebook-f"></i>
+
 </a>
 
 <a class="text-light mx-2"
 href="https://www.youtube.com/@csvisionedu"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fab fa-youtube"></i>
+
 </a>
 
 <a class="text-light mx-2"
 href="https://www.linkedin.com/company/68723161/"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fab fa-linkedin-in"></i>
+
 </a>
 
 </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -341,7 +416,8 @@ class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 <h2 class="m-0 text-primary">
 
 <img src="img/Logo.jpg"
-style="height:40px;margin-right:10px">
+style="height:40px;margin-right:10px"
+alt="CS Vision Logo">
 
 CS Vision
 
@@ -367,27 +443,37 @@ id="navbarCollapse">
 
 <a href="index.html"
 class="nav-item nav-link">
+
 Home
+
 </a>
 
 <a href="team.html"
 class="nav-item nav-link">
+
 Our Team
+
 </a>
 
 <a href="courses.html"
 class="nav-item nav-link">
+
 Courses
+
 </a>
 
 <a href="internship.html"
 class="nav-item nav-link">
+
 Internship
+
 </a>
 
 <a href="notification.html"
 class="nav-item nav-link active">
+
 Notification
+
 </a>
 
 
@@ -404,44 +490,71 @@ More..
 
 <div class="dropdown-menu fade-down m-0">
 
+<!-- ABOUT -->
+
 <a href="about.html"
 class="dropdown-item">
+
 About
+
 </a>
+
+
+<!-- ALL EXAM DETAILS -->
 
 <a href="all_exam.html"
 class="dropdown-item">
+
 All Exam Details
+
 </a>
+
 
 <a href="result.html"
 class="dropdown-item">
+
 Results & Achievements
+
 </a>
+
 
 <a href="certificate-verification.html"
 class="dropdown-item">
+
 Certificates-Verification
+
 </a>
+
 
 <a href="youtube.html"
 class="dropdown-item">
+
 YouTube Lecture
+
 </a>
+
 
 <a href="testimonial.html"
 class="dropdown-item">
+
 Testimonial
+
 </a>
+
 
 <a href="career.html"
 class="dropdown-item">
+
 Career
+
 </a>
+
 
 <a href="test.html"
 class="dropdown-item">
+
 Skill Test
+
 </a>
 
 </div>
@@ -452,7 +565,9 @@ Skill Test
 
 
 <a href="https://github.com/CSVisionedu/CSVisionedu/releases/download/v1.0.0/csvisionedutech.apk"
-class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">
+class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+target="_blank"
+rel="noopener noreferrer">
 
 Download APP
 
@@ -463,7 +578,6 @@ Download APP
 </div>
 
 </nav>
-
 
 
 <!-- =====================================================
@@ -477,13 +591,17 @@ Download APP
 <div class="mb-3">
 
 <span class="exam-badge bg-white">
+
 CS Vision Examination Portal
+
 </span>
 
 </div>
 
 <h1 id="heroTitle">
+
 Competitive Exams & Teaching Examinations
+
 </h1>
 
 <p id="heroSubtitle"
@@ -500,7 +618,6 @@ exam pattern, syllabus and preparation resources.
 </section>
 
 
-
 <!-- =====================================================
      EXAM SELECTOR
 ===================================================== -->
@@ -514,7 +631,9 @@ exam pattern, syllabus and preparation resources.
 <div class="col-md-6">
 
 <label for="examSelect">
+
 Select Examination
+
 </label>
 
 <select id="examSelect"
@@ -522,6 +641,10 @@ class="form-select">
 
 <option value="ugcnet">
 UGC NET Exam
+</option>
+
+<option value="cuetug">
+CUET UG
 </option>
 
 <option value="cuetpg">
@@ -548,7 +671,9 @@ BET – Bihar Assistant Professor Exam
 <div class="col-md-6">
 
 <label for="subjectSelect">
+
 Select Subject / Exam Category
+
 </label>
 
 <select id="subjectSelect"
@@ -579,7 +704,6 @@ View Examination Details
 </div>
 
 
-
 <!-- =====================================================
      MAIN CONTENT
 ===================================================== -->
@@ -600,6 +724,7 @@ View Examination Details
 <div class="card-header bg-primary text-white fw-bold">
 
 <i class="fa fa-list me-2"></i>
+
 Exam Information
 
 </div>
@@ -649,9 +774,8 @@ FAQs
 </aside>
 
 
-
 <!-- =====================================================
-     DYNAMIC CONTENT
+     CONTENT
 ===================================================== -->
 
 <main class="exam-content">
@@ -680,10 +804,13 @@ syllabus, instructions and preparation resources.
 
 <div id="examTags"></div>
 
+
 <div class="notice-box mt-4">
 
 <strong>
+
 Important:
+
 </strong>
 
 Examination dates, eligibility, syllabus, pattern,
@@ -697,14 +824,15 @@ from the concerned examination authority.
 </section>
 
 
-
 <!-- IMPORTANT DATES -->
 
 <section id="dates"
 class="content-card">
 
 <h2 class="section-title">
+
 Important Dates
+
 </h2>
 
 <div class="table-responsive">
@@ -715,16 +843,19 @@ Important Dates
 
 <tr>
 
-<th>Event</th>
+<th>
+Event
+</th>
 
-<th>Date / Status</th>
+<th>
+Date / Status
+</th>
 
 </tr>
 
 </thead>
 
 <tbody id="datesTable">
-
 </tbody>
 
 </table>
@@ -734,49 +865,69 @@ Important Dates
 </section>
 
 
-
 <!-- ADMIT CARD -->
 
 <section id="admitcard"
 class="content-card">
 
 <h2 class="section-title">
-Admit Card Information
+
+Download / Check Admit Card
+
 </h2>
 
-<p id="admitText"></p>
+<p id="admitText">
+
+The official admit card / hall ticket should be
+downloaded only from the concerned examination
+authority. Always verify your examination date,
+centre, reporting time and other instructions.
+
+</p>
+
 
 <div class="download-box mt-4">
 
 <h4>
+
 <i class="fa fa-id-card me-2"></i>
 
-Download / Check Admit Card
+Official Examination Portal
 
 </h4>
 
+
 <p id="admitDownloadText">
 
-The official admit card link will be updated
-once released by the concerned examination authority.
+Select an examination above to access its
+official examination authority website.
 
 </p>
 
+
 <a id="officialLink"
-href="notification.html"
-class="btn btn-primary"
-target="_blank">
+href="https://ugcnet.nta.ac.in/"
+class="btn btn-primary official-button"
+target="_blank"
+rel="noopener noreferrer">
 
-Check Official Updates
+<i class="fa fa-external-link-alt me-2"></i>
 
-<i class="fa fa-arrow-right ms-2"></i>
+Visit Official Portal
 
 </a>
+
+
+<p class="small text-muted mt-3 mb-0"
+id="officialAuthorityText">
+
+Official examination authority
+
+</p>
 
 </div>
 
 </section>
-
 
 
 <!-- EXAM DETAILS -->
@@ -785,7 +936,9 @@ Check Official Updates
 class="content-card">
 
 <h2 class="section-title">
+
 Examination Details
+
 </h2>
 
 <div class="table-responsive">
@@ -802,20 +955,20 @@ Examination Details
 </section>
 
 
-
 <!-- EXAM PATTERN -->
 
 <section id="pattern"
 class="content-card">
 
 <h2 class="section-title">
+
 Exam Pattern
+
 </h2>
 
 <div id="patternContent"></div>
 
 </section>
-
 
 
 <!-- SYLLABUS -->
@@ -824,13 +977,14 @@ Exam Pattern
 class="content-card">
 
 <h2 class="section-title">
+
 Syllabus / Major Topics
+
 </h2>
 
 <div id="syllabusContent"></div>
 
 </section>
-
 
 
 <!-- INSTRUCTIONS -->
@@ -839,7 +993,9 @@ Syllabus / Major Topics
 class="content-card">
 
 <h2 class="section-title">
+
 Important Exam Day Instructions
+
 </h2>
 
 <div id="instructionsContent"></div>
@@ -847,14 +1003,16 @@ Important Exam Day Instructions
 </section>
 
 
-
 <!-- DOCUMENTS -->
 
 <section class="content-card">
 
 <h2 class="section-title">
+
 Documents Required
+
 </h2>
+
 
 <div class="row g-4">
 
@@ -866,11 +1024,15 @@ Documents Required
 📄
 </div>
 
-<h3>Admit Card</h3>
+<h3>
+Admit Card
+</h3>
 
 <p>
+
 Carry a clear printed copy of the
 official admit card / hall ticket.
+
 </p>
 
 </div>
@@ -886,12 +1048,16 @@ official admit card / hall ticket.
 🪪
 </div>
 
-<h3>Valid ID Proof</h3>
+<h3>
+Valid ID Proof
+</h3>
 
 <p>
+
 Carry the original valid identity
 document mentioned in the official
 instructions.
+
 </p>
 
 </div>
@@ -907,12 +1073,16 @@ instructions.
 📁
 </div>
 
-<h3>Other Documents</h3>
+<h3>
+Other Documents
+</h3>
 
 <p>
+
 Carry photographs, certificates or
 other documents if specifically
 required by the authority.
+
 </p>
 
 </div>
@@ -924,17 +1094,17 @@ required by the authority.
 </section>
 
 
-
-<!-- =====================================================
-     RESOURCES
-===================================================== -->
+<!-- RESOURCES -->
 
 <section id="resources"
 class="content-card">
 
 <h2 class="section-title">
+
 Preparation Resources
+
 </h2>
+
 
 <div class="row g-4">
 
@@ -964,15 +1134,13 @@ resources through CS Vision.
 <a href="notification.html"
 class="resource-link">
 
-Explore Material
-→
+Explore Material →
 
 </a>
 
 </div>
 
 </div>
-
 
 
 <!-- TEST SERIES -->
@@ -1000,15 +1168,13 @@ for competitive examinations.
 <a href="notification.html"
 class="resource-link">
 
-Start Practice
-→
+Start Practice →
 
 </a>
 
 </div>
 
 </div>
-
 
 
 <!-- COURSES -->
@@ -1036,8 +1202,7 @@ resources from CS Vision.
 <a href="courses.html"
 class="resource-link">
 
-View Courses
-→
+View Courses →
 
 </a>
 
@@ -1045,11 +1210,9 @@ View Courses
 
 </div>
 
-
 </div>
 
 </section>
-
 
 
 <!-- FAQ -->
@@ -1058,7 +1221,9 @@ View Courses
 class="content-card">
 
 <h2 class="section-title">
+
 Frequently Asked Questions
+
 </h2>
 
 <div id="faqContent"></div>
@@ -1066,13 +1231,14 @@ Frequently Asked Questions
 </section>
 
 
-
 <!-- FINAL UPDATE -->
 
 <section class="content-card">
 
 <h2 class="section-title">
+
 CS Vision Examination Updates
+
 </h2>
 
 <p>
@@ -1092,6 +1258,7 @@ admit card and other official announcements
 before making any examination-related decision.
 
 </p>
+
 
 <div class="text-center mt-4">
 
@@ -1116,7 +1283,6 @@ Visit Notification Portal
 </div>
 
 
-
 <!-- =====================================================
      FOOTER
 ===================================================== -->
@@ -1137,87 +1303,115 @@ Quick Link
 
 <a class="btn btn-link"
 href="about.html">
+
 About Us
+
 </a>
 
 <a class="btn btn-link"
 href="contact.html">
+
 Contact Us
+
+</a>
+
+<a class="btn btn-link"
+href="all_exam.html">
+
+All Exam Details
+
 </a>
 
 <a class="btn btn-link"
 href="">
+
 Privacy Policy
+
 </a>
 
 <a class="btn btn-link"
 href="">
+
 Terms &amp; Condition
+
 </a>
 
 <a class="btn btn-link"
 href="">
+
 FAQs &amp; Help
+
 </a>
 
 </div>
 
 
-
 <div class="col-lg-3 col-md-6">
 
 <h4 class="text-white mb-3">
+
 Contact
+
 </h4>
 
 <p class="mb-2">
+
 <i class="fa fa-map-marker-alt me-3"></i>
+
 Bihar , India
+
 </p>
 
 <p class="mb-2">
+
 <i class="fa fa-phone-alt me-3"></i>
+
 +91 63747 20499
+
 </p>
 
 <p class="mb-2">
+
 <i class="fa fa-envelope me-3"></i>
-csvision.edubth@gmail.com
+
+official@csvisionedu.com
+
 </p>
 
 
 <div class="d-flex pt-2">
 
 <a class="btn btn-outline-light btn-social"
-href="https://www.instagram.com/csv_ision?igsh=MzM2Z2ExaWV6a3Bz"
-target="_blank">
+href="https://www.instagram.com/csv_ision"
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fab fa-instagram"></i>
 
 </a>
 
-
 <a class="btn btn-outline-light btn-social"
 href="https://www.facebook.com/ChandanJaiswal123/"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fab fa-facebook-f"></i>
 
 </a>
 
-
 <a class="btn btn-outline-light btn-social"
 href="https://www.youtube.com/@csvisionedu"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fab fa-youtube"></i>
 
 </a>
 
-
 <a class="btn btn-outline-light btn-social"
 href="https://www.linkedin.com/company/68723161/"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fab fa-linkedin-in"></i>
 
@@ -1228,11 +1422,12 @@ target="_blank">
 </div>
 
 
-
 <div class="col-lg-3 col-md-6">
 
 <h4 class="text-white mb-3">
+
 Gallery
+
 </h4>
 
 <div class="row g-2 pt-2">
@@ -1278,18 +1473,22 @@ alt="">
 </div>
 
 
-
 <div class="col-lg-3 col-md-6">
 
 <h4 class="text-white mb-3">
+
 Newsletter
+
 </h4>
 
 <p>
+
 CS Vision is one of the best e-learning
 platforms, offering top-notch classes
 for aspirants.
+
 </p>
+
 
 <div class="position-relative mx-auto"
 style="max-width:400px;">
@@ -1309,7 +1508,6 @@ SignUp
 
 </div>
 
-
 </div>
 
 </div>
@@ -1327,18 +1525,22 @@ SignUp
 
 <a class="border-bottom"
 href="#">
+
 CS Vision
+
 </a>,
 
 All Right Reserved.
+
 
 Designed By
 
 <a class="border-bottom"
 href="https://www.linkedin.com/in/chandan-kumar-jaiswal-b70b95126/"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
-Er. Chandan k Jaiswal
+Er. Chandan K Jaiswal
 
 </a>
 
@@ -1362,7 +1564,7 @@ Help
 </a>
 
 <a href="">
-FQAs
+FAQs
 </a>
 
 </div>
@@ -1378,7 +1580,6 @@ FQAs
 </div>
 
 
-
 <!-- =====================================================
      CS VISION AI CHATBOT
 ===================================================== -->
@@ -1386,294 +1587,165 @@ FQAs
 <style>
 
 #csvision-chat-button{
-
 position:fixed;
 right:25px;
 bottom:25px;
-
 width:64px;
 height:64px;
-
 padding:6px;
-
 border:none;
 border-radius:50%;
-
 background:#fff;
-
 cursor:pointer;
-
 box-shadow:0 5px 20px rgba(0,0,0,.30);
-
 z-index:999999;
-
 transition:all .25s ease;
-
 }
 
 #csvision-chat-button:hover{
-
 transform:scale(1.08);
-
 }
 
 #csvision-chat-button img{
-
 width:100%;
 height:100%;
-
 object-fit:contain;
-
 border-radius:50%;
-
 }
-
 
 #csvision-chat-notification{
-
 position:fixed;
-
 right:25px;
 bottom:100px;
-
 width:300px;
-
 padding:14px 40px 14px 14px;
-
 background:#fff;
-
 border-radius:14px;
-
 box-shadow:0 6px 30px rgba(0,0,0,.20);
-
 font-family:Arial,sans-serif;
-
 z-index:999998;
-
 display:none;
-
 animation:csvisionSlideUp .5s ease;
-
 }
-
 
 #csvision-notification-logo{
-
 width:42px;
 height:42px;
-
 object-fit:contain;
-
 float:left;
-
 margin-right:10px;
-
 }
-
 
 #csvision-chat-notification-title{
-
 display:block;
-
 color:#1e40af;
-
 font-size:14px;
-
 font-weight:bold;
-
 margin-bottom:5px;
-
 }
-
 
 #csvision-chat-notification-text{
-
 font-size:13px;
-
 color:#555;
-
 line-height:18px;
-
 }
-
 
 #csvision-notification-close{
-
 position:absolute;
-
 top:7px;
 right:8px;
-
 width:25px;
 height:25px;
-
 border:none;
-
 background:transparent;
-
 color:#777;
-
 font-size:20px;
-
 cursor:pointer;
-
 }
-
 
 #csvision-chat-window{
-
 display:none;
-
 position:fixed;
-
 top:100px;
 bottom:80px;
-
 right:25px;
-
 width:410px;
-
 min-height:500px;
-
 background:#fff;
-
 border-radius:18px;
-
 overflow:hidden;
-
 box-shadow:0 10px 45px rgba(0,0,0,.35);
-
 z-index:999999;
-
 flex-direction:column;
-
 animation:csvisionChatOpen .25s ease;
-
 }
-
 
 #csvision-chat-header{
-
 height:72px;
-
 min-height:72px;
-
 display:flex;
-
 align-items:center;
-
 padding:0 55px 0 16px;
-
 background:#1e40af;
-
 color:#fff;
-
 font-family:Arial,sans-serif;
-
 box-sizing:border-box;
-
 }
-
 
 #csvision-chat-header img{
-
 width:48px;
 height:48px;
-
 object-fit:contain;
-
 background:#fff;
-
 border-radius:50%;
-
 padding:4px;
-
 margin-right:11px;
-
 flex-shrink:0;
-
 }
-
 
 #csvision-chat-title{
-
 display:flex;
-
 flex-direction:column;
-
 justify-content:center;
-
 }
-
 
 #csvision-chat-title strong{
-
 font-size:16px;
 line-height:21px;
-
 }
-
 
 #csvision-chat-title span{
-
 font-size:12px;
-
 opacity:.9;
-
 margin-top:3px;
-
 }
-
 
 #csvision-close-button{
-
 position:absolute;
-
 top:19px;
 right:11px;
-
 width:34px;
 height:34px;
-
 border:none;
-
 border-radius:50%;
-
 background:#fff;
-
 color:#333;
-
 font-size:18px;
-
 font-weight:bold;
-
 cursor:pointer;
-
 z-index:10;
-
 box-shadow:0 2px 8px rgba(0,0,0,.20);
-
 }
-
 
 #csvision-chat-iframe{
-
 display:block;
-
 width:100%;
-
 height:calc(100% - 72px);
-
 min-height:400px;
-
 border:none;
-
 flex:1 1 auto;
-
 background:#fff;
-
 }
-
 
 @keyframes csvisionSlideUp{
 
@@ -1689,7 +1761,6 @@ transform:translateY(0);
 
 }
 
-
 @keyframes csvisionChatOpen{
 
 from{
@@ -1704,87 +1775,58 @@ transform:translateY(0) scale(1);
 
 }
 
-
 @media(max-width:600px){
 
 #csvision-chat-window{
-
 top:75px;
-
 bottom:70px;
-
 right:10px;
-
 width:calc(100% - 20px);
-
 min-height:450px;
-
 border-radius:14px;
-
 }
 
 #csvision-chat-header{
-
 height:65px;
-
 min-height:65px;
-
 padding-left:12px;
-
 }
 
 #csvision-chat-header img{
-
 width:42px;
 height:42px;
-
 }
 
 #csvision-chat-title strong{
-
 font-size:14px;
-
 }
 
 #csvision-chat-title span{
-
 font-size:11px;
-
 }
 
 #csvision-chat-iframe{
-
 height:calc(100% - 65px);
-
 min-height:350px;
-
 }
 
 #csvision-chat-button{
-
 right:15px;
 bottom:15px;
-
 width:60px;
 height:60px;
-
 }
 
 #csvision-chat-notification{
-
 right:15px;
 bottom:85px;
-
 width:calc(100% - 75px);
-
 max-width:290px;
-
 }
 
 }
 
 </style>
-
 
 
 <!-- CHAT NOTIFICATION -->
@@ -1795,7 +1837,6 @@ max-width:290px;
 src="img/logo.png"
 alt="CS Vision Logo">
 
-
 <button id="csvision-notification-close"
 onclick="closeCSVisionNotification()">
 
@@ -1803,13 +1844,11 @@ onclick="closeCSVisionNotification()">
 
 </button>
 
-
 <span id="csvision-chat-notification-title">
 
 Hi! 👋 Welcome to CS Vision
 
 </span>
-
 
 <span id="csvision-chat-notification-text">
 
@@ -1818,7 +1857,6 @@ Need help? Chat with our CS Vision AI Assistant.
 </span>
 
 </div>
-
 
 
 <!-- FLOATING CHAT BUTTON -->
@@ -1832,17 +1870,14 @@ alt="CS Vision AI Assistant">
 </button>
 
 
-
 <!-- CHAT WINDOW -->
 
 <div id="csvision-chat-window">
-
 
 <div id="csvision-chat-header">
 
 <img src="img/logo.png"
 alt="CS Vision Logo">
-
 
 <div id="csvision-chat-title">
 
@@ -1867,12 +1902,10 @@ onclick="closeCSVisionChat()">
 </button>
 
 
-<iframe id="csvision-chat-iframe"
-
+<iframe
+id="csvision-chat-iframe"
 src="https://agent.jotform.com/019fda8db5a070008db2f3e24ef0e5c56be8"
-
 title="CS Vision AI Assistant"
-
 allow="microphone; camera; fullscreen">
 
 </iframe>
@@ -1880,10 +1913,10 @@ allow="microphone; camera; fullscreen">
 </div>
 
 
-
 <!-- CHAT SOUND -->
 
-<audio id="csvision-notification-sound"
+<audio
+id="csvision-notification-sound"
 preload="auto">
 
 <source
@@ -1893,9 +1926,8 @@ type="audio/mpeg">
 </audio>
 
 
-
 <!-- =====================================================
-     JAVASCRIPT
+     JQUERY + BOOTSTRAP
 ===================================================== -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1911,81 +1943,318 @@ type="audio/mpeg">
 
 const examData = {
 
+
+/* =====================================================
+   UGC NET
+===================================================== */
+
 ugcnet:{
 
-title:"UGC NET",
+title:"UGC NET Exam",
 
 subjects:{
 
 computer:{
+
 name:"Computer Science & Applications",
+
 code:"87",
-description:"UGC NET Computer Science & Applications examination information including admit card, exam pattern, syllabus and preparation resources.",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://ugcnet.nta.ac.in/",
+
+buttonText:"Visit Official NTA Portal",
+
+description:
+"UGC NET Computer Science & Applications examination information including admit card, exam pattern, syllabus and preparation resources.",
+
 syllabus:[
+
 "Discrete Structures and Optimization",
+
 "Computer System Architecture",
+
 "Programming Languages and Computer Graphics",
+
 "Database Management Systems",
+
 "System Software and Operating System",
+
 "Software Engineering",
+
 "Data Structures and Algorithms",
+
 "Theory of Computation",
+
 "Computer Networks",
+
 "Artificial Intelligence"
+
 ]
+
 },
 
+
 management:{
+
 name:"Management",
+
 code:"Subject-wise",
-description:"UGC NET Management examination information including important updates, examination pattern, preparation resources and subject-wise topics.",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://ugcnet.nta.ac.in/",
+
+buttonText:"Visit Official NTA Portal",
+
+description:
+"UGC NET Management examination information including important updates, examination pattern, preparation resources and subject-wise topics.",
+
 syllabus:[
+
 "Management Principles and Functions",
+
 "Organizational Behaviour",
+
 "Human Resource Management",
+
 "Marketing Management",
+
 "Financial Management",
+
 "Operations Management",
+
 "Strategic Management",
+
 "Business Environment",
+
 "Research Methodology",
+
 "Entrepreneurship and International Business"
+
 ]
+
+},
+
+
+commerce:{
+
+name:"Commerce",
+
+code:"Subject-wise",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://ugcnet.nta.ac.in/",
+
+buttonText:"Visit Official NTA Portal",
+
+description:
+"UGC NET Commerce examination information including important updates, examination pattern, preparation resources and subject-wise topics.",
+
+syllabus:[
+
+"Business Environment and International Business",
+
+"Accounting and Auditing",
+
+"Business Economics",
+
+"Business Finance",
+
+"Marketing Management",
+
+"Human Resource Management",
+
+"Banking and Financial Institutions",
+
+"Taxation",
+
+"Legal Aspects of Business",
+
+"Research Methodology"
+
+]
+
+},
+
+
+paper1:{
+
+name:"UGC NET / SET Paper 1",
+
+code:"Paper I",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://ugcnet.nta.ac.in/",
+
+buttonText:"Visit Official NTA Portal",
+
+description:
+"Paper 1 preparation information for UGC NET and SET examinations covering teaching, research, reasoning, ICT and higher education topics.",
+
+syllabus:[
+
+"Teaching Aptitude",
+
+"Research Aptitude",
+
+"Comprehension",
+
+"Communication",
+
+"Mathematical Reasoning",
+
+"Logical Reasoning",
+
+"Data Interpretation",
+
+"Information and Communication Technology",
+
+"People, Development and Environment",
+
+"Higher Education System"
+
+]
+
+}
+
+}
+
+},
+
+
+/* =====================================================
+   CUET UG
+===================================================== */
+
+cuetug:{
+
+title:"CUET UG",
+
+subjects:{
+
+general:{
+
+name:"CUET UG – Undergraduate Entrance",
+
+code:"As per Official Notification",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://cuet.nta.nic.in/",
+
+buttonText:"Visit Official CUET UG Portal",
+
+description:
+"CUET UG examination information including application updates, admit card, examination schedule, subject selection, syllabus and preparation resources for undergraduate admissions.",
+
+syllabus:[
+
+"Language Test",
+
+"Domain-Specific Subjects",
+
+"General Aptitude Test",
+
+"Reading Comprehension",
+
+"Logical and Analytical Reasoning",
+
+"Numerical Ability",
+
+"General Knowledge and Current Affairs",
+
+"Subject-specific Concepts",
+
+"Data Interpretation",
+
+"Basic Quantitative Skills"
+
+]
+
+},
+
+computer:{
+
+name:"Computer / IT Related Subjects",
+
+code:"As per Official Notification",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://cuet.nta.nic.in/",
+
+buttonText:"Visit Official CUET UG Portal",
+
+description:
+"CUET UG information for candidates selecting computer, information technology or related domain subjects.",
+
+syllabus:[
+
+"Computer Fundamentals",
+
+"Programming Concepts",
+
+"Data Structures",
+
+"Database Concepts",
+
+"Computer Networks",
+
+"Operating Systems",
+
+"Web Technologies",
+
+"Logical Reasoning",
+
+"Numerical Ability",
+
+"General Aptitude"
+
+]
+
 },
 
 commerce:{
-name:"Commerce",
-code:"Subject-wise",
-description:"UGC NET Commerce examination information including important updates, examination pattern, preparation resources and subject-wise topics.",
+
+name:"Commerce / Business Related Subjects",
+
+code:"As per Official Notification",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://cuet.nta.nic.in/",
+
+buttonText:"Visit Official CUET UG Portal",
+
+description:
+"CUET UG information for candidates preparing for commerce, business and related undergraduate domain subjects.",
+
 syllabus:[
-"Business Environment and International Business",
-"Accounting and Auditing",
+
+"Business Fundamentals",
+
+"Accounting Basics",
+
 "Business Economics",
-"Business Finance",
-"Marketing Management",
-"Human Resource Management",
-"Banking and Financial Institutions",
-"Taxation",
-"Legal Aspects of Business",
-"Research Methodology"
-]
-},
 
-paper1:{
-name:"UGC NET / SET Paper 1",
-code:"Paper I",
-description:"Paper 1 preparation information for UGC NET and SET examinations covering teaching, research, reasoning, ICT and higher education topics.",
-syllabus:[
-"Teaching Aptitude",
-"Research Aptitude",
-"Comprehension",
-"Communication",
-"Mathematical Reasoning",
+"Business Organization",
+
+"Marketing Basics",
+
+"Financial Concepts",
+
+"Business Environment",
+
+"General Aptitude",
+
 "Logical Reasoning",
-"Data Interpretation",
-"Information and Communication Technology",
-"People, Development and Environment",
-"Higher Education System"
+
+"Current Affairs"
+
 ]
 
 }
@@ -1993,6 +2262,11 @@ syllabus:[
 }
 
 },
+
+
+/* =====================================================
+   CUET PG
+===================================================== */
 
 cuetpg:{
 
@@ -2001,58 +2275,126 @@ title:"CUET PG",
 subjects:{
 
 computer:{
+
 name:"Computer Science",
+
 code:"Subject-wise",
-description:"CUET PG Computer Science examination updates, admit card information, preparation guidance and important subject areas.",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://exams.nta.nic.in/cuet-pg/",
+
+buttonText:"Visit Official CUET PG Portal",
+
+description:
+"CUET PG Computer Science examination updates, admit card information, preparation guidance and important subject areas.",
+
 syllabus:[
+
 "Programming and Problem Solving",
+
 "Data Structures",
+
 "Algorithms",
+
 "Database Management Systems",
+
 "Operating Systems",
+
 "Computer Networks",
+
 "Computer Organization",
+
 "Software Engineering",
+
 "Web Technologies",
+
 "Artificial Intelligence and Emerging Technologies"
+
 ]
 
 },
+
 
 management:{
+
 name:"Management",
+
 code:"Subject-wise",
-description:"CUET PG Management examination preparation and important information.",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://exams.nta.nic.in/cuet-pg/",
+
+buttonText:"Visit Official CUET PG Portal",
+
+description:
+"CUET PG Management examination preparation and important information.",
+
 syllabus:[
+
 "Principles of Management",
+
 "Organizational Behaviour",
+
 "Marketing",
+
 "Human Resource Management",
+
 "Financial Management",
+
 "Operations Management",
+
 "Business Environment",
+
 "Strategic Management",
+
 "Business Statistics",
+
 "Research Methodology"
+
 ]
 
 },
+
 
 commerce:{
+
 name:"Commerce",
+
 code:"Subject-wise",
-description:"CUET PG Commerce examination preparation and important information.",
+
+authority:"National Testing Agency (NTA)",
+
+officialLink:"https://exams.nta.nic.in/cuet-pg/",
+
+buttonText:"Visit Official CUET PG Portal",
+
+description:
+"CUET PG Commerce examination preparation and important information.",
+
 syllabus:[
+
 "Accounting",
+
 "Business Economics",
+
 "Business Finance",
+
 "Marketing",
+
 "Human Resource Management",
+
 "Business Law",
+
 "Banking",
+
 "Taxation",
+
 "Auditing",
+
 "Business Environment"
+
 ]
 
 }
@@ -2060,6 +2402,11 @@ syllabus:[
 }
 
 },
+
+
+/* =====================================================
+   PGT
+===================================================== */
 
 pgt:{
 
@@ -2068,64 +2415,126 @@ title:"PGT Level Examinations",
 subjects:{
 
 stet:{
+
 name:"Bihar STET",
+
 code:"As per Notification",
-description:"Bihar Secondary Teacher Eligibility Test related updates, examination information, admit card, syllabus and preparation resources.",
+
+authority:"Bihar School Examination Board (BSEB)",
+
+officialLink:"https://secondary.biharboardonline.com/",
+
+buttonText:"Visit Official BSEB Portal",
+
+description:
+"Bihar Secondary Teacher Eligibility Test related updates, examination information, admit card, syllabus and preparation resources.",
+
 syllabus:[
+
 "Subject-specific knowledge",
+
 "Teaching Aptitude",
+
 "Educational Psychology",
+
 "Pedagogy",
+
 "General Knowledge",
+
 "Reasoning",
+
 "Language Proficiency",
+
 "Current Affairs",
+
 "Subject-specific Teaching Methodology",
+
 "Education-related topics"
+
 ]
 
 },
 
+
 awes:{
+
 name:"AWES",
 
 code:"As per Notification",
 
-description:"Army Welfare Education Society examination information for teaching aspirants including PGT-related updates.",
+authority:"Army Welfare Education Society (AWES)",
+
+officialLink:"https://www.awesindia.com/",
+
+buttonText:"Visit Official AWES Portal",
+
+description:
+"Army Welfare Education Society examination information for teaching aspirants including PGT-related updates.",
 
 syllabus:[
+
 "Subject Knowledge",
+
 "Teaching Aptitude",
+
 "Educational Concepts",
+
 "Reasoning",
+
 "General Awareness",
+
 "English Language",
+
 "Computer Awareness",
+
 "Pedagogy",
+
 "Classroom Management",
+
 "Subject-specific preparation"
+
 ]
 
 },
 
+
 other:{
+
 name:"Other PGT Level Exams",
 
 code:"As per Notification",
 
-description:"General information for government and private PGT-level teaching examinations.",
+authority:"Concerned Examination Authority",
+
+officialLink:"https://www.bpsc.bihar.gov.in/",
+
+buttonText:"Visit Government Exam Portal",
+
+description:
+"General information for government and other PGT-level teaching examinations.",
 
 syllabus:[
+
 "Subject Knowledge",
+
 "Teaching Aptitude",
+
 "Pedagogy",
+
 "Educational Psychology",
+
 "Reasoning",
+
 "General Awareness",
+
 "Current Affairs",
+
 "Language Skills",
+
 "Computer Awareness",
+
 "Teaching Methodology"
+
 ]
 
 }
@@ -2133,6 +2542,11 @@ syllabus:[
 }
 
 },
+
+
+/* =====================================================
+   BPSC
+===================================================== */
 
 bpsc:{
 
@@ -2141,39 +2555,84 @@ title:"BPSC TRE-4 & Government PGT Exams",
 subjects:{
 
 tre4:{
+
 name:"BPSC TRE-4 Teacher",
+
 code:"As per Official Notification",
-description:"BPSC Teacher Recruitment Examination related information, recruitment updates, admit card, examination preparation and document requirements.",
+
+authority:"Bihar Public Service Commission (BPSC)",
+
+officialLink:"https://bpsc.bihar.gov.in/",
+
+buttonText:"Visit Official BPSC Portal",
+
+description:
+"BPSC Teacher Recruitment Examination related information, recruitment updates, admit card, examination preparation and document requirements.",
+
 syllabus:[
+
 "Subject-specific Knowledge",
+
 "General Studies",
+
 "Teaching Aptitude",
+
 "Educational Psychology",
+
 "Current Affairs",
+
 "General Knowledge",
+
 "Reasoning",
+
 "Language Proficiency",
+
 "Pedagogy",
+
 "Teaching Methodology"
+
 ]
 
 },
+
 
 government:{
+
 name:"Other Government PGT Level Exams",
+
 code:"As per Notification",
-description:"Information and preparation guidance for government PGT and teacher recruitment examinations.",
+
+authority:"Concerned Government Recruitment Authority",
+
+officialLink:"https://bpsc.bihar.gov.in/",
+
+buttonText:"Visit Official BPSC Portal",
+
+description:
+"Information and preparation guidance for government PGT and teacher recruitment examinations.",
+
 syllabus:[
+
 "Subject Knowledge",
+
 "General Studies",
+
 "Teaching Aptitude",
+
 "Pedagogy",
+
 "Educational Psychology",
+
 "Reasoning",
+
 "Current Affairs",
+
 "General Awareness",
+
 "Language",
+
 "Teaching Methodology"
+
 ]
 
 }
@@ -2181,6 +2640,11 @@ syllabus:[
 }
 
 },
+
+
+/* =====================================================
+   BET / ASSISTANT PROFESSOR
+===================================================== */
 
 bet:{
 
@@ -2189,39 +2653,84 @@ title:"BET – Bihar Assistant Professor Examination",
 subjects:{
 
 assistant:{
+
 name:"Bihar Assistant Professor Exam",
+
 code:"As per Notification",
-description:"Assistant Professor examination-related information including eligibility updates, examination preparation, admit card information and subject-wise preparation.",
+
+authority:"Bihar State University Service Commission (BSUSC)",
+
+officialLink:"https://bsusc.bihar.gov.in/Home/Index",
+
+buttonText:"Visit Official BSUSC Portal",
+
+description:
+"Assistant Professor examination and recruitment-related information including eligibility updates, examination preparation, admit card information and subject-wise preparation.",
+
 syllabus:[
+
 "Subject-specific Knowledge",
+
 "Research Methodology",
+
 "Teaching Aptitude",
+
 "Academic and Higher Education Concepts",
+
 "General Awareness",
+
 "Current Affairs",
+
 "Reasoning",
+
 "Subject-specific Topics",
+
 "Teaching Methodology",
+
 "University and Higher Education-related topics"
+
 ]
 
 },
 
+
 subject:{
+
 name:"Subject / Discipline-wise Information",
+
 code:"As per Notification",
-description:"Subject-wise information for Bihar Assistant Professor related examinations and recruitment processes.",
+
+authority:"Bihar State University Service Commission (BSUSC)",
+
+officialLink:"https://bsusc.bihar.gov.in/Home/Index",
+
+buttonText:"Visit Official BSUSC Portal",
+
+description:
+"Subject-wise information for Bihar Assistant Professor recruitment and related examination processes.",
+
 syllabus:[
+
 "Subject-specific Core Topics",
+
 "Advanced Subject Knowledge",
+
 "Research Methodology",
+
 "Teaching Aptitude",
+
 "Higher Education",
+
 "Academic Concepts",
+
 "Current Affairs",
+
 "General Awareness",
+
 "Teaching Methodology",
+
 "Research and Academic Skills"
+
 ]
 
 }
@@ -2231,7 +2740,6 @@ syllabus:[
 }
 
 };
-
 
 
 /* =====================================================
@@ -2240,37 +2748,75 @@ syllabus:[
 
 const subjectOptions={
 
+
 ugcnet:[
+
 ["computer","Computer Science & Applications"],
+
 ["management","Management"],
+
 ["commerce","Commerce"],
+
 ["paper1","UGC NET / SET Paper 1"]
+
 ],
+
+
+/* CUET UG */
+
+cuetug:[
+
+["general","CUET UG – Undergraduate Entrance"],
+
+["computer","Computer / IT Related Subjects"],
+
+["commerce","Commerce / Business Related Subjects"]
+
+],
+
+
+/* CUET PG */
 
 cuetpg:[
+
 ["computer","Computer Science"],
+
 ["management","Management"],
+
 ["commerce","Commerce"]
+
 ],
+
 
 pgt:[
+
 ["stet","Bihar STET"],
+
 ["awes","AWES"],
+
 ["other","Other PGT Level Exams"]
+
 ],
+
 
 bpsc:[
+
 ["tre4","BPSC TRE-4 Teacher"],
+
 ["government","Other Government PGT Level Exams"]
+
 ],
 
+
 bet:[
+
 ["assistant","Bihar Assistant Professor Exam"],
+
 ["subject","Subject / Discipline-wise Information"]
+
 ]
 
 };
-
 
 
 /* =====================================================
@@ -2279,15 +2825,19 @@ bet:[
 
 function loadSubjects(){
 
-const exam=document.getElementById("examSelect").value;
+const exam =
+document.getElementById("examSelect").value;
 
-const subjectSelect=document.getElementById("subjectSelect");
+const subjectSelect =
+document.getElementById("subjectSelect");
 
 subjectSelect.innerHTML="";
 
+
 subjectOptions[exam].forEach(function(item){
 
-const option=document.createElement("option");
+const option =
+document.createElement("option");
 
 option.value=item[0];
 
@@ -2297,10 +2847,10 @@ subjectSelect.appendChild(option);
 
 });
 
+
 showExamDetails();
 
 }
-
 
 
 /* =====================================================
@@ -2309,39 +2859,48 @@ showExamDetails();
 
 function showExamDetails(){
 
-const exam=document.getElementById("examSelect").value;
+const exam =
+document.getElementById("examSelect").value;
 
-const subject=document.getElementById("subjectSelect").value;
+const subject =
+document.getElementById("subjectSelect").value;
 
-const data=examData[exam].subjects[subject];
+const data =
+examData[exam].subjects[subject];
 
-if(!data) return;
+
+if(!data){
+
+return;
+
+}
 
 
 /* TITLE */
 
-document.getElementById("contentTitle").textContent=
+document.getElementById("contentTitle").textContent =
 examData[exam].title+" – "+data.name;
 
 
 /* HERO */
 
-document.getElementById("heroTitle").textContent=
+document.getElementById("heroTitle").textContent =
 examData[exam].title+" | "+data.name;
 
-document.getElementById("heroSubtitle").textContent=
-"Important dates, admit card, exam pattern, syllabus and preparation information for "+data.name+".";
+
+document.getElementById("heroSubtitle").textContent =
+"Important dates, admit card, official portal, exam pattern, syllabus and preparation information for "+data.name+".";
 
 
 /* DESCRIPTION */
 
-document.getElementById("overviewText").textContent=
+document.getElementById("overviewText").textContent =
 data.description;
 
 
 /* TAGS */
 
-document.getElementById("examTags").innerHTML=
+document.getElementById("examTags").innerHTML =
 
 '<span class="exam-badge">'+
 examData[exam].title+
@@ -2356,56 +2915,140 @@ data.code+
 '</span>';
 
 
-/* DATES */
+/* IMPORTANT DATES */
 
-document.getElementById("datesTable").innerHTML=
+document.getElementById("datesTable").innerHTML =
 
-'<tr><td>Official Notification</td><td>To Be Announced / Check Official Notification</td></tr>'+
+'<tr>'+
+'<td>Official Notification</td>'+
+'<td>Check Official Portal</td>'+
+'</tr>'+
 
-'<tr><td>Application Start</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>Application Start</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>Last Date to Apply</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>Last Date to Apply</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>Application Correction</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>Application Correction</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>City / Centre Intimation</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>City / Centre Intimation</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>Admit Card Release</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>Admit Card Release</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>Examination Date</td><td>To Be Announced</td></tr>'+
+'<tr>'+
+'<td>Examination Date</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
 
-'<tr><td>Result</td><td>To Be Announced</td></tr>';
-
-
-/* ADMIT CARD */
-
-document.getElementById("admitText").textContent=
-
-"The admit card / hall ticket should be downloaded only after it is officially released by the concerned examination authority. Candidates should carefully verify their name, photograph, examination centre, reporting time, roll number and other details printed on the admit card.";
-
-
-/* DETAILS */
-
-document.getElementById("detailsTable").innerHTML=
-
-'<tr><th>Examination</th><td>'+examData[exam].title+'</td></tr>'+
-
-'<tr><th>Subject / Category</th><td>'+data.name+'</td></tr>'+
-
-'<tr><th>Subject Code</th><td>'+data.code+'</td></tr>'+
-
-'<tr><th>Mode</th><td>As per Official Notification</td></tr>'+
-
-'<tr><th>Paper / Test</th><td>As per Official Notification</td></tr>'+
-
-'<tr><th>Language</th><td>As specified by the examination authority</td></tr>'+
-
-'<tr><th>Examination Centre</th><td>As mentioned on the Admit Card</td></tr>';
+'<tr>'+
+'<td>Result</td>'+
+'<td>As per Official Notification</td>'+
+'</tr>';
 
 
-/* PATTERN */
+/* ADMIT CARD TEXT */
 
-document.getElementById("patternContent").innerHTML=
+document.getElementById("admitText").textContent =
+
+"The admit card / hall ticket should be downloaded only from the official examination authority. Click the button below to visit the official portal for "+data.name+" updates, notifications and admit-card information.";
+
+
+document.getElementById("admitDownloadText").textContent =
+
+"Use the official examination authority portal below to check notifications, application updates, admit card availability and other examination-related information.";
+
+
+/* DYNAMIC OFFICIAL BUTTON */
+
+const officialButton =
+document.getElementById("officialLink");
+
+
+officialButton.href =
+data.officialLink;
+
+
+officialButton.innerHTML =
+
+'<i class="fa fa-external-link-alt me-2"></i>'+
+data.buttonText;
+
+
+officialButton.target="_blank";
+
+officialButton.rel="noopener noreferrer";
+
+
+document.getElementById("officialAuthorityText").innerHTML =
+
+'<i class="fa fa-check-circle text-success me-1"></i>'+
+'Official Authority: <strong>'+
+data.authority+
+'</strong>';
+
+
+/* EXAM DETAILS TABLE */
+
+document.getElementById("detailsTable").innerHTML =
+
+'<tr>'+
+'<th>Examination</th>'+
+'<td>'+examData[exam].title+'</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Subject / Category</th>'+
+'<td>'+data.name+'</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Subject Code</th>'+
+'<td>'+data.code+'</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Conducting Authority</th>'+
+'<td>'+data.authority+'</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Mode</th>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Paper / Test</th>'+
+'<td>As per Official Notification</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Language</th>'+
+'<td>As specified by the examination authority</td>'+
+'</tr>'+
+
+'<tr>'+
+'<th>Examination Centre</th>'+
+'<td>As mentioned on the Admit Card</td>'+
+'</tr>';
+
+
+/* EXAM PATTERN */
+
+document.getElementById("patternContent").innerHTML =
 
 '<div class="row g-4">'+
 
@@ -2417,9 +3060,13 @@ document.getElementById("patternContent").innerHTML=
 
 '<h3>Subject Paper</h3>'+
 
-'<p>Questions related to the selected subject or examination discipline.</p>'+
+'<p>'+
+'Questions related to the selected subject or examination discipline.'+
+'</p>'+
 
-'</div></div>'+
+'</div>'+
+
+'</div>'+
 
 '<div class="col-md-4">'+
 
@@ -2429,9 +3076,13 @@ document.getElementById("patternContent").innerHTML=
 
 '<h3>General / Aptitude</h3>'+
 
-'<p>General aptitude, reasoning, teaching or examination-specific sections may be included as per notification.</p>'+
+'<p>'+
+'General aptitude, reasoning, teaching or examination-specific sections may be included as per the official notification.'+
+'</p>'+
 
-'</div></div>'+
+'</div>'+
+
+'</div>'+
 
 '<div class="col-md-4">'+
 
@@ -2441,26 +3092,38 @@ document.getElementById("patternContent").innerHTML=
 
 '<h3>Examination Mode</h3>'+
 
-'<p>The examination mode, duration, marking scheme and number of questions are governed by the official notification.</p>'+
+'<p>'+
+'The examination mode, duration, marking scheme and number of questions are governed by the official notification.'+
+'</p>'+
 
-'</div></div>'+
+'</div>'+
+
+'</div>'+
 
 '</div>';
 
 
 /* SYLLABUS */
 
-let syllabusHTML='<div class="row g-3">';
+let syllabusHTML =
+'<div class="row g-3">';
+
 
 data.syllabus.forEach(function(topic,index){
 
-syllabusHTML+=
+syllabusHTML +=
 
 '<div class="col-md-6">'+
 
 '<div class="p-3 border rounded bg-light">'+
 
-'<strong>'+(index+1)+'.</strong> '+topic+
+'<strong>'+
+
+(index+1)+
+
+'.</strong> '+
+
+topic+
 
 '</div>'+
 
@@ -2468,85 +3131,137 @@ syllabusHTML+=
 
 });
 
-syllabusHTML+='</div>';
 
-document.getElementById("syllabusContent").innerHTML=
+syllabusHTML += '</div>';
+
+
+document.getElementById("syllabusContent").innerHTML =
 syllabusHTML;
 
 
 /* INSTRUCTIONS */
 
-document.getElementById("instructionsContent").innerHTML=
+document.getElementById("instructionsContent").innerHTML =
 
 '<ul class="list-group list-group-flush">'+
 
-'<li class="list-group-item">Carry a printed copy of the official Admit Card / Hall Ticket.</li>'+
+'<li class="list-group-item">'+
+'Carry a printed copy of the official Admit Card / Hall Ticket.'+
+'</li>'+
 
-'<li class="list-group-item">Carry an original valid photo identity document as required.</li>'+
+'<li class="list-group-item">'+
+'Carry an original valid photo identity document as required.'+
+'</li>'+
 
-'<li class="list-group-item">Reach the examination centre before the reporting time.</li>'+
+'<li class="list-group-item">'+
+'Reach the examination centre before the reporting time.'+
+'</li>'+
 
-'<li class="list-group-item">Verify the examination centre address before travelling.</li>'+
+'<li class="list-group-item">'+
+'Verify the examination centre address before travelling.'+
+'</li>'+
 
-'<li class="list-group-item">Do not carry prohibited electronic devices or materials.</li>'+
+'<li class="list-group-item">'+
+'Do not carry prohibited electronic devices or materials.'+
+'</li>'+
 
-'<li class="list-group-item">Follow all instructions issued by the examination authority and centre officials.</li>'+
+'<li class="list-group-item">'+
+'Follow all instructions issued by the examination authority and centre officials.'+
+'</li>'+
 
 '</ul>';
 
 
 /* FAQ */
 
-document.getElementById("faqContent").innerHTML=
+document.getElementById("faqContent").innerHTML =
 
 '<div class="faq-item">'+
 
-'<div class="faq-question" onclick="toggleFAQ(this)">When will the '+data.name+' admit card be released? <i class="fa fa-chevron-down float-end"></i></div>'+
+'<div class="faq-question" onclick="toggleFAQ(this)">'+
 
-'<div class="faq-answer">The admit card release date will be announced by the concerned examination authority. Check the official notification and CS Vision Notification Portal for updates.</div>'+
+'When will the '+
+data.name+
+' admit card be released?'+
+
+'<i class="fa fa-chevron-down float-end"></i>'+
+
+'</div>'+
+
+'<div class="faq-answer">'+
+
+'The admit card release date will be announced by the concerned examination authority. Visit the official portal above for the latest update.'+
+
+'</div>'+
 
 '</div>'+
 
 '<div class="faq-item">'+
 
-'<div class="faq-question" onclick="toggleFAQ(this)">Where can I check examination updates? <i class="fa fa-chevron-down float-end"></i></div>'+
+'<div class="faq-question" onclick="toggleFAQ(this)">'+
 
-'<div class="faq-answer">You can use the CS Vision Notification Portal for organized examination updates and always verify important information with the official authority.</div>'+
+'Where can I check official examination updates?'+
+
+'<i class="fa fa-chevron-down float-end"></i>'+
+
+'</div>'+
+
+'<div class="faq-answer">'+
+
+'Click the Official Examination Portal button in the Admit Card section. It will take you directly to the relevant authority website for the selected examination.'+
+
+'</div>'+
 
 '</div>'+
 
 '<div class="faq-item">'+
 
-'<div class="faq-question" onclick="toggleFAQ(this)">What should I check on my admit card? <i class="fa fa-chevron-down float-end"></i></div>'+
+'<div class="faq-question" onclick="toggleFAQ(this)">'+
 
-'<div class="faq-answer">Check your name, photograph, roll number, examination centre, date, reporting time and other instructions carefully.</div>'+
+'What should I check on my admit card?'+
+
+'<i class="fa fa-chevron-down float-end"></i>'+
+
+'</div>'+
+
+'<div class="faq-answer">'+
+
+'Check your name, photograph, roll number, examination centre, examination date, reporting time and other instructions carefully.'+
+
+'</div>'+
 
 '</div>'+
 
 '<div class="faq-item">'+
 
-'<div class="faq-question" onclick="toggleFAQ(this)">Is the admit card mandatory? <i class="fa fa-chevron-down float-end"></i></div>'+
+'<div class="faq-question" onclick="toggleFAQ(this)">'+
 
-'<div class="faq-answer">Candidates should follow the official examination instructions regarding the admit card and documents required at the examination centre.</div>'+
+'Is the admit card mandatory?'+
+
+'<i class="fa fa-chevron-down float-end"></i>'+
+
+'</div>'+
+
+'<div class="faq-answer">'+
+
+'Candidates should follow the official examination instructions regarding the admit card and documents required at the examination centre.'+
+
+'</div>'+
 
 '</div>';
-
-
-/* OFFICIAL UPDATE LINK */
-
-document.getElementById("officialLink").href=
-"notification.html";
 
 }
 
 
 /* =====================================================
-   FAQ
+   FAQ TOGGLE
 ===================================================== */
 
 function toggleFAQ(element){
 
-const answer=element.nextElementSibling;
+const answer =
+element.nextElementSibling;
+
 
 if(answer.style.display==="block"){
 
@@ -2561,13 +3276,13 @@ answer.style.display="block";
 }
 
 
-
 /* =====================================================
    EXAM CHANGE
 ===================================================== */
 
 document.getElementById("examSelect")
 .addEventListener("change",loadSubjects);
+
 
 document.getElementById("subjectSelect")
 .addEventListener("change",showExamDetails);
@@ -2584,22 +3299,23 @@ loadSubjects();
 });
 
 
-
 /* =====================================================
-   CHATBOT
+   CS VISION AI CHATBOT
 ===================================================== */
 
 function openCSVisionChat(){
 
-const chatWindow=
+const chatWindow =
 document.getElementById("csvision-chat-window");
 
-const chatButton=
+const chatButton =
 document.getElementById("csvision-chat-button");
+
 
 chatWindow.style.display="flex";
 
 chatButton.style.display="none";
+
 
 closeCSVisionNotification();
 
@@ -2608,11 +3324,12 @@ closeCSVisionNotification();
 
 function closeCSVisionChat(){
 
-const chatWindow=
+const chatWindow =
 document.getElementById("csvision-chat-window");
 
-const chatButton=
+const chatButton =
 document.getElementById("csvision-chat-button");
+
 
 chatWindow.style.display="none";
 
@@ -2632,12 +3349,14 @@ document.getElementById(
 
 function playCSVisionSound(){
 
-const sound=
+const sound =
 document.getElementById(
 "csvision-notification-sound"
 );
 
+
 sound.volume=.5;
+
 
 sound.play().catch(function(){
 
@@ -2650,14 +3369,17 @@ window.addEventListener("load",function(){
 
 setTimeout(function(){
 
-const notification=
+const notification =
 document.getElementById(
 "csvision-chat-notification"
 );
 
+
 notification.style.display="block";
 
+
 playCSVisionSound();
+
 
 },1500);
 
@@ -2665,5 +3387,8 @@ playCSVisionSound();
 
 </script>
 
+
 </body>
+
 </html>
+
