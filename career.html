@@ -338,70 +338,275 @@ Apply for Internship
 
 
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+<style>
+    .footer .recognition-logo {
+        height: 65px;
+        width: 100%;
+        object-fit: contain;
+        background: #ffffff;
+        padding: 8px;
+        border-radius: 6px;
+        transition: transform 0.3s ease;
+    }
+
+    .footer .recognition-logo:hover {
+        transform: translateY(-4px);
+    }
+
+    .footer .recognition-item {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .footer .recognition-item p {
+        font-size: 13px;
+        margin-top: 10px;
+        margin-bottom: 0;
+        color: #ffffff;
+    }
+
+    .footer .btn-link {
+        text-align: left;
+    }
+
+    .footer .social-links a {
+        margin-right: 6px;
+    }
+
+    @media (max-width: 767px) {
+        .footer .recognition-logo {
+            height: 55px;
+        }
+    }
+</style>
+
+<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
+     data-wow-delay="0.1s">
+
     <div class="container py-5">
         <div class="row g-5">
+
+            <!-- Quick Links -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-3">Quick Links</h4>
+
                 <a class="btn btn-link" href="about.html">About Us</a>
                 <a class="btn btn-link" href="contact.html">Contact Us</a>
                 <a class="btn btn-link" href="#">Privacy Policy</a>
-                <a class="btn btn-link" href="#">Terms & Conditions</a>
-                <a href="https://github.com/CSVisionedu/CSVisionedu/releases/download/v1.0.0/csvisionedutech.apk">Download APP</a>
+                <a class="btn btn-link" href="#">Terms &amp; Conditions</a>
+                <a class="btn btn-link" href="#">FAQs &amp; Help</a>
             </div>
+
+            <!-- Contact -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-3">Contact</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Ahmedabad, India</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 63747 20499</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>official@csvisionedu.com</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/csv_ision" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/ChandanJaiswal123/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/@csvisionedu" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.linkedin.com/company/68723161/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+                <p class="mb-2">
+                    <i class="fa fa-map-marker-alt me-3"></i>
+                    Bihar, India
+                </p>
+
+                <p class="mb-2">
+                    <i class="fa fa-phone-alt me-3"></i>
+                    <a class="text-light" href="tel:+916374720499">
+                        +91 63747 20499
+                    </a>
+                </p>
+
+                <p class="mb-2">
+                    <i class="fa fa-envelope me-3"></i>
+                    <a class="text-light"
+                       href="mailto:official@csvisionedu.com">
+                        official@csvisionedu.com
+                    </a>
+                </p>
+
+                <p class="mb-2">
+                    <i class="fa fa-globe me-3"></i>
+                    <a class="text-light"
+                       href="https://www.csvisionedu.com/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        csvisionedu.com
+                    </a>
+                </p>
+
+                <div class="d-flex pt-2 social-links">
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://www.instagram.com/csv_ision"
+                       target="_blank" rel="noopener noreferrer"
+                       aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://www.facebook.com/ChandanJaiswal123/"
+                       target="_blank" rel="noopener noreferrer"
+                       aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://www.youtube.com/@csvisionedu"
+                       target="_blank" rel="noopener noreferrer"
+                       aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a class="btn btn-outline-light btn-social"
+                       href="https://www.linkedin.com/company/cs-visionedu/"
+                       target="_blank" rel="noopener noreferrer"
+                       aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
+
+            <!-- Gallery -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-3">Gallery</h4>
+
                 <div class="row g-2 pt-2">
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-1.jpg"
+                             alt="CS Vision course">
                     </div>
+
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-2.jpg"
+                             alt="CS Vision learning">
                     </div>
+
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-3.jpg"
+                             alt="CS Vision education">
                     </div>
+
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-2.jpg"
+                             alt="Professional learning">
                     </div>
+
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-3.jpg"
+                             alt="Skill development">
                     </div>
+
                     <div class="col-4">
-                        <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        <img class="img-fluid bg-light p-1"
+                             src="img/course-1.jpg"
+                             alt="Technology courses">
                     </div>
                 </div>
             </div>
+
+            <!-- Newsletter -->
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-3">Newsletter</h4>
+
                 <p>Stay updated with our latest courses and insights.</p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign Up</button>
-                </div>
+
+                <form action="#" onsubmit="return false;">
+                    <div class="position-relative mx-auto"
+                         style="max-width: 400px;">
+
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5"
+                               type="email"
+                               placeholder="Your email"
+                               aria-label="Your email"
+                               required>
+
+                        <button type="button"
+                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+                                onclick="alert('Newsletter subscription is not configured yet. Please contact official@csvisionedu.com.');">
+                            Sign Up
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Recognitions & Registrations -->
+        <div class="row mt-5 pt-4 border-top border-secondary">
+            <div class="col-12 text-center mb-4">
+                <h5 class="text-white mb-2">
+                    Recognitions &amp; Registrations
+                </h5>
+                <p class="small mb-0">
+                    Official registrations and platform recognition
+                </p>
+            </div>
+
+            <!-- MSME / Udyam -->
+            <div class="col-4 col-md-2 offset-md-3 recognition-item">
+                <a href="img/recognitions/msme-logo.png"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="View MSME logo">
+                    <img class="recognition-logo"
+                         src="img/msme.png"
+                         alt="MSME Udyam">
+                </a>
+                <p>MSME / Udyam</p>
+            </div>
+
+            <!-- AICTE -->
+            <div class="col-4 col-md-2 recognition-item">
+                <a href="img/recognitions/aicte-logo.png"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="View AICTE logo">
+                    <img class="recognition-logo"
+                         src="img/aicte1.jpg"
+                         alt="AICTE">
+                </a>
+                <p>AICTE Internship Portal</p>
+            </div>
+
+            <!-- DPIIT / Startup India -->
+            <div class="col-4 col-md-2 recognition-item">
+                <a href="img/recognitions/startup-india-logo.png"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="View Startup India logo">
+                    <img class="recognition-logo"
+                         src="img/dpiit.jpg"
+                         alt="Startup India">
+                </a>
+                <p>DPIIT / Startup India</p>
+            </div>
+
+            <div class="col-12 text-center">
+                <small class="text-light">
+                    Recognition and registration details are subject to
+                    the applicable official approvals and documents.
+                </small>
             </div>
         </div>
+
     </div>
+
+    <!-- Copyright -->
     <div class="container">
         <div class="copyright text-center py-4">
-            <p class="mb-0">&copy; 2026 CS Vision. All Rights Reserved. | Designed & Developed by <a class="text-light" href="https://www.linkedin.com/in/chandan-kumar-jaiswal-b70b95126/" target="_blank">Chandan K Jaiswal</a></p>
+            <p class="mb-0">
+                &copy; 2026 CS Vision. All Rights Reserved. |
+                Designed &amp; Developed by
+                <a class="text-light"
+                   href="https://www.linkedin.com/in/chandan-kumar-jaiswal-b70b95126/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Chandan K Jaiswal
+                </a>
+            </p>
         </div>
     </div>
+
 </div>
 <!-- Footer End -->
-
 
 
 
