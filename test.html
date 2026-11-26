@@ -14,7 +14,20 @@
 <link href="css/style.css" rel="stylesheet">
 
 <style>
-.quiz-box{background:#fff;padding:25px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+ .quiz-box{background:#fff;padding:25px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+.candidate-form{max-width:1000px;margin:0 auto;border:1px solid #e4eaf1}
+.form-kicker{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;color:#0d6efd;margin-bottom:8px}
+.form-heading h4{font-weight:800;color:#173b63}
+.candidate-form .form-label{color:#263b53;margin-bottom:7px}
+.candidate-form .form-control{min-height:48px;border:1px solid #d5deea;border-radius:8px;padding:11px 13px}
+.candidate-form .form-control:focus{border-color:#0d6efd;box-shadow:0 0 0 3px rgba(13,110,253,.12)}
+.candidate-form .form-text{font-size:12px;color:#748398}
+.subject-heading h5{font-weight:800;color:#173b63}
+.subject-card{min-height:62px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#30445e;background:#f9fbfd;border-color:#dce4ed;transition:all .18s ease}
+.subject-card:hover{border-color:#0d6efd;background:#f0f6ff;transform:translateY(-1px)}
+.subject-card.active{background:#0d6efd;color:#fff;border-color:#0d6efd;box-shadow:0 5px 14px rgba(13,110,253,.18)}
+#userForm .btn-primary{min-height:48px;font-weight:700;border-radius:8px}
+
 .option{padding:10px;border:1px solid #ddd;margin:5px;border-radius:5px;cursor:pointer}
 .option:hover{background:#f1f1f1}
 .selected{background:#0d6efd;color:#fff}
@@ -23,13 +36,72 @@
 .timer{color:red;font-weight:bold}
 .result-card{background:#fff;padding:30px;border-radius:10px;border:2px solid #0d6efd;text-align:center}
 .report-header{display:flex;justify-content:space-between}
-
-/* PRINT */
+.question-palette{display:flex;flex-wrap:wrap;gap:7px}
+.question-nav{width:38px;height:38px;border:1px solid #ced4da;border-radius:7px;background:#fff;color:#212529;font-weight:600}
+.question-nav.current{background:#0d6efd;color:#fff;border-color:#0d6efd}
+.question-nav.answered{border-color:#198754;box-shadow:inset 0 0 0 1px #198754}
+.option{display:block;width:100%;text-align:left;background:#fff;color:#212529}
+.option.selected{background:#0d6efd;color:#fff;border-color:#0d6efd}
+.option:focus,.question-nav:focus{outline:3px solid rgba(13,110,253,.25);outline-offset:2px}
+#reportCard{max-width:900px;margin:28px auto;background:#fff;border:1px solid #dce3ec;border-radius:14px;box-shadow:0 12px 35px rgba(20,45,80,.09);overflow:hidden;text-align:left;color:#263445}
+.report-topband{background:#102b4e;color:#fff;padding:24px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.report-brand{display:flex;align-items:center;gap:15px}
+.report-brand img{width:68px;height:68px;object-fit:contain;background:#fff;border-radius:10px;padding:5px}
+.report-brand h2{margin:0;color:#fff;font-weight:800;letter-spacing:.3px}
+.report-brand p{margin:3px 0 0;color:#d9e5f3;font-size:13px}
+.report-ref{text-align:right;font-size:12px;color:#e6edf6;line-height:1.7}
+.report-content{padding:28px 30px}
+.report-title{text-align:center;margin-bottom:22px;padding-bottom:17px;border-bottom:2px solid #e6edf4}
+.report-title h3{font-weight:800;color:#173b63;margin-bottom:6px;letter-spacing:.4px}
+.report-title p{color:#718096;margin:0;font-size:13px}
+.report-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:#fff;border:1px solid #dce5ef;border-radius:12px;overflow:hidden;margin-bottom:25px}
+.report-meta-heading{grid-column:1/-1;background:#f0f4f8;color:#173b63;padding:12px 18px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid #dce5ef}
+.report-detail{min-width:0;padding:14px 18px;border-bottom:1px solid #e8edf3;display:flex;flex-direction:column;gap:5px;background:#fff}
+.report-detail:nth-child(even){border-right:1px solid #e8edf3}
+.report-detail:nth-last-child(-n+2){border-bottom:0}
+.report-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#718096}
+.report-value{font-size:14px;font-weight:700;line-height:1.45;color:#203b5b;overflow-wrap:anywhere}
+.result-stat{background:#f6f8fb;border:1px solid #e4eaf1;border-radius:10px;padding:17px;height:100%;text-align:center}
+.result-stat .small{font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#64748b!important}
+.result-stat h3{font-size:27px;font-weight:800;color:#173b63;margin:7px 0 0}
+.report-note{font-size:12px;color:#68788d;line-height:1.6;margin:18px 0 24px}
+.report-signature{min-height:90px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end}
+.report-signature img{max-width:150px;height:48px;object-fit:contain;object-position:left bottom}
+.report-signature strong{color:#203b5b}
+.report-footer{background:#f1f5f9;border-top:1px solid #dce5ef;padding:17px 30px;text-align:center;font-size:11px;color:#52657c;line-height:1.8}
+.report-footer strong{color:#173b63}
+.report-actions{max-width:900px;margin:0 auto 30px}
+#answerReview{max-width:900px;margin:25px auto;padding:25px}
+.review-question{border:1px solid #e1e7ef;border-left:4px solid #0d6efd;border-radius:9px;padding:16px;margin-bottom:13px;background:#fff}
+.review-question.correct{border-left-color:#198754}
+.review-question.incorrect{border-left-color:#dc3545}
+@media(max-width:600px){.report-topband{padding:18px;align-items:flex-start}.report-brand img{width:54px;height:54px}.report-brand h2{font-size:21px}.report-ref{font-size:10px}.report-content{padding:20px 16px}.report-meta{grid-template-columns:1fr}.report-detail{border-right:0!important;border-bottom:1px solid #e8edf3!important}.report-detail:last-child{border-bottom:0!important}}
 @media print{
-body *{visibility:hidden}
-#reportCard,#reportCard *{visibility:visible}
-#reportCard{position:absolute;left:0;top:0;width:100%}
-.no-print{display:none}
+  @page{size:A4;margin:12mm}
+  html,body{background:#fff!important;margin:0!important;padding:0!important;min-height:0!important}
+  /* Hide the complete website layout so invisible sections cannot create blank pages. */
+  body.print-report-mode > *{display:none!important}
+  /* Keep only the assessment section and its report visible in print. */
+  body.print-report-mode > .container.py-5{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+  body.print-report-mode > .container.py-5 > *{display:none!important}
+  body.print-report-mode #result{display:block!important;width:100%!important;margin:0!important;padding:0!important}
+  #reportCard{display:block!important;position:static!important;left:auto!important;top:auto!important;width:100%!important;max-width:none!important;margin:0!important;border:1px solid #cbd5e1!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  #reportCard *{visibility:visible!important}
+  #reportCard .report-topband{display:flex!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#102b4e!important}
+  #reportCard .report-brand{display:flex!important}
+  #reportCard .report-meta{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff!important}
+  #reportCard .report-meta-heading{display:block!important;grid-column:1/-1!important;background:#f0f4f8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #reportCard .report-detail{display:flex!important;flex-direction:column!important;background:#fff!important;break-inside:avoid!important;page-break-inside:avoid!important}
+  #reportCard .report-label{display:block!important;color:#718096!important}
+  #reportCard .report-value{display:block!important;color:#203b5b!important}
+  #reportCard .report-content{display:block!important}
+  #reportCard .row{display:flex!important;flex-wrap:wrap!important}
+  #reportCard .report-footer{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #reportCard .result-stat{display:block!important;border:1px solid #cbd5e1!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #reportCard .no-print,.report-actions,#answerReview{display:none!important}
+  #reportCard .report-signature{display:flex!important}
+  #reportCard .report-signature img{display:block!important}
+  #reportCard{color:#263445!important}
 }
 </style>
 </head>
@@ -41,7 +113,7 @@ body *{visibility:hidden}
 <div class="bg-primary text-light py-3 px-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
 <div class="text-center text-md-start mb-3 mb-md-0">
 
-<a href="mailto:official@csvision.online" class="text-light text-decoration-none">
+<a href="mailto:official@csvisionedu.com" class="text-light text-decoration-none">
             <i class="fa fa-map-marker-alt me-2"></i>Ahmedabad, Gujarat, INDIA, 382418-
 <i class="fa fa-phone-alt me-2"></i>6374720499 -
 <i class="fa fa-envelope me-2"></i>official@csvisionedu.com
@@ -107,30 +179,61 @@ CS Vision
 <!-- ===== TEST ===== -->
 <div class="container py-5">
 
-<h2 class="text-center mb-4">📝CS Vision - Online Test Portal</h2>
+<div class="text-center mb-4">
+  <span class="form-kicker">CS VISION • ONLINE ASSESSMENT</span>
+  <h2 class="fw-bold mb-2" style="color:#173b63">Online Test Portal</h2>
+  <p class="text-muted mb-0">Assess your knowledge. Track your progress. Build your skills.</p>
+</div>
 
-<div id="userForm" class="quiz-box">
-<input type="text" id="name" class="form-control mb-2" placeholder="Full Name">
-<input type="email" id="email" class="form-control mb-3" placeholder="Email">
-
-<h5>Select Subject</h5>
+<div id="userForm" class="quiz-box candidate-form">
+<div class="form-heading mb-4">
+  <span class="form-kicker">CANDIDATE REGISTRATION</span>
+  <h4 class="mb-1">Candidate Information</h4>
+  <p class="text-muted mb-0">Please enter your details and select an assessment subject to continue.</p>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-6">
+    <label for="name" class="form-label fw-semibold">Candidate Name <span class="text-danger">*</span></label>
+    <input type="text" id="name" class="form-control" placeholder="e.g., Chandan Kumar" maxlength="80" autocomplete="name" required>
+    <div class="form-text">Enter your full name as it should appear on the assessment report.</div>
+  </div>
+  <div class="col-md-6">
+    <label for="email" class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+    <input type="email" id="email" class="form-control" placeholder="e.g., abc@gmail.com" maxlength="120" autocomplete="email" required>
+    <div class="form-text">Enter a valid email address for your assessment record.</div>
+  </div>
+</div>
+<div class="subject-heading mb-3">
+  <h5 class="mb-1">Select Assessment Subject <span class="text-danger">*</span></h5>
+  <p class="text-muted mb-0 small">Choose one subject from the available assessment categories.</p>
+</div>
 <div class="row g-2" id="subjectList"></div>
 
 <button class="btn btn-primary mt-3 w-100" onclick="startTest()">Start Test</button>
 </div>
 
 <div id="quizBox" class="quiz-box mt-4" style="display:none">
-<div class="d-flex justify-content-between">
-<div id="progress"></div>
-<div id="timer" class="timer"></div>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+  <div>
+    <strong id="progress">Question 1</strong>
+    <div class="small text-muted" id="answerProgress">Answered 0 of 0</div>
+  </div>
+  <div class="timer" id="timer" aria-live="polite">35:00</div>
 </div>
+<div class="progress my-3" style="height:8px">
+  <div id="progressBar" class="progress-bar" role="progressbar" style="width:0%"></div>
+</div>
+<div id="questionPalette" class="question-palette mb-3" aria-label="Question navigation"></div>
 <hr>
-<div id="quiz"></div>
-<button class="btn btn-primary mt-3" onclick="prevQuestion()">Previous</button>
-
-
-<button class="btn btn-primary mt-3" onclick="nextQuestion()">Next</button>
-
+<div id="quiz" aria-live="polite"></div>
+<div class="d-flex flex-wrap justify-content-between gap-2 mt-4">
+  <button type="button" class="btn btn-outline-secondary" id="previousBtn" onclick="prevQuestion()">Previous</button>
+  <div class="d-flex flex-wrap gap-2">
+    <button type="button" class="btn btn-outline-primary" onclick="clearAnswer()">Clear Answer</button>
+    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button type="button" class="btn btn-danger" onclick="confirmSubmit()">Submit Test</button>
+  </div>
+</div>
 </div>
 
 <div id="result"></div>
@@ -144,7 +247,11 @@ const subjects=[
 "Java","C","C++","Python","HTML","CSS","JavaScript","PHP",
 "SQL","DBMS","Operating System","Computer Network",
 "Data Structure","Software Engineering","Cyber Security",
-"AI","Machine Learning","Cloud Computing","Linux","Deep Learning"
+"AI","Machine Learning","Cloud Computing","Linux","Deep Learning",
+"Data Science","Big Data Analytics","DevOps","Internet of Things (IoT)",
+"Computer Fundamentals","R Programming","Kotlin Programming",
+"Cybersecurity Fundamentals","Software Testing","MS Excel",
+"Web Development","Data Analytics"
 ];
 
 // ================= QUESTION BANK =================
@@ -943,196 +1050,515 @@ const questionBank={
 
 
 
+
+// ===== ADDITIONAL SUBJECTS (10 QUESTIONS EACH) =====
+"Data Science":[
+{q:"What is the primary purpose of data science?",options:["Extract insights from data","Design computer hardware","Create operating systems","Manage networks"],answer:0},
+{q:"Which language is widely used in data science?",options:["Python","HTML","CSS","Assembly"],answer:0},
+{q:"Which library is commonly used for data manipulation in Python?",options:["Pandas","Pygame","Turtle","Tkinter"],answer:0},
+{q:"What does EDA stand for?",options:["Exploratory Data Analysis","Extended Data Application","Electronic Data Access","External Data Algorithm"],answer:0},
+{q:"Which chart is suitable for showing category counts?",options:["Bar chart","Line of code","Flowchart","Gantt chart"],answer:0},
+{q:"What is a dataset?",options:["A collection of related data","A programming language","A computer device","A network protocol"],answer:0},
+{q:"Which measure represents the average?",options:["Mean","Mode","Range","Variance"],answer:0},
+{q:"What is data cleaning?",options:["Correcting or removing inaccurate data","Deleting all records","Encrypting a file","Formatting a disk"],answer:0},
+{q:"Which learning type uses labelled examples?",options:["Supervised learning","Unsupervised learning","Reinforcement learning","Random learning"],answer:0},
+{q:"What is the purpose of data visualization?",options:["Communicate patterns and insights","Increase file size","Compile programs","Control processors"],answer:0}
+],
+"Big Data Analytics":[
+{q:"Which characteristic is commonly associated with Big Data?",options:["Volume","Voltage","Velocity only","Visibility"],answer:0},
+{q:"What does the 3Vs model include?",options:["Volume, Velocity, Variety","Value, Version, Visual","Volume, Voltage, Vision","Variable, Vector, Value"],answer:0},
+{q:"Which framework is widely used for distributed big data processing?",options:["Apache Hadoop","MS Paint","Notepad","WordPad"],answer:0},
+{q:"What is HDFS?",options:["Hadoop Distributed File System","High Data Format Service","Hybrid File Design System","Host Data Folder Structure"],answer:0},
+{q:"Which tool is designed for fast large-scale data processing?",options:["Apache Spark","HTML","CSS","FTP"],answer:0},
+{q:"What is data mining?",options:["Discovering patterns in data","Creating physical mines","Formatting databases","Designing web pages"],answer:0},
+{q:"Why is distributed computing used in Big Data?",options:["To process data across multiple machines","To reduce all data to one byte","To avoid storage","To replace databases"],answer:0},
+{q:"Which format is commonly used for semi-structured data?",options:["JSON","BMP","MP3","EXE"],answer:0},
+{q:"What is batch processing?",options:["Processing accumulated data in groups","Processing one pixel","Manual data entry only","Deleting records"],answer:0},
+{q:"What does ETL stand for?",options:["Extract, Transform, Load","Enter, Transfer, Link","Evaluate, Test, Launch","Encode, Track, List"],answer:0}
+],
+"DevOps":[
+{q:"What is the main goal of DevOps?",options:["Improve collaboration and software delivery","Replace programming","Design computer chips","Stop software updates"],answer:0},
+{q:"What does CI stand for?",options:["Continuous Integration","Computer Interface","Code Inspection only","Central Internet"],answer:0},
+{q:"What does CD commonly stand for in CI/CD?",options:["Continuous Delivery or Deployment","Computer Design","Code Directory","Central Database"],answer:0},
+{q:"Which tool is commonly used for version control?",options:["Git","Excel","Photoshop","PowerPoint"],answer:0},
+{q:"Which platform is widely used for containerization?",options:["Docker","Jupyter","Figma","MySQL Workbench"],answer:0},
+{q:"Which tool is used for container orchestration?",options:["Kubernetes","Git","Maven","Jira"],answer:0},
+{q:"What is a pipeline in DevOps?",options:["Automated sequence of build, test and deployment steps","A network cable","A database table","A hardware component"],answer:0},
+{q:"Why are automated tests useful?",options:["They provide repeatable quality checks","They remove the need for requirements","They guarantee zero defects","They replace users"],answer:0},
+{q:"What is Infrastructure as Code?",options:["Managing infrastructure through machine-readable definitions","Writing user manuals","Drawing network diagrams only","Installing hardware manually"],answer:0},
+{q:"What is monitoring used for?",options:["Observe system health and performance","Write source code","Create logos","Design databases"],answer:0}
+],
+"Internet of Things (IoT)":[
+{q:"What does IoT stand for?",options:["Internet of Things","Input of Technology","Integration of Tools","Internet of Text"],answer:0},
+{q:"What connects physical devices in IoT?",options:["Sensors and network connectivity","Printers only","Word processors","Compilers"],answer:0},
+{q:"Which component detects environmental changes?",options:["Sensor","Monitor","Keyboard","Speaker"],answer:0},
+{q:"Which component can perform a physical action?",options:["Actuator","Spreadsheet","Router table","Compiler"],answer:0},
+{q:"Which protocol is commonly used for lightweight messaging in IoT?",options:["MQTT","SMTP only","FTP only","POP3"],answer:0},
+{q:"Which is an example of IoT?",options:["Smart thermostat","Paper notebook","Mechanical pencil","Printed book"],answer:0},
+{q:"What is a major IoT security concern?",options:["Unauthorized device access","Screen brightness","Font size","File naming"],answer:0},
+{q:"What is edge computing in IoT?",options:["Processing data near the device","Printing data at the edge of paper","Storing all data offline","Removing sensors"],answer:0},
+{q:"Which network technology can support low-power IoT devices?",options:["Zigbee","VGA","HDMI","SATA"],answer:0},
+{q:"Why is device authentication important?",options:["To verify trusted devices","To increase screen resolution","To speed up typing","To change file extensions"],answer:0}
+],
+"Computer Fundamentals":[
+{q:"What is the main function of a CPU?",options:["Execute instructions","Display images only","Store files permanently only","Print documents"],answer:0},
+{q:"Which memory is volatile?",options:["RAM","ROM","SSD","DVD"],answer:0},
+{q:"Which unit performs arithmetic and logical operations?",options:["ALU","CU","GPU memory","Power supply"],answer:0},
+{q:"Which number system uses base 2?",options:["Binary","Decimal","Octal","Hexadecimal"],answer:0},
+{q:"Which is an output device?",options:["Monitor","Keyboard","Mouse","Scanner"],answer:0},
+{q:"Which software manages computer hardware and resources?",options:["Operating System","Web browser","Text editor","Presentation software"],answer:0},
+{q:"What does GUI stand for?",options:["Graphical User Interface","General Utility Internet","Global User Input","Graphic Unit Integration"],answer:0},
+{q:"Which storage device has no moving mechanical parts?",options:["SSD","Hard disk drive","Floppy disk","Tape drive"],answer:0},
+{q:"What is the smallest unit of digital data?",options:["Bit","Byte","Kilobyte","Megabyte"],answer:0},
+{q:"Which component connects major parts of a computer?",options:["Motherboard","Mouse pad","Monitor stand","Printer tray"],answer:0}
+],
+"R Programming":[
+{q:"R is primarily used for which purpose?",options:["Statistical computing and graphics","Operating system development only","Video editing","Network cabling"],answer:0},
+{q:"Which function displays output in R?",options:["print()","echo()","printf()","displayText()"],answer:0},
+{q:"Which symbol is commonly used for assignment in R?",options:["<-","=>","::=","**"],answer:0},
+{q:"Which function creates a sequence in R?",options:["seq()","rangeText()","sequenceFile()","makeSeq()"],answer:0},
+{q:"Which data structure stores elements of the same basic type?",options:["Vector","List","Data frame","Environment"],answer:0},
+{q:"Which function reads a CSV file in base R?",options:["read.csv()","open.csv()","load.csv()","import.table()"],answer:0},
+{q:"Which function provides a summary of an object?",options:["summary()","details()","inspectAll()","overview()"],answer:0},
+{q:"Which operator is used for element-wise multiplication?",options:["*","%/%","^","%%"],answer:0},
+{q:"Which package is widely used for data visualization?",options:["ggplot2","shinyFiles only","stringr","lubridate"],answer:0},
+{q:"What does NA represent in R?",options:["Missing value","New array","Numeric average","Named argument"],answer:0}
+],
+"Kotlin Programming":[
+{q:"Kotlin is developed by which company?",options:["JetBrains","Oracle","Microsoft","IBM"],answer:0},
+{q:"Which keyword declares a read-only variable in Kotlin?",options:["val","var","let","constvar"],answer:0},
+{q:"Which keyword declares a mutable variable?",options:["var","val","fixed","static"],answer:0},
+{q:"What is the extension of Kotlin source files?",options:[".kt",".java",".ktscript",".kotlinx"],answer:0},
+{q:"Which function is the usual entry point of a Kotlin application?",options:["main()","start()","runApp()","init()"],answer:0},
+{q:"Which operator safely accesses a nullable value?",options:["?.","!!","::","->"],answer:0},
+{q:"Which keyword is used to define a function?",options:["fun","def","function","method"],answer:0},
+{q:"Kotlin is interoperable with which language?",options:["Java","COBOL only","Fortran only","HTML"],answer:0},
+{q:"Which construct handles multiple conditional branches?",options:["when","switch","selectcase","choose"],answer:0},
+{q:"What is a data class mainly used for?",options:["Holding data with generated utility methods","Managing network hardware","Creating operating systems","Drawing graphics"],answer:0}
+],
+"Cybersecurity Fundamentals":[
+{q:"What is the primary goal of cybersecurity?",options:["Protect systems and data","Increase screen size","Improve typing speed","Design presentations"],answer:0},
+{q:"What does phishing attempt to do?",options:["Trick users into revealing sensitive information","Improve network speed","Compress files","Update drivers"],answer:0},
+{q:"Which is an example of strong authentication?",options:["Multi-factor authentication","Using password 123456","Sharing passwords","Disabling login checks"],answer:0},
+{q:"What does malware mean?",options:["Malicious software","Management software","Mail software","Manual hardware"],answer:0},
+{q:"Which protocol helps secure web communication?",options:["HTTPS","HTTP only","Telnet","FTP"],answer:0},
+{q:"What is a firewall used for?",options:["Filter network traffic","Create documents","Edit images","Compile code"],answer:0},
+{q:"Why should software be updated regularly?",options:["To fix vulnerabilities and bugs","To remove all user files","To disable security","To slow down the system"],answer:0},
+{q:"What is encryption?",options:["Converting data into a protected form","Deleting data permanently","Sorting files","Compressing images only"],answer:0},
+{q:"What is a backup?",options:["A separate copy of data for recovery","A type of virus","A login method","A network cable"],answer:0},
+{q:"What does the principle of least privilege mean?",options:["Give users only the access they need","Give everyone administrator access","Share all passwords","Disable user accounts"],answer:0}
+],
+"Software Testing":[
+{q:"What is the main purpose of software testing?",options:["Identify defects and assess quality","Write marketing content","Increase monitor size","Replace requirements"],answer:0},
+{q:"Which testing checks individual components?",options:["Unit testing","System testing","Acceptance testing","Load testing"],answer:0},
+{q:"Which testing checks interactions between modules?",options:["Integration testing","Unit testing","Usability testing","Recovery testing"],answer:0},
+{q:"What is regression testing?",options:["Checking that changes have not broken existing features","Testing only new hardware","Measuring internet speed","Reviewing user passwords"],answer:0},
+{q:"What is a test case?",options:["A set of conditions, inputs and expected results","A programming language","A server rack","A database backup"],answer:0},
+{q:"Which testing is performed without knowing internal code details?",options:["Black-box testing","White-box testing","Static code analysis only","Code review"],answer:0},
+{q:"What is debugging?",options:["Finding and fixing defects in code","Writing user stories","Installing a printer","Creating a database"],answer:0},
+{q:"What is the expected result in a test case?",options:["The defined correct outcome","The developer's guess","A random output","The test duration"],answer:0},
+{q:"Which testing evaluates performance under expected workload?",options:["Load testing","Unit testing","Smoke testing","Static testing"],answer:0},
+{q:"What is User Acceptance Testing?",options:["Validation by users or customers against needs","Testing compiler syntax","Checking only memory","Testing network cables"],answer:0}
+],
+"MS Excel":[
+{q:"What is Microsoft Excel primarily used for?",options:["Spreadsheets and data analysis","Video editing","Operating systems","Web hosting"],answer:0},
+{q:"A formula in Excel generally begins with which symbol?",options:["=","#","@","&"],answer:0},
+{q:"Which function adds numbers?",options:["SUM()","COUNT()","TEXT()","LEFT()"],answer:0},
+{q:"Which function calculates the arithmetic mean?",options:["AVERAGE()","MAX()","MIN()","ROUNDUP()"],answer:0},
+{q:"Which function counts numeric cells?",options:["COUNT()","SUM()","CONCAT()","NOW()"],answer:0},
+{q:"What is a cell reference such as B4?",options:["Column B and row 4","Row B and column 4","Workbook 4","Sheet B"],answer:0},
+{q:"Which chart is useful for showing trends over time?",options:["Line chart","Pie chart only","Doughnut chart only","Radar chart only"],answer:0},
+{q:"Which feature arranges data in a chosen order?",options:["Sort","Merge","Wrap Text","Freeze Panes"],answer:0},
+{q:"Which feature displays only records meeting criteria?",options:["Filter","Format Painter","AutoSum","Find"],answer:0},
+{q:"Which reference remains fixed when copied?",options:["$A$1","A1","A$1 only","$A1 only"],answer:0}
+],
+"Web Development":[
+{q:"Which language structures the content of web pages?",options:["HTML","CSS","SQL","Python only"],answer:0},
+{q:"Which language is used to style web pages?",options:["CSS","HTML","SQL","Bash"],answer:0},
+{q:"Which language adds interactivity in browsers?",options:["JavaScript","SQL","C","Assembly"],answer:0},
+{q:"What does HTTP stand for?",options:["Hypertext Transfer Protocol","High Transfer Text Program","Host Tool Transfer Process","Hyperlink Text Terminal Protocol"],answer:0},
+{q:"Which HTML element creates a hyperlink?",options:["<a>","<p>","<img>","<table>"],answer:0},
+{q:"Which CSS property changes text colour?",options:["color","font-style","background-image","display"],answer:0},
+{q:"What is responsive web design?",options:["Layouts adapt to different screen sizes","Pages load only on desktops","Websites use no CSS","Content is always fixed width"],answer:0},
+{q:"Which method sends data in the request body commonly?",options:["POST","GET","HEAD","TRACE"],answer:0},
+{q:"What does DOM stand for?",options:["Document Object Model","Data Output Mode","Digital Ordinance Map","Document Order Method"],answer:0},
+{q:"Which status code indicates a successful HTTP request?",options:["200","404","500","301"],answer:0}
+],
+"Data Analytics":[
+{q:"What is data analytics?",options:["Examining data to find useful insights","Building computer hardware","Creating animations only","Writing device drivers"],answer:0},
+{q:"Which spreadsheet tool is often used for basic data analysis?",options:["Microsoft Excel","Notepad","Paint","Media Player"],answer:0},
+{q:"Which SQL clause filters rows?",options:["WHERE","ORDER BY","GROUP BY","SELECT"],answer:0},
+{q:"Which SQL function counts rows?",options:["COUNT()","SUM()","AVG()","ROUND()"],answer:0},
+{q:"What is a KPI?",options:["Key Performance Indicator","Known Program Interface","Kernel Processing Input","Key Protocol Internet"],answer:0},
+{q:"Which chart is suitable for comparing categories?",options:["Bar chart","Scatter plot only","Map only","Area chart only"],answer:0},
+{q:"What is a dashboard?",options:["Visual summary of important metrics","A database engine","A programming compiler","A network switch"],answer:0},
+{q:"What does data validation help ensure?",options:["Data meets defined rules","All data is deleted","Reports are hidden","Files are encrypted"],answer:0},
+{q:"What is a trend?",options:["General direction or pattern over time","A single random value","A file extension","A type of database key"],answer:0},
+{q:"Why is data accuracy important?",options:["It supports reliable decisions","It guarantees larger files","It removes the need for analysis","It prevents all errors"],answer:0}
+],
 // 👉 SAME PATTERN FOR ALL SUBJECTS
 };
 
 
 
-// ================= LOAD SUBJECT =================
-window.onload=function(){
-let list=document.getElementById("subjectList");
-subjects.forEach(sub=>{
-list.innerHTML+=`
-<div class="col-md-3">
-<div class="subject-card" onclick="selectTest(this,'${sub}')">${sub}</div>
-</div>`;
+// The original subjects array and questionBank are preserved above.
+
+const TEST_DURATION_MINUTES = 35;
+let selectedTest = "";
+let questions = [];
+let current = 0;
+let userAnswers = [];
+let userName = "";
+let userEmail = "";
+let timeLeft = TEST_DURATION_MINUTES * 60;
+let timer = null;
+let testSubmitted = false;
+
+window.addEventListener("DOMContentLoaded", () => {
+  const list = document.getElementById("subjectList");
+  list.innerHTML = "";
+  subjects.forEach((subject) => {
+    const col = document.createElement("div");
+    col.className = "col-6 col-md-3";
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "subject-card w-100";
+    card.textContent = subject;
+    card.addEventListener("click", () => selectTest(card, subject));
+    col.appendChild(card);
+    list.appendChild(col);
+  });
 });
-};
 
-let selectedTest="";
-
-function getFullSubjectName(sub){
-if(sub==="C") return "C Programming";
-if(sub==="C++") return "C++ Programming";
-if(sub==="Java") return "Java Programming";
-return sub;
+function getFullSubjectName(subject) {
+  if (subject === "C") return "C Programming";
+  if (subject === "C++") return "C++ Programming";
+  if (subject === "Java") return "Java Programming";
+  return subject;
 }
 
-function selectTest(el,test){
-selectedTest=test;
-document.querySelectorAll('.subject-card').forEach(c=>c.classList.remove('active'));
-el.classList.add('active');
+function selectTest(element, subject) {
+  selectedTest = subject;
+  document.querySelectorAll(".subject-card").forEach(card => {
+    card.classList.remove("active");
+    card.setAttribute("aria-pressed", "false");
+  });
+  element.classList.add("active");
+  element.setAttribute("aria-pressed", "true");
 }
 
-// ================= QUIZ LOGIC =================
-let questions = [], current = 0, score = 0, selectedAns = null;
-let userAnswers = []; // ✅ store answers
-
-let userName = "", userEmail = "";
-let timeLeft = 2100, timer;
-
-// ================= START TEST =================
 function startTest() {
-    userName = document.getElementById("name").value;
-    userEmail = document.getElementById("email").value;
+  const nameField = document.getElementById("name");
+  const emailField = document.getElementById("email");
+  userName = nameField.value.trim();
+  userEmail = emailField.value.trim();
 
-    if (!userName || !userEmail || !selectedTest) {
-        alert("Fill all details");
-        return;
+  if (!nameField.checkValidity() || !emailField.checkValidity()) {
+    if (!userName) nameField.setCustomValidity("Please enter your full name.");
+    else nameField.setCustomValidity("");
+    if (!userEmail) emailField.setCustomValidity("Please enter a valid email address.");
+    else emailField.setCustomValidity("");
+    nameField.reportValidity();
+    emailField.reportValidity();
+    return;
+  }
+  nameField.setCustomValidity("");
+  emailField.setCustomValidity("");
+
+  if (!selectedTest) {
+    alert("Please select a subject before starting the test.");
+    return;
+  }
+
+  const bank = questionBank[selectedTest];
+  if (!Array.isArray(bank) || bank.length === 0) {
+    alert("Questions are not available for this subject yet.");
+    return;
+  }
+
+  // Copy the selected subject's questions so the source question bank is not modified.
+  questions = bank.map(q => ({
+    q: String(q.q),
+    options: Array.isArray(q.options) ? [...q.options] : [],
+    answer: Number(q.answer)
+  })).filter(q => q.options.length > 0 && Number.isInteger(q.answer));
+
+  if (!questions.length) {
+    alert("No valid questions were found for this subject.");
+    return;
+  }
+
+  current = 0;
+  userAnswers = new Array(questions.length).fill(null);
+  timeLeft = TEST_DURATION_MINUTES * 60;
+  testSubmitted = false;
+
+  document.getElementById("userForm").style.display = "none";
+  document.getElementById("quizBox").style.display = "block";
+  document.getElementById("result").innerHTML = "";
+  renderQuestion();
+  updateTimerDisplay();
+
+  clearInterval(timer);
+  timer = setInterval(() => {
+    if (testSubmitted) return;
+    timeLeft -= 1;
+    updateTimerDisplay();
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      updateTimerDisplay();
+      submitTest(true);
     }
-
-    questions = questionBank[selectedTest];
-    current = 0;
-    score = 0;
-    userAnswers = []; // reset answers
-
-    document.getElementById("userForm").style.display = "none";
-    document.getElementById("quizBox").style.display = "block";
-
-    // Timer
-    timer = setInterval(() => {
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            showResult();
-        } else {
-            timeLeft--;
-            document.getElementById("timer").innerText =
-                `${Math.floor(timeLeft / 60)}:${(timeLeft % 60 < 10 ? "0" : "") + (timeLeft % 60)}`;
-        }
-    }, 1000);
-
-    loadQuestion();
+  }, 1000);
 }
 
-// ================= LOAD QUESTION =================
-function loadQuestion() {
-    let q = questions[current];
-
-    document.getElementById("progress").innerText = `Q ${current + 1}/${questions.length}`;
-
-    let html = `<h5>${q.q}</h5>`;
-
-    q.options.forEach((opt, i) => {
-
-        // ✅ Check if already answered
-        let selectedClass = userAnswers[current] === i ? "selected" : "";
-
-        html += `<div class='option ${selectedClass}' onclick='selectAnswer(${i},this)'>${opt}</div>`;
-    });
-
-    document.getElementById("quiz").innerHTML = html;
-
-    // ✅ Restore selected answer
-    selectedAns = userAnswers[current] ?? null;
+function updateTimerDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const timerElement = document.getElementById("timer");
+  timerElement.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  timerElement.classList.toggle("text-danger", timeLeft <= 300);
 }
 
-// ================= SELECT ANSWER =================
-function selectAnswer(i, el) {
-    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
+function renderQuestion() {
+  if (!questions.length || current < 0 || current >= questions.length) return;
+  const question = questions[current];
 
-    selectedAns = i;
+  document.getElementById("progress").textContent =
+    `Question ${current + 1} of ${questions.length}`;
+  document.getElementById("quiz").innerHTML = "";
 
-    // ✅ Save instantly
-    userAnswers[current] = i;
+  const heading = document.createElement("h5");
+  heading.className = "mb-3";
+  heading.textContent = question.q;
+  document.getElementById("quiz").appendChild(heading);
+
+  question.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option";
+    button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+    button.setAttribute("aria-pressed", userAnswers[current] === index ? "true" : "false");
+    if (userAnswers[current] === index) button.classList.add("selected");
+    button.addEventListener("click", () => selectAnswer(index));
+    document.getElementById("quiz").appendChild(button);
+  });
+
+  document.getElementById("previousBtn").disabled = current === 0;
+  document.getElementById("nextBtn").textContent =
+    current === questions.length - 1 ? "Last Question" : "Next";
+  renderQuestionPalette();
+  updateAnswerProgress();
 }
 
-// ================= NEXT QUESTION =================
+function selectAnswer(index) {
+  if (testSubmitted) return;
+  userAnswers[current] = index;
+  renderQuestion();
+}
+
+function clearAnswer() {
+  if (testSubmitted) return;
+  userAnswers[current] = null;
+  renderQuestion();
+}
+
 function nextQuestion() {
-    if (selectedAns === null) {
-        alert("Select answer");
-        return;
-    }
-
-    current++;
-
-    if (current < questions.length) {
-        loadQuestion();
-    } else {
-        showResult();
-    }
+  if (current < questions.length - 1) {
+    current += 1;
+    renderQuestion();
+  } else {
+    alert("You are on the last question. Please submit the test when you are ready.");
+  }
 }
 
-// ================= PREVIOUS QUESTION =================
 function prevQuestion() {
-    if (current === 0) {
-        alert("This is the first question");
+  if (current > 0) {
+    current -= 1;
+    renderQuestion();
+  }
+}
+
+function goToQuestion(index) {
+  if (index >= 0 && index < questions.length) {
+    current = index;
+    renderQuestion();
+  }
+}
+
+function renderQuestionPalette() {
+  const palette = document.getElementById("questionPalette");
+  palette.innerHTML = "";
+  questions.forEach((_, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "question-nav";
+    button.textContent = String(index + 1);
+    button.setAttribute("aria-label", `Go to question ${index + 1}`);
+    button.setAttribute("aria-current", index === current ? "step" : "false");
+    if (index === current) button.classList.add("current");
+    if (userAnswers[index] !== null) button.classList.add("answered");
+    button.addEventListener("click", () => goToQuestion(index));
+    palette.appendChild(button);
+  });
+}
+
+function updateAnswerProgress() {
+  const answered = userAnswers.filter(answer => answer !== null).length;
+  document.getElementById("answerProgress").textContent =
+    `Answered ${answered} of ${questions.length}`;
+  const percent = questions.length ? (answered / questions.length) * 100 : 0;
+  document.getElementById("progressBar").style.width = `${percent}%`;
+  document.getElementById("progressBar").setAttribute("aria-valuenow", String(Math.round(percent)));
+}
+
+function confirmSubmit() {
+  if (testSubmitted) return;
+  const unanswered = userAnswers.filter(answer => answer === null).length;
+  const message = unanswered
+    ? `You have ${unanswered} unanswered question(s). Submit your test now?`
+    : "Are you sure you want to submit your test?";
+  if (window.confirm(message)) submitTest(false);
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[char]);
+}
+
+function submitTest(autoSubmitted) {
+  if (testSubmitted) return;
+  testSubmitted = true;
+  clearInterval(timer);
+
+  const correct = questions.reduce((total, question, index) =>
+    total + (userAnswers[index] === question.answer ? 1 : 0), 0);
+  const attempted = userAnswers.filter(answer => answer !== null).length;
+  const unanswered = questions.length - attempted;
+  const percentage = questions.length ? ((correct / questions.length) * 100).toFixed(2) : "0.00";
+  const subjectName = getFullSubjectName(selectedTest);
+  const submittedDate = new Date();
+  const submittedAt = submittedDate.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+  const reportDate = submittedDate.toISOString().slice(0,10).replaceAll("-", "");
+  const reportId = `CSV-OTA-${reportDate}-${String(Date.now()).slice(-6)}`;
+
+  document.getElementById("quizBox").style.display = "none";
+  const result = document.getElementById("result");
+
+  result.innerHTML = `
+    <div id="reportCard" aria-label="CS Vision Online Assessment Report">
+      <div class="report-topband">
+        <div class="report-brand">
+          <img src="img/Logo.jpg" alt="CS Vision Logo">
+          <div><h2>CS VISION</h2><p>Empowering Minds. Creating Futures.</p></div>
+        </div>
+        <div class="report-ref"><strong>ASSESSMENT REPORT</strong><br>Report ID: ${escapeHTML(reportId)}<br>Issued: ${escapeHTML(submittedAt)}</div>
+      </div>
+      <div class="report-content">
+        <div class="report-title">
+          <h3>ONLINE SKILL ASSESSMENT REPORT</h3>
+          <p>Official performance summary generated by CS Vision Online Test Portal</p>
+        </div>
+        <section class="report-meta" aria-label="Candidate information">
+          <div class="report-meta-heading">Candidate Information</div>
+          <div class="report-detail"><span class="report-label">Candidate Name</span><strong class="report-value">${escapeHTML(userName)}</strong></div>
+          <div class="report-detail"><span class="report-label">Email Address</span><strong class="report-value">${escapeHTML(userEmail)}</strong></div>
+          <div class="report-detail"><span class="report-label">Assessment</span><strong class="report-value">${escapeHTML(subjectName)}</strong></div>
+          <div class="report-detail"><span class="report-label">Submission Status</span><strong class="report-value">${autoSubmitted ? "Auto-submitted (time completed)" : "Submitted by candidate"}</strong></div>
+          <div class="report-detail"><span class="report-label">Date &amp; Time</span><strong class="report-value">${escapeHTML(submittedAt)}</strong></div>
+          <div class="report-detail"><span class="report-label">Assessment Type</span><strong class="report-value">Online Skill Assessment</strong></div>
+        </section>
+        <h5 class="fw-bold mb-3" style="color:#173b63">Performance Summary</h5>
+        <div class="row g-3 mb-3">
+          <div class="col-6 col-md-3"><div class="result-stat"><div class="small">Score</div><h3>${correct}/${questions.length}</h3></div></div>
+          <div class="col-6 col-md-3"><div class="result-stat"><div class="small">Percentage</div><h3>${percentage}%</h3></div></div>
+          <div class="col-6 col-md-3"><div class="result-stat"><div class="small">Attempted</div><h3>${attempted}</h3></div></div>
+          <div class="col-6 col-md-3"><div class="result-stat"><div class="small">Unanswered</div><h3>${unanswered}</h3></div></div>
+        </div>
+        <p class="report-note">This document records the candidate's performance in the above online assessment. The score is calculated from the responses submitted through the CS Vision Online Test Portal. This is a computer-generated report and is valid without a physical stamp. Please retain the Report ID for reference.</p>
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+          <div class="report-signature">
+            <img src="img/Chandan_Sign.jpeg" alt="Authorized signature">
+            <strong>Mr. Chandan Kumar</strong>
+            <span class="small text-muted">Founder &amp; CEO</span>
+            <span class="small text-muted">CS Vision</span>
+          </div>
+          <div class="text-end small text-muted">Authorized Assessment Report<br><strong style="color:#173b63">CS Vision</strong></div>
+        </div>
+      </div>
+      <div class="report-footer">
+        <strong>CS Vision | Technology • Education • Professional Development</strong><br>
+        Website: www.csvisionedu.com &nbsp;|&nbsp; Email: official@csvisionedu.com &nbsp;|&nbsp; Phone: +91 63747 20499<br>
+        <span>Empowering Minds. Creating Futures. &nbsp;•&nbsp; This report is intended for the named candidate.</span>
+      </div>
+    </div>
+    <div class="report-actions no-print d-flex flex-wrap justify-content-center gap-2">
+      <button type="button" class="btn btn-success px-4" onclick="downloadReport()"><i class="fa fa-file-pdf me-2"></i>Download Report (PDF)</button>
+      <button type="button" class="btn btn-outline-primary px-4" onclick="reviewAnswers()"><i class="fa fa-list-check me-2"></i>Review Answers</button>
+      <button type="button" class="btn btn-primary px-4" onclick="location.reload()"><i class="fa fa-redo me-2"></i>Take Another Test</button>
+    </div>
+    <div id="answerReview" class="quiz-box mt-4" style="display:none"></div>
+  `;
+}
+
+function reviewAnswers() {
+  const review = document.getElementById("answerReview");
+  if (!review) return;
+  let markup = `<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4"><div><h4 class="mb-1">Answer Review</h4><p class="text-muted mb-0">Check your responses against the correct answers.</p></div><span class="badge bg-primary">${questions.length} Questions</span></div>`;
+  questions.forEach((question, index) => {
+    const selected = userAnswers[index];
+    const isCorrect = selected === question.answer;
+    const status = selected === null ? "Not attempted" : (isCorrect ? "Correct" : "Incorrect");
+    markup += `<div class="review-question ${isCorrect ? "correct" : (selected === null ? "" : "incorrect")}">
+      <p class="fw-bold mb-2">Question ${index + 1}. ${escapeHTML(question.q)}</p>
+      <p class="${isCorrect ? "text-success" : "text-danger"} mb-2"><b>${status}</b></p>
+      <p class="mb-1"><strong>Your answer:</strong> ${selected === null ? "Not attempted" : escapeHTML(question.options[selected])}</p>
+      <p class="text-success mb-0"><strong>Correct answer:</strong> ${escapeHTML(question.options[question.answer])}</p>
+    </div>`;
+  });
+  review.innerHTML = markup;
+  review.style.display = "block";
+  review.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function downloadReport() {
+    const report = document.getElementById("reportCard");
+
+    if (!report) {
+        alert("Assessment report not found!");
         return;
     }
 
-    current--;
+    const originalZoom = report.style.zoom;
 
-    // ✅ Restore previous answer (IMPORTANT FIX)
-    selectedAns = userAnswers[current] ?? null;
+    // Enable report-only printing
+    document.body.classList.add("print-report-mode");
 
-    loadQuestion();
+    // Fit the report within one A4 page
+    const pageWidth = 718;
+    const pageHeight = 1047;
+
+    const reportWidth = report.scrollWidth;
+    const reportHeight = report.scrollHeight;
+
+    const scale = Math.min(
+        1,
+        pageWidth / reportWidth,
+        pageHeight / reportHeight
+    );
+
+    report.style.zoom = scale.toFixed(2);
+
+    window.onafterprint = () => {
+        document.body.classList.remove("print-report-mode");
+        report.style.zoom = originalZoom;
+        window.onafterprint = null;
+    };
+
+    window.print();
 }
-
-// ================= SHOW RESULT =================
-function showResult() {
-    clearInterval(timer);
-
-    // ✅ Calculate score at end (accurate)
-    score = 0;
-    questions.forEach((q, i) => {
-        if (userAnswers[i] === q.answer) {
-            score++;
-        }
-    });
-
-    let sub = getFullSubjectName(selectedTest);
-    let date = new Date().toLocaleString();
-
-    document.getElementById("quizBox").style.display = "none";
-
-    document.getElementById("result").innerHTML = `
-    <div id="reportCard" class="result-card">
-
-    <div class="report-header">
-    <span><b>Date:</b> ${date}</span>
-    <span><b>${sub} Test Report</b></span>
-    </div>
-
-    <img src="img/Logo.jpg" height="60">
-    <h2>CS Vision</h2>
-
-    <hr>
-
-    <p><b>Name:</b> ${userName}</p>
-    <p><b>Email:</b> ${userEmail}</p>
-    <p><b>Subject:</b> ${sub}</p>
-    <p><b>Score:</b> ${score} out of ${questions.length}</p>
-
-    <hr>
-
-    <img src="img/Chandan_Sign.jpeg" height="50"><br>
-    <b>Founder & CEO</b>
-
-    <br><br>
-
-    <button class="btn btn-success no-print" onclick="downloadReport()">Download Report</button>
-
-    </div>`;
-}
-
-
-// PRINT DOWNLOAD
-function downloadReport(){
-window.print();
-}
-
 </script>
-
 
  <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -1150,7 +1576,7 @@ window.print();
                 <h4 class="text-white mb-3">Contact</h4>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Bihar , India</p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 63747 20499</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>csvision.edubth@gmail.com</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>official@csvisionedu.com</p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/csv_ision?igsh=MzM2Z2ExaWV6a3Bz" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/ChandanJaiswal123/" target="_blank"><i class="fab fa-facebook-f"></i></a>
