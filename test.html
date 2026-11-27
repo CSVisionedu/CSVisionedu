@@ -194,7 +194,7 @@ CS Vision
 <div class="row g-3 mb-4">
   <div class="col-md-6">
     <label for="name" class="form-label fw-semibold">Candidate Name <span class="text-danger">*</span></label>
-    <input type="text" id="name" class="form-control" placeholder="e.g., Chandan Kumar" maxlength="80" autocomplete="name" required>
+    <input type="text" id="name" class="form-control" placeholder="e.g., Your Name" maxlength="80" autocomplete="name" required>
     <div class="form-text">Enter your full name as it should appear on the assessment report.</div>
   </div>
   <div class="col-md-6">
@@ -1452,6 +1452,8 @@ function submitTest(autoSubmitted) {
         <div class="report-brand">
           <img src="img/Logo.jpg" alt="CS Vision Logo">
           <div><h2>CS VISION</h2><p>Empowering Minds. Creating Futures.</p></div>
+          <img src="img/aicte.jpg" alt="CS Vision AICTE Logo">
+          <img src="img/dpiit.jpg" alt="CS Vision DPIIT Logo">
         </div>
         <div class="report-ref"><strong>ASSESSMENT REPORT</strong><br>Report ID: ${escapeHTML(reportId)}<br>Issued: ${escapeHTML(submittedAt)}</div>
       </div>
@@ -1484,6 +1486,11 @@ function submitTest(autoSubmitted) {
             <span class="small text-muted">Founder &amp; CEO</span>
             <span class="small text-muted">CS Vision</span>
           </div>
+
+            <div class="report-topband">
+    <img src="img/seal.png" alt="CS Vision DPIIT Logo" style="width:80px; height:80px; object-fit:contain; display:block; flex-shrink:0;">
+</div>
+
           <div class="text-end small text-muted">Authorized Assessment Report<br><strong style="color:#173b63">CS Vision</strong></div>
         </div>
       </div>
